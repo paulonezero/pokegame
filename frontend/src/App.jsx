@@ -625,18 +625,20 @@ function RoundScreen({
       </div>
 
       <div className="round-body">
-        <div className={`stage${revealed ? " is-revealed" : ""}${recentReveal ? " has-side-reveal" : ""}`}>
-          {stageImageUrl && (
-            <img
-              className={`stage-image${revealed && artworkUrl ? " is-artwork" : ""}`}
-              src={stageImageUrl}
-              alt={revealed && targetName ? `Full artwork of ${targetName}` : ""}
-              draggable="false"
-            />
-          )}
-          {revealed && <span className="reveal-sweep" aria-hidden="true" />}
-          {revealed && targetName && <div className="reveal-banner">{targetName}</div>}
-          <span className="stage-caption stage-caption--left">Q{state.q_num}</span>
+        <div className={`stage-row${recentReveal ? " has-reveal" : ""}`}>
+          <div className={`stage${revealed ? " is-revealed" : ""}`}>
+            {stageImageUrl && (
+              <img
+                className={`stage-image${revealed && artworkUrl ? " is-artwork" : ""}`}
+                src={stageImageUrl}
+                alt={revealed && targetName ? `Full artwork of ${targetName}` : ""}
+                draggable="false"
+              />
+            )}
+            {revealed && <span className="reveal-sweep" aria-hidden="true" />}
+            {revealed && targetName && <div className="reveal-banner">{targetName}</div>}
+            <span className="stage-caption stage-caption--left">Q{state.q_num}</span>
+          </div>
           {recentReveal && (
             <aside className="last-correct" aria-live="polite">
               <span>Last correct</span>

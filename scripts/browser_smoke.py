@@ -123,7 +123,7 @@ def main() -> int:
                 reveal = command(
                     "Runtime.evaluate",
                     {
-                        "expression": "(async()=>{const state=await fetch('/api/state').then(r=>r.json());const target=state.question.answers.find(a=>a.id===state.question.target_id);[...document.querySelectorAll('.answer-row')].find(button=>button.querySelector('.answer-name')?.textContent===target.name)?.click();return await new Promise(resolve=>{const deadline=Date.now()+3000;const check=()=>{const card=document.querySelector('.last-correct');const question=document.querySelector('.stage-caption--left')?.textContent;if(card&&question==='Q2')resolve({shown:true,name:card.querySelector('strong')?.textContent,question});else if(Date.now()>deadline)resolve({shown:false,question});else setTimeout(check,50)};check()})})()",
+                        "expression": "(async()=>{const state=await fetch('/api/state').then(r=>r.json());const target=state.question.answers.find(a=>a.id===state.question.target_id);[...document.querySelectorAll('.answer-row')].find(button=>button.querySelector('.answer-name')?.textContent===target.name)?.click();return await new Promise(resolve=>{const deadline=Date.now()+3000;const check=()=>{const card=document.querySelector('.last-correct');const stage=document.querySelector('.stage');const question=document.querySelector('.stage-caption--left')?.textContent;if(card&&stage&&question==='Q2'){const c=card.getBoundingClientRect();const s=stage.getBoundingClientRect();resolve({shown:true,name:card.querySelector('strong')?.textContent,question,outside:c.left>=s.right-1,smaller:c.width<s.width,stage:{width:s.width,height:s.height},card:{width:c.width,height:c.height}})}else if(Date.now()>deadline)resolve({shown:false,question});else setTimeout(check,50)};check()})})()",
                         "awaitPromise": True,
                         "returnByValue": True,
                     },
@@ -181,7 +181,12 @@ def main() -> int:
                 raise AssertionError(
                     f"Stage does not match the {expected}pt target at {width}×{height}: {stage}"
                 )
-            if not result["reveal"]["shown"] or result["reveal"]["question"] != "Q2":
+            if (
+                not result["reveal"]["shown"]
+                or result["reveal"]["question"] != "Q2"
+                or not result["reveal"]["outside"]
+                or not result["reveal"]["smaller"]
+            ):
                 raise AssertionError(f"Side reveal did not advance immediately at {width}×{height}: {result['reveal']}")
             if not result["logout"]:
                 raise AssertionError(f"Username logout control did not return to login at {width}×{height}")
