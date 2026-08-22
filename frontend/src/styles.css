@@ -485,6 +485,10 @@ button:disabled {
   animation: successPulse 0.45s ease both;
 }
 
+.correct-badge.has-trio-bonus {
+  background: var(--color-accent);
+}
+
 .last-correct img {
   display: block;
   width: 38px;
@@ -716,6 +720,53 @@ button:disabled {
   border-top: 2px solid var(--color-text);
 }
 
+.bonus-banner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 3px 12px;
+  padding: 10px 12px;
+  border: 2px solid var(--color-text);
+  color: var(--color-bg);
+  background: var(--color-text);
+  animation: successPulse 0.45s ease both;
+}
+
+.bonus-banner > span {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.bonus-banner > strong {
+  grid-row: span 2;
+  font-family: var(--font-heading);
+  font-size: 17px;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.bonus-banner > small {
+  font-size: 9px;
+  opacity: 0.68;
+}
+
+.trio-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 10px;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent-700);
+  background: var(--color-accent-200);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .result-kicker {
   color: var(--color-accent-700);
   font-size: 10.5px;
@@ -869,9 +920,16 @@ button:disabled {
   display: grid;
   grid-template-columns: 54px minmax(0, 1fr) 54px;
   align-items: center;
-  min-height: 38px;
+  min-height: 48px;
   border-bottom: 1px solid var(--color-neutral-300);
   font-size: 14px;
+}
+
+.leaderboard-player {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .leaderboard-row:last-child {
@@ -913,6 +971,15 @@ button:disabled {
   font-size: 8px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.leaderboard-meta {
+  overflow: hidden;
+  color: var(--color-neutral-700);
+  font-size: 8.5px;
+  letter-spacing: 0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .board-message {

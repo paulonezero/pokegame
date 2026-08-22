@@ -95,6 +95,62 @@ def build_data(
 
 
 class FastAPIRoundFlowTests(unittest.TestCase):
+    def test_clean_three_resets_and_flawless_round_doubles_score_once(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            data_dir = Path(temporary)
+            build_data(data_dir)
+            clock = FakeClock()
+
+            with TestClient(create_app(data_dir, clock)) as client:
+                state = client.post("/api/round/start").json()
+                for index in range(6):
+                    target_id = state["question"]["target_id"]
+                    state = client.post(
+                        "/api/round/guess", json={"answer_id": target_id}
+                    ).json()
+                    if index in {2, 5}:
+                        self.assertEqual(state["event"]["trio_bonus"], 5)
+                        self.assertEqual(state["event"]["points_awarded"], 8)
+                        self.assertEqual(state["clean_three_progress"], 0)
+                    else:
+                        self.assertEqual(state["event"]["trio_bonus"], 0)
+                    if index < 5:
+                        state = client.post("/api/round/advance").json()
+
+                clock.advance(31)
+                result = client.post("/api/round/expire").json()
+                self.assertEqual(result["score"], 56)
+                self.assertEqual(result["best"], 56)
+                self.assertTrue(result["bonus"]["applied"])
+                self.assertEqual(result["bonus"]["base_score"], 28)
+                self.assertEqual(result["bonus"]["multiplier"], 2)
+                self.assertEqual(result["clean_three"], {"awards": 2, "points": 10})
+                self.assertEqual(client.post("/api/round/expire").json()["score"], 56)
+
+                state = client.post("/api/round/start").json()
+                for index in range(3):
+                    target_id = state["question"]["target_id"]
+                    if index == 0:
+                        wrong_id = next(
+                            answer["id"]
+                            for answer in state["question"]["answers"]
+                            if answer["id"] != target_id
+                        )
+                        client.post("/api/round/guess", json={"answer_id": wrong_id})
+                    state = client.post(
+                        "/api/round/guess", json={"answer_id": target_id}
+                    ).json()
+                    if index < 2:
+                        state = client.post("/api/round/advance").json()
+
+                clock.advance(31)
+                result = client.post("/api/round/expire").json()
+                self.assertEqual(result["score"], 13)
+                self.assertFalse(result["bonus"]["applied"])
+                self.assertEqual(result["bonus"]["base_score"], 13)
+                self.assertEqual(result["clean_three"], {"awards": 1, "points": 5})
+                self.assertEqual(result["best"], 56)
+
     def test_round_flow_timeout_and_replay(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             data_dir = Path(temporary)

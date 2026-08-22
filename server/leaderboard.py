@@ -32,6 +32,7 @@ class LeaderboardStore:
             if self._ready:
                 return
             with self._connect() as connection:
+                connection.execute("DROP INDEX IF EXISTS scores_ranking")
                 connection.execute(
                     """
                     CREATE TABLE IF NOT EXISTS players (
@@ -56,14 +57,33 @@ class LeaderboardStore:
                         player_id TEXT NOT NULL,
                         score INTEGER NOT NULL,
                         achieved_at REAL NOT NULL,
+                        found INTEGER NOT NULL DEFAULT 0,
+                        wrong_count INTEGER NOT NULL DEFAULT 0,
+                        best_streak INTEGER NOT NULL DEFAULT 0,
                         FOREIGN KEY(player_id) REFERENCES players(player_id)
                     )
                     """
                 )
+                score_columns = {
+                    row["name"]
+                    for row in connection.execute("PRAGMA table_info(scores)").fetchall()
+                }
+                for column in ("found", "wrong_count", "best_streak"):
+                    if column not in score_columns:
+                        connection.execute(
+                            f"ALTER TABLE scores ADD COLUMN {column} INTEGER NOT NULL DEFAULT 0"
+                        )
                 connection.execute(
                     """
                     CREATE INDEX IF NOT EXISTS scores_ranking
-                    ON scores(score DESC, achieved_at ASC, score_id ASC)
+                    ON scores(
+                        score DESC,
+                        found DESC,
+                        wrong_count ASC,
+                        best_streak DESC,
+                        achieved_at ASC,
+                        score_id ASC
+                    )
                     """
                 )
                 connection.execute(
@@ -109,7 +129,16 @@ class LeaderboardStore:
                 (player_id, username, now),
             )
 
-    def record_score(self, player_id: str, username: str, score: int) -> dict[str, Any]:
+    def record_score(
+        self,
+        player_id: str,
+        username: str,
+        score: int,
+        *,
+        found: int = 0,
+        wrong_count: int = 0,
+        best_streak: int = 0,
+    ) -> dict[str, Any]:
         self._ensure_schema()
         score = int(score)
         if score <= 0:
@@ -129,26 +158,40 @@ class LeaderboardStore:
                 (player_id, username, now),
             )
             cursor = connection.execute(
-                "INSERT INTO scores(player_id, score, achieved_at) VALUES (?, ?, ?)",
-                (player_id, score, now),
+                """
+                INSERT INTO scores(
+                    player_id, score, achieved_at, found, wrong_count, best_streak
+                ) VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    player_id,
+                    score,
+                    now,
+                    max(0, int(found)),
+                    max(0, int(wrong_count)),
+                    max(0, int(best_streak)),
+                ),
             )
             score_id = int(cursor.lastrowid)
             rank = connection.execute(
                 """
-                SELECT 1 + COUNT(*) AS rank
-                FROM scores
-                WHERE score > ? OR
-                    (score = ? AND achieved_at < ?) OR
-                    (score = ? AND achieved_at = ? AND score_id < ?)
+                SELECT rank FROM (
+                    SELECT
+                        score_id,
+                        ROW_NUMBER() OVER (
+                            ORDER BY
+                                score DESC,
+                                found DESC,
+                                wrong_count ASC,
+                                best_streak DESC,
+                                achieved_at ASC,
+                                score_id ASC
+                        ) AS rank
+                    FROM scores
+                )
+                WHERE score_id = ?
                 """,
-                (
-                    score,
-                    score,
-                    now,
-                    score,
-                    now,
-                    score_id,
-                ),
+                (score_id,),
             ).fetchone()["rank"]
 
         return {
@@ -163,11 +206,24 @@ class LeaderboardStore:
         with self._connect() as connection:
             rows = connection.execute(
                 """
-                SELECT scores.player_id, players.username, scores.score, scores.achieved_at
+                SELECT
+                    scores.player_id,
+                    players.username,
+                    scores.score,
+                    scores.achieved_at,
+                    scores.found,
+                    scores.wrong_count,
+                    scores.best_streak
                 FROM scores
                 JOIN players ON players.player_id = scores.player_id
                 WHERE scores.score > 0
-                ORDER BY scores.score DESC, scores.achieved_at ASC, scores.score_id ASC
+                ORDER BY
+                    scores.score DESC,
+                    scores.found DESC,
+                    scores.wrong_count ASC,
+                    scores.best_streak DESC,
+                    scores.achieved_at ASC,
+                    scores.score_id ASC
                 LIMIT ?
                 """,
                 (int(limit),),
@@ -177,6 +233,9 @@ class LeaderboardStore:
                 "rank": index,
                 "username": row["username"],
                 "score": int(row["score"]),
+                "found": int(row["found"]),
+                "wrong_count": int(row["wrong_count"]),
+                "best_streak": int(row["best_streak"]),
                 "achieved_at": row["achieved_at"],
                 "is_current": bool(player_id and row["player_id"] == player_id),
             }

@@ -132,7 +132,7 @@ def main() -> int:
                 submission = command(
                     "Runtime.evaluate",
                     {
-                        "expression": "(async()=>{const state=await fetch('/api/state').then(r=>r.json());await fetch('/api/round/guess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answer_id:state.question.target_id})});await fetch('/api/round/expire',{method:'POST'});return true})()",
+                        "expression": "(async()=>{for(let index=0;index<2;index+=1){const state=await fetch('/api/state').then(r=>r.json());await fetch('/api/round/guess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answer_id:state.question.target_id})});if(index===0)await fetch('/api/round/advance',{method:'POST'});}const result=await fetch('/api/round/expire',{method:'POST'}).then(r=>r.json());return {score:result.score,bonus:result.bonus,cleanThree:result.clean_three};})()",
                         "awaitPromise": True,
                         "returnByValue": True,
                     },
@@ -142,7 +142,7 @@ def main() -> int:
                 board = command(
                     "Runtime.evaluate",
                     {
-                        "expression": "(async()=>JSON.stringify({screen:!!document.querySelector('.leaderboard-screen'),rows:document.querySelectorAll('.leaderboard-row:not(.leaderboard-row--head)').length,current:!!document.querySelector('.leaderboard-row.is-current'),callout:!!document.querySelector('.rank-callout'),result:!!document.querySelector('.result-screen'),play:!!document.querySelector('.play-screen'),state:await fetch('/api/state').then(r=>r.json())}))()",
+                        "expression": "(async()=>JSON.stringify({screen:!!document.querySelector('.leaderboard-screen'),rows:document.querySelectorAll('.leaderboard-row:not(.leaderboard-row--head)').length,current:!!document.querySelector('.leaderboard-row.is-current'),callout:!!document.querySelector('.rank-callout'),metadata:document.querySelector('.leaderboard-meta')?.textContent,result:!!document.querySelector('.result-screen'),play:!!document.querySelector('.play-screen'),state:await fetch('/api/state').then(r=>r.json())}))()",
                         "awaitPromise": True,
                         "returnByValue": True,
                     },
@@ -192,9 +192,17 @@ def main() -> int:
                 raise AssertionError(f"Side reveal did not advance immediately at {width}×{height}: {result['reveal']}")
             if not result["logout"]:
                 raise AssertionError(f"Username logout control did not return to login at {width}×{height}")
+            if (
+                not result["submission"]["bonus"]["applied"]
+                or result["submission"]["score"] != 28
+                or result["submission"]["cleanThree"]["points"] != 5
+            ):
+                raise AssertionError(f"Flawless bonus was not applied at {width}×{height}: {result['submission']}")
             board = result["leaderboard"]
             if not board["screen"] or not board["rows"] or not board["current"] or not board["callout"]:
                 raise AssertionError(f"Qualifying leaderboard did not render at {width}×{height}: {board}")
+            if not all(value in (board["metadata"] or "") for value in ("3 named", "0 misses", "×3 streak")):
+                raise AssertionError(f"Leaderboard tiebreak metadata is missing at {width}×{height}: {board}")
             print(f"{width}x{height}: stage={stage['width']:.1f}x{stage['height']:.1f}, answers={result['answers']}")
         if errors:
             raise AssertionError(f"Browser errors: {errors}")

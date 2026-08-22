@@ -14,6 +14,42 @@ from tests.test_app import FakeClock, build_data
 
 
 class LeaderboardStoreTests(unittest.TestCase):
+    def test_equal_scores_use_performance_tiebreakers(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            clock = FakeClock()
+            store = LeaderboardStore(Path(temporary) / "scores.sqlite3", clock)
+            players = [str(uuid.uuid4()) for _ in range(5)]
+            performances = [
+                ("Fewer Named", 4, 0, 5),
+                ("More Misses", 5, 2, 5),
+                ("Shorter Streak", 5, 1, 2),
+                ("Earlier Best", 5, 1, 3),
+                ("Later Best", 5, 1, 3),
+            ]
+            for player_id, (name, found, wrong_count, best_streak) in zip(
+                players, performances, strict=True
+            ):
+                store.record_score(
+                    player_id,
+                    name,
+                    20,
+                    found=found,
+                    wrong_count=wrong_count,
+                    best_streak=best_streak,
+                )
+                clock.advance(1)
+
+            self.assertEqual(
+                [entry["username"] for entry in store.top()],
+                [
+                    "Earlier Best",
+                    "Later Best",
+                    "Shorter Streak",
+                    "More Misses",
+                    "Fewer Named",
+                ],
+            )
+
     def test_round_scores_ties_and_top_ten(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             clock = FakeClock()
@@ -76,6 +112,48 @@ class LeaderboardStoreTests(unittest.TestCase):
             self.assertEqual(LeaderboardStore(path).top()[0]["score"], 7)
             self.assertEqual(len(LeaderboardStore(path).top()), 1)
 
+    def test_existing_score_table_gains_tiebreak_columns(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "scores.sqlite3"
+            player_id = str(uuid.uuid4())
+            with sqlite3.connect(path) as connection:
+                connection.executescript(
+                    """
+                    CREATE TABLE players (
+                        player_id TEXT PRIMARY KEY,
+                        username TEXT NOT NULL,
+                        best_score INTEGER,
+                        achieved_at REAL,
+                        updated_at REAL NOT NULL
+                    );
+                    CREATE TABLE scores (
+                        score_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        player_id TEXT NOT NULL,
+                        score INTEGER NOT NULL,
+                        achieved_at REAL NOT NULL
+                    );
+                    CREATE TABLE leaderboard_meta (
+                        key TEXT PRIMARY KEY,
+                        value TEXT NOT NULL
+                    );
+                    INSERT INTO leaderboard_meta VALUES ('best_scores_migrated', '1');
+                    """
+                )
+                connection.execute(
+                    "INSERT INTO players VALUES (?, ?, NULL, NULL, ?)",
+                    (player_id, "Existing", 100.0),
+                )
+                connection.execute(
+                    "INSERT INTO scores(player_id, score, achieved_at) VALUES (?, 12, 100)",
+                    (player_id,),
+                )
+
+            entry = LeaderboardStore(path).top()[0]
+            self.assertEqual(
+                (entry["found"], entry["wrong_count"], entry["best_streak"]),
+                (0, 0, 0),
+            )
+
 
 class LeaderboardApiTests(unittest.TestCase):
     def test_profile_multiple_round_submissions_and_logout(self) -> None:
@@ -114,6 +192,9 @@ class LeaderboardApiTests(unittest.TestCase):
                 self.assertEqual(entries[0]["username"], "Ash K")
                 self.assertTrue(entries[0]["is_current"])
                 self.assertEqual([entry["score"] for entry in entries], [3, 3])
+                self.assertEqual(entries[0]["found"], 1)
+                self.assertEqual(entries[0]["wrong_count"], 0)
+                self.assertEqual(entries[0]["best_streak"], 1)
 
                 client.post("/api/player/logout")
                 remaining = client.get("/api/leaderboard").json()["entries"][0]

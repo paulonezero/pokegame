@@ -4,6 +4,12 @@ A 30-second Pokémon silhouette game covering every packaged National Pokédex s
 
 Gameplay is fully local at runtime: metadata, silhouettes, artwork, and the precomputed similarity index are packaged under `data/`. No PokéAPI requests or pairwise image comparisons occur while playing.
 
+Rounds with at least three correctly named Pokémon and no wrong selections receive a 2× score bonus at time-up. The doubled total is the score submitted to the global leaderboard.
+
+Every three correct answers since the last wrong selection also award +5 points. This counter resets after each award or wrong answer, so the bonus can be earned repeatedly within one round and is included before any flawless-round multiplier.
+
+Equal leaderboard scores are ordered by more Pokémon named, fewer wrong selections, higher best streak, and finally the earlier submission time. These tie-break details are shown beneath each player name.
+
 ## Requirements
 
 - Python 3.12+

@@ -75,6 +75,7 @@ class Question:
 
 @dataclass(slots=True)
 class Round:
+    round_id: str
     deadline: float
     question: Question
     score: int = 0
@@ -85,6 +86,12 @@ class Round:
     feedback_kind: Literal["idle", "wrong", "correct"] = "idle"
     feedback_text: str = ""
     leaderboard: dict[str, Any] | None = None
+    had_wrong_answer: bool = False
+    bonus_applied: bool = False
+    base_score: int | None = None
+    clean_correct_count: int = 0
+    trio_bonuses: int = 0
+    wrong_count: int = 0
 
 
 @dataclass(slots=True)
@@ -437,6 +444,7 @@ class GameService:
         session.target_pool.clear()
         session.last_target = None
         session.round = Round(
+            round_id=secrets.token_urlsafe(12),
             deadline=float(self.clock()) + ROUND_SECONDS,
             question=self._new_question(session),
         )
@@ -482,7 +490,12 @@ class GameService:
             return round_state.leaderboard
         try:
             result = self.leaderboard.record_score(
-                session.player_id, session.username, round_state.score
+                session.player_id,
+                session.username,
+                round_state.score,
+                found=round_state.found,
+                wrong_count=round_state.wrong_count,
+                best_streak=round_state.best_streak,
             )
             result["auto_show"] = bool(
                 result.get("rank") is not None
@@ -500,7 +513,12 @@ class GameService:
     def expire(self, session: Session) -> None:
         if session.screen != "play" or session.round is None:
             return
-        session.best = max(session.best, session.round.score)
+        round_state = session.round
+        round_state.base_score = round_state.score
+        if round_state.found >= 3 and not round_state.had_wrong_answer:
+            round_state.score *= 2
+            round_state.bonus_applied = True
+        session.best = max(session.best, round_state.score)
         session.screen = "result"
         self.submit_score(session)
 
@@ -540,6 +558,7 @@ class GameService:
             )
             return {
                 "screen": "result",
+                "round_id": round_state.round_id,
                 "score": round_state.score,
                 "found": round_state.found,
                 "best": session.best,
@@ -556,6 +575,20 @@ class GameService:
                     "username": session.username,
                 },
                 "leaderboard": round_state.leaderboard,
+                "bonus": {
+                    "applied": round_state.bonus_applied,
+                    "multiplier": 2,
+                    "base_score": (
+                        round_state.base_score
+                        if round_state.base_score is not None
+                        else round_state.score
+                    ),
+                    "minimum_found": 3,
+                },
+                "clean_three": {
+                    "awards": round_state.trio_bonuses,
+                    "points": round_state.trio_bonuses * 5,
+                },
             }
 
         round_state = session.round
@@ -580,6 +613,7 @@ class GameService:
             ),
             "streak": round_state.streak,
             "best_streak": round_state.best_streak,
+            "clean_three_progress": round_state.clean_correct_count,
             "best": session.best,
             "feedback": {
                 "kind": round_state.feedback_kind,
@@ -628,6 +662,9 @@ class GameService:
         answer = self.data.pokemon[answer_id]
 
         if answer_id != question.target_id:
+            round_state.had_wrong_answer = True
+            round_state.wrong_count += 1
+            round_state.clean_correct_count = 0
             round_state.streak = 0
             points_left = points_for_attempt(int(updated["attempt_count"]) + 1)
             round_state.feedback_kind = "wrong"
@@ -645,17 +682,29 @@ class GameService:
             )
 
         points = points_for_attempt(int(updated["attempt_count"]))
-        round_state.score += points
+        round_state.clean_correct_count += 1
+        trio_bonus = 0
+        if round_state.clean_correct_count == 3:
+            trio_bonus = 5
+            round_state.clean_correct_count = 0
+            round_state.trio_bonuses += 1
+        points_awarded = points + trio_bonus
+        round_state.score += points_awarded
         round_state.found += 1
         if int(updated["attempt_count"]) == 1:
             round_state.streak += 1
             round_state.best_streak = max(round_state.best_streak, round_state.streak)
         round_state.feedback_kind = "correct"
-        round_state.feedback_text = (
-            f"Correct — {answer.name} · +{points}"
-            if points
-            else f"Correct — {answer.name} · no points left"
-        )
+        if trio_bonus:
+            round_state.feedback_text = (
+                f"Correct — {answer.name} · +{points} and +{trio_bonus} clean-three bonus"
+            )
+        else:
+            round_state.feedback_text = (
+                f"Correct — {answer.name} · +{points}"
+                if points
+                else f"Correct — {answer.name} · no points left"
+            )
         return self.state(
             session,
             event={
@@ -663,6 +712,8 @@ class GameService:
                 "answer_id": answer.id,
                 "name": answer.name,
                 "points": points,
+                "trio_bonus": trio_bonus,
+                "points_awarded": points_awarded,
             },
         )
 

@@ -64,14 +64,18 @@ function playCue(kind) {
     const oscillator = context.createOscillator();
     const gain = context.createGain();
     const start = context.currentTime;
-    const duration = kind === "correct" ? 0.075 : 0.055;
+    const duration = kind === "bonus" ? 0.52 : kind === "correct" ? 0.075 : 0.055;
 
-    oscillator.type = kind === "correct" ? "sine" : "square";
-    oscillator.frequency.setValueAtTime(kind === "correct" ? 660 : 150, start);
-    if (kind === "correct") {
+    oscillator.type = kind === "bonus" ? "triangle" : kind === "correct" ? "sine" : "square";
+    oscillator.frequency.setValueAtTime(kind === "bonus" ? 523 : kind === "correct" ? 660 : 150, start);
+    if (kind === "bonus") {
+      oscillator.frequency.setValueAtTime(659, start + 0.13);
+      oscillator.frequency.setValueAtTime(784, start + 0.26);
+      oscillator.frequency.setValueAtTime(1047, start + 0.39);
+    } else if (kind === "correct") {
       oscillator.frequency.exponentialRampToValueAtTime(880, start + duration);
     }
-    gain.gain.setValueAtTime(0.035, start);
+    gain.gain.setValueAtTime(kind === "bonus" ? 0.055 : 0.035, start);
     gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
     oscillator.connect(gain);
     gain.connect(context.destination);
@@ -86,7 +90,9 @@ function playCue(kind) {
 function notify(kind, enabled) {
   if (!enabled) return;
   try {
-    navigator.vibrate?.(kind === "correct" ? [18, 20, 28] : 28);
+    navigator.vibrate?.(
+      kind === "bonus" ? [30, 35, 30, 35, 60] : kind === "correct" ? [18, 20, 28] : 28
+    );
   } catch {
     // Haptics are optional.
   }
@@ -115,6 +121,7 @@ function App() {
   const expireKeyRef = useRef(null);
   const animationTimersRef = useRef(new Set());
   const autoOpenedRef = useRef(null);
+  const bonusCueRef = useRef(null);
 
   const applyGame = useCallback((next) => {
     if (!next || typeof next !== "object") return;
@@ -199,6 +206,18 @@ function App() {
   const secondsLeft = Math.ceil(remainingMs / 1000);
   const timerFraction = Math.max(0, Math.min(1, remainingMs / totalMs));
   const expired = screen === "play" && Boolean(deadline) && remainingMs <= 0;
+
+  useEffect(() => {
+    if (
+      screen === "result"
+      && game?.bonus?.applied
+      && game?.round_id
+      && bonusCueRef.current !== game.round_id
+    ) {
+      bonusCueRef.current = game.round_id;
+      notify("bonus", soundRef.current);
+    }
+  }, [game?.bonus?.applied, game?.round_id, screen]);
 
   const requestExpire = useCallback(async () => {
     const current = gameRef.current;
@@ -393,7 +412,8 @@ function App() {
       setRecentReveal({
         name: event.name ?? next.question?.target_name,
         artworkUrl: next.question?.artwork_url,
-        points: event.points ?? 0,
+        points: event.points_awarded ?? event.points ?? 0,
+        trioBonus: event.trio_bonus ?? 0,
       });
       await call("/api/round/advance", { method: "POST" });
     }
@@ -551,7 +571,12 @@ function LeaderboardScreen({
         {!loading && !error && entries.map((entry) => (
           <div className={`leaderboard-row${entry.is_current ? " is-current" : ""}`} key={`${entry.rank}-${entry.username}`}>
             <strong>#{entry.rank}</strong>
-            <span className="leaderboard-name">{entry.username}{entry.is_current && <small>You</small>}</span>
+            <span className="leaderboard-player">
+              <span className="leaderboard-name">{entry.username}{entry.is_current && <small>You</small>}</span>
+              <span className="leaderboard-meta">
+                {entry.found} named · {entry.wrong_count} {entry.wrong_count === 1 ? "miss" : "misses"} · ×{entry.best_streak} streak
+              </span>
+            </span>
             <strong>{entry.score}</strong>
           </div>
         ))}
@@ -642,7 +667,9 @@ function RoundScreen({
           </div>
           {recentReveal && (
             <aside className="last-correct" aria-live="polite">
-              <span className="correct-badge">✓ Correct!</span>
+              <span className={`correct-badge${recentReveal.trioBonus ? " has-trio-bonus" : ""}`}>
+                {recentReveal.trioBonus ? "+5 Bonus!" : "✓ Correct!"}
+              </span>
               {recentReveal.artworkUrl && <img src={recentReveal.artworkUrl} alt="" />}
               <strong>{recentReveal.name}</strong>
               <small>+{recentReveal.points}</small>
@@ -726,6 +753,21 @@ function ResultScreen({ state, warning, onRetryScore, onShowLeaderboard, onPlayA
         <h1 className="display-heading">{state.score ?? 0} pts</h1>
         <p className="lead">{resultLine}</p>
       </div>
+
+      {state.bonus?.applied && (
+        <div className="bonus-banner" role="status">
+          <span>Flawless round</span>
+          <strong>{state.bonus.base_score} × 2 = {state.score} pts</strong>
+          <small>3+ Pokémon named with no wrong answers</small>
+        </div>
+      )}
+
+      {state.clean_three?.awards > 0 && (
+        <div className="trio-summary">
+          <span>Clean-three bonus</span>
+          <strong>{state.clean_three.awards} × 5 = +{state.clean_three.points} pts</strong>
+        </div>
+      )}
 
       <div className="result-reveal">
         <div className="result-art">
