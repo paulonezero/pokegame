@@ -1,6 +1,6 @@
 # Poké-Guesser
 
-A 30-second Pokémon silhouette game covering every packaged National Pokédex species. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience.
+A 30-second Pokémon silhouette game covering every packaged National Pokédex species. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience. Players choose a password-free browser identity and compete on a persistent global top-10 leaderboard.
 
 Gameplay is fully local at runtime: metadata, silhouettes, artwork, and the precomputed similarity index are packaged under `data/`. No PokéAPI requests or pairwise image comparisons occur while playing.
 
@@ -48,9 +48,10 @@ The repository includes `Dockerfile` and `railway.json`, so Railway builds the R
 3. Leave the service root directory blank (the repository root).
 4. Railway will detect `railway.json` and build with `Dockerfile`.
 5. In **Settings → Networking**, choose **Generate Domain**.
-6. Keep the service at one replica because browser sessions are currently stored in process memory.
+6. Attach a Railway volume to the service with the mount path `/data`. The app automatically stores its SQLite leaderboard at `/data/leaderboard.sqlite3` using Railway's `RAILWAY_VOLUME_MOUNT_PATH` variable.
+7. Keep the service at one replica because browser sessions are stored in process memory and Railway volumes do not support replicas.
 
-No application environment variables or persistent volume are required. Railway supplies `PORT`, and the container starts one Uvicorn worker automatically.
+No manually configured application variables are required. Railway supplies `PORT` and the volume mount path, and the container starts one Uvicorn worker automatically. Enable volume backups in Railway if leaderboard recovery is important.
 
 To test the same container locally:
 
@@ -61,7 +62,9 @@ docker run --rm -p 8000:8000 pokegame
 
 Then open `http://127.0.0.1:8000`.
 
-Deployments and service restarts reset session-best scores because there is intentionally no database. To scale beyond one replica, move sessions to a shared store such as Redis first.
+Session-best scores still reset when the process restarts, while global personal bests survive on the SQLite volume. To scale beyond one replica, move sessions and leaderboard storage to shared services such as Redis and Postgres first.
+
+For local development, leaderboard data is written to the ignored `.runtime/leaderboard.sqlite3` file. Set `POKEGAME_LEADERBOARD_DB_PATH` to use a different SQLite path.
 
 ## Build the Pokémon data
 
@@ -82,15 +85,16 @@ The similarity calculation uses all available CPU cores by default; pass `--jobs
 python -m unittest discover -s tests -v
 ```
 
-The suite covers pure scoring and guess transitions, image processing and similarity generation, distractor rank bands, and the FastAPI round flow including wrong-answer removal, second-attempt scoring, advancement on an unchanged deadline, late-guess rejection, target-pool behavior, setup recovery, and replay.
+The suite covers pure scoring and guess transitions, image processing and similarity generation, distractor rank bands, the FastAPI round flow, and leaderboard identity, persistence, ranking, tie, outage, rename, and logout behavior.
 
 ## Runtime architecture
 
-- `server/app.py` — FastAPI app, validated/cached packaged data, per-browser in-memory sessions, round commands, and image endpoints.
+- `server/app.py` — FastAPI app, validated/cached packaged data, per-browser in-memory sessions, round commands, leaderboard APIs, and image endpoints.
+- `server/leaderboard.py` — transactional SQLite personal-best storage and deterministic top-10 ranking.
 - `frontend/src/` — Round, Result, and Setup error screens with phone/iPad portrait layouts.
 - `src/` — reusable domain, data, image, and similarity modules.
 - `data/` — packaged Pokémon metadata, masks, artwork, and similarity index.
 
-Session state is process-local. Running multiple backend workers would require a shared session store or sticky sessions; the default command intentionally uses one worker.
+Session state is process-local and leaderboard state is SQLite-backed. Running multiple backend workers would require a shared session store and database; the default command intentionally uses one worker.
 
 Set `POKEGAME_DATA_DIR` to test or run against an alternate packaged data directory.

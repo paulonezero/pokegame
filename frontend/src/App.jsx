@@ -1,11 +1,33 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AlertCircle, Volume2, VolumeX } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { AlertCircle, LogOut, Pencil, Trophy, Volume2, VolumeX } from "lucide-react";
 import { apiRequest } from "./api.js";
 
 const IDLE_FEEDBACK = "Pick the name that fits the shape.";
 const WRONG_SHAKE_MS = 380;
 const WRONG_COLLAPSE_MS = 260;
 const CORRECT_HOLD_MS = 1500;
+const PLAYER_KEY = "pokegame:player:v1";
+const USERNAME_PATTERN = /^[A-Za-z0-9 _-]{3,20}$/;
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+function readPlayer() {
+  try {
+    const player = JSON.parse(window.localStorage.getItem(PLAYER_KEY));
+    if (UUID_PATTERN.test(player?.playerId ?? "") && USERNAME_PATTERN.test(player?.username ?? "")) return player;
+  } catch {
+    // Invalid or unavailable storage is treated as a signed-out browser.
+  }
+  return null;
+}
+
+function writePlayer(player) {
+  try {
+    if (player) window.localStorage.setItem(PLAYER_KEY, JSON.stringify(player));
+    else window.localStorage.removeItem(PLAYER_KEY);
+  } catch {
+    // The current tab can still play if durable browser storage is unavailable.
+  }
+}
 
 function screenName(value) {
   if (value === "round" || value === "active") return "play";
@@ -73,11 +95,19 @@ function notify(kind, enabled) {
 }
 
 function App() {
+  const [player, setPlayer] = useState(readPlayer);
   const [game, setGame] = useState(null);
   const [now, setNow] = useState(Date.now());
   const [sound, setSound] = useState(readSoundPreference);
   const [pendingAnswer, setPendingAnswer] = useState(null);
   const [rowPhases, setRowPhases] = useState({});
+  const [loginPending, setLoginPending] = useState(false);
+  const [profileWarning, setProfileWarning] = useState("");
+  const [showLeaderboard, setShowLeaderboard] = useState(false);
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [leaderboardLoading, setLeaderboardLoading] = useState(false);
+  const [leaderboardError, setLeaderboardError] = useState("");
+  const [leaderboardCallout, setLeaderboardCallout] = useState(null);
 
   const gameRef = useRef(game);
   const soundRef = useRef(sound);
@@ -85,6 +115,7 @@ function App() {
   const expireKeyRef = useRef(null);
   const advanceTimerRef = useRef(null);
   const animationTimersRef = useRef(new Set());
+  const autoOpenedRef = useRef(null);
 
   const applyGame = useCallback((next) => {
     if (!next || typeof next !== "object") return;
@@ -136,14 +167,25 @@ function App() {
   }, [applyGame, showError]);
 
   useEffect(() => {
+    if (!player) return undefined;
     const controller = new AbortController();
-    apiRequest("/api/state", { signal: controller.signal })
+    setLoginPending(true);
+    apiRequest("/api/player", {
+      method: "PUT",
+      body: { player_id: player.playerId, username: player.username },
+      signal: controller.signal,
+    })
+      .then((profile) => {
+        setProfileWarning(profile?.warning ?? "");
+        return apiRequest("/api/state", { signal: controller.signal });
+      })
       .then(applyGame)
       .catch((error) => {
         if (error?.name !== "AbortError") showError(error);
-      });
+      })
+      .finally(() => setLoginPending(false));
     return () => controller.abort();
-  }, [applyGame, showError]);
+  }, [player?.playerId, player?.username, applyGame, showError]);
 
   useEffect(() => {
     return () => {
@@ -196,9 +238,103 @@ function App() {
   const startRound = useCallback(() => {
     if (advanceTimerRef.current) window.clearTimeout(advanceTimerRef.current);
     expireKeyRef.current = null;
+    setShowLeaderboard(false);
+    setLeaderboardCallout(null);
     setRowPhases({});
     call("/api/round/start", { method: "POST" });
   }, [call]);
+
+  const openLeaderboard = useCallback(async (callout = null) => {
+    setShowLeaderboard(true);
+    setLeaderboardCallout(callout);
+    setLeaderboardLoading(true);
+    setLeaderboardError("");
+    try {
+      const payload = await apiRequest("/api/leaderboard");
+      setLeaderboard(payload?.entries ?? []);
+    } catch (error) {
+      setLeaderboardError(error?.message ?? "The leaderboard is temporarily unavailable.");
+    } finally {
+      setLeaderboardLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    const result = game?.leaderboard;
+    if (
+      screen === "result"
+      && result?.auto_show
+      && !showLeaderboard
+      && autoOpenedRef.current !== result
+    ) {
+      autoOpenedRef.current = result;
+      openLeaderboard({ rank: result.rank, score: game.score });
+    }
+  }, [game?.leaderboard, game?.score, openLeaderboard, screen, showLeaderboard]);
+
+  const login = async (usernameValue) => {
+    const username = usernameValue.trim();
+    if (!USERNAME_PATTERN.test(username)) return false;
+    const playerId = window.crypto.randomUUID
+      ? window.crypto.randomUUID()
+      : "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (character) => (
+        Number(character) ^ (window.crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (Number(character) / 4)))
+      ).toString(16));
+    const nextPlayer = { playerId, username };
+    writePlayer(nextPlayer);
+    setGame(null);
+    setPlayer(nextPlayer);
+    return true;
+  };
+
+  const changeName = async (usernameValue) => {
+    const username = usernameValue.trim();
+    if (!player || !USERNAME_PATTERN.test(username)) return false;
+    setLoginPending(true);
+    try {
+      const payload = await apiRequest("/api/player", {
+        method: "PUT",
+        body: { player_id: player.playerId, username },
+      });
+      const nextPlayer = { ...player, username };
+      writePlayer(nextPlayer);
+      setPlayer(nextPlayer);
+      setProfileWarning(payload?.warning ?? "");
+      setLeaderboard((entries) => entries.map((entry) => (
+        entry.is_current ? { ...entry, username } : entry
+      )));
+      return true;
+    } catch (error) {
+      setLeaderboardError(error?.message ?? "The username could not be changed.");
+      return false;
+    } finally {
+      setLoginPending(false);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await apiRequest("/api/player/logout", { method: "POST" });
+    } catch {
+      // Local logout remains available during an API outage.
+    }
+    writePlayer(null);
+    setPlayer(null);
+    setGame(null);
+    setShowLeaderboard(false);
+    setLeaderboard([]);
+  };
+
+  const retryScore = async () => {
+    try {
+      const payload = await apiRequest("/api/leaderboard/retry", { method: "POST" });
+      const result = payload?.leaderboard;
+      if (result) applyGame({ ...gameRef.current, leaderboard: result });
+      if (result?.saved) setProfileWarning("");
+    } catch (error) {
+      setProfileWarning(error?.message ?? "The score could not be saved.");
+    }
+  };
 
   useEffect(() => {
     if (!game || screen !== "start") return undefined;
@@ -291,15 +427,33 @@ function App() {
     }
   };
 
-  const appClass = `app app--${screen || "loading"}`;
+  const appClass = `app app--${showLeaderboard ? "leaderboard" : screen || "loading"}`;
+
+  if (!player) {
+    return <main className="app app--login"><LoginScreen onLogin={login} /></main>;
+  }
 
   if (!game || screen === "start") {
-    return <main className={appClass} aria-busy="true" aria-label="Starting Poké-Guesser" />;
+    return <main className={appClass} aria-busy="true" aria-label={loginPending ? "Signing in" : "Starting Poké-Guesser"} />;
   }
 
   return (
     <main className={appClass}>
-      {screen === "play" && (
+      {showLeaderboard && (
+        <LeaderboardScreen
+          entries={leaderboard}
+          loading={leaderboardLoading}
+          error={leaderboardError}
+          callout={leaderboardCallout}
+          player={player}
+          pending={loginPending}
+          onRetry={() => openLeaderboard(leaderboardCallout)}
+          onChangeName={changeName}
+          onLogout={logout}
+          onPlayAgain={startRound}
+        />
+      )}
+      {!showLeaderboard && screen === "play" && (
         <RoundScreen
           state={game}
           sound={sound}
@@ -313,11 +467,159 @@ function App() {
           expired={expired}
         />
       )}
-      {screen === "result" && (
-        <ResultScreen state={game} onPlayAgain={startRound} />
+      {!showLeaderboard && screen === "result" && (
+        <ResultScreen
+          state={game}
+          warning={profileWarning}
+          onRetryScore={retryScore}
+          onShowLeaderboard={() => openLeaderboard()}
+          onPlayAgain={startRound}
+        />
       )}
-      {screen === "error" && <ErrorScreen error={game.error} onRetry={retrySetup} />}
+      {!showLeaderboard && screen === "error" && <ErrorScreen error={game.error} onRetry={retrySetup} />}
     </main>
+  );
+}
+
+function UsernameForm({ initialValue = "", submitLabel, pending = false, onSubmit, onCancel }) {
+  const [username, setUsername] = useState(initialValue);
+  const [error, setError] = useState("");
+
+  const submit = async (event) => {
+    event.preventDefault();
+    const value = username.trim();
+    if (!USERNAME_PATTERN.test(value)) {
+      setError("Use 3–20 letters, numbers, spaces, underscores, or hyphens.");
+      return;
+    }
+    const accepted = await onSubmit(value);
+    if (!accepted) setError("That username could not be saved. Please try again.");
+  };
+
+  return (
+    <form className="username-form" onSubmit={submit}>
+      <label className="input-label" htmlFor="username">Username</label>
+      <input
+        id="username"
+        className="text-input"
+        value={username}
+        onChange={(event) => {
+          setUsername(event.target.value);
+          setError("");
+        }}
+        minLength="3"
+        maxLength="20"
+        autoComplete="username"
+        autoFocus
+        disabled={pending}
+        aria-describedby={error ? "username-error" : "username-help"}
+      />
+      <span id="username-help" className="field-help">No password. This name is public and stored in this browser.</span>
+      {error && <span id="username-error" className="field-error" role="alert">{error}</span>}
+      <div className="form-actions">
+        <button className="button button--primary" type="submit" disabled={pending}>{submitLabel}</button>
+        {onCancel && <button className="button button--secondary" type="button" onClick={onCancel} disabled={pending}>Cancel</button>}
+      </div>
+    </form>
+  );
+}
+
+function LoginScreen({ onLogin }) {
+  return (
+    <section className="center-column login-screen">
+      <div className="hero-mark" aria-hidden="true"><span /></div>
+      <div className="copy-stack">
+        <span className="result-kicker">Global leaderboard</span>
+        <h1 className="display-heading">Choose your name</h1>
+        <p className="lead">Your best 30-second score can appear in the global top 10.</p>
+      </div>
+      <UsernameForm submitLabel="Start playing" onSubmit={onLogin} />
+    </section>
+  );
+}
+
+function LeaderboardScreen({
+  entries,
+  loading,
+  error,
+  callout,
+  player,
+  pending,
+  onRetry,
+  onChangeName,
+  onLogout,
+  onPlayAgain,
+}) {
+  const [editing, setEditing] = useState(false);
+
+  const saveName = async (username) => {
+    const saved = await onChangeName(username);
+    if (saved) setEditing(false);
+    return saved;
+  };
+
+  return (
+    <section className="center-column leaderboard-screen">
+      <div className="leaderboard-heading">
+        <Trophy aria-hidden="true" />
+        <div>
+          <span className="result-kicker">Global rankings</span>
+          <h1 className="display-heading">Top 10</h1>
+        </div>
+      </div>
+
+      {callout && (
+        <div className="rank-callout" role="status">
+          <strong>You reached #{callout.rank}</strong>
+          <span>New personal best · {callout.score} pts</span>
+        </div>
+      )}
+
+      <div className="leaderboard-table" aria-busy={loading}>
+        <div className="leaderboard-row leaderboard-row--head" aria-hidden="true">
+          <span>Rank</span><span>Player</span><span>Score</span>
+        </div>
+        {loading && <p className="board-message">Loading scores…</p>}
+        {!loading && error && (
+          <div className="board-message board-message--error" role="alert">
+            <span>{error}</span>
+            <button className="text-button" type="button" onClick={onRetry}>Retry</button>
+          </div>
+        )}
+        {!loading && !error && entries.length === 0 && (
+          <p className="board-message">No positive scores yet. Be the first.</p>
+        )}
+        {!loading && !error && entries.map((entry) => (
+          <div className={`leaderboard-row${entry.is_current ? " is-current" : ""}`} key={`${entry.rank}-${entry.username}`}>
+            <strong>#{entry.rank}</strong>
+            <span className="leaderboard-name">{entry.username}{entry.is_current && <small>You</small>}</span>
+            <strong>{entry.score}</strong>
+          </div>
+        ))}
+      </div>
+
+      <div className="player-controls">
+        {editing ? (
+          <UsernameForm
+            initialValue={player.username}
+            submitLabel="Save name"
+            pending={pending}
+            onSubmit={saveName}
+            onCancel={() => setEditing(false)}
+          />
+        ) : (
+          <>
+            <span>Playing as <strong>{player.username}</strong></span>
+            <div>
+              <button className="icon-text-button" type="button" onClick={() => setEditing(true)}><Pencil aria-hidden="true" /> Change name</button>
+              <button className="icon-text-button" type="button" onClick={onLogout}><LogOut aria-hidden="true" /> Log out</button>
+            </div>
+          </>
+        )}
+      </div>
+
+      {!editing && <button className="button button--primary leaderboard-play" type="button" onClick={onPlayAgain}>Play again</button>}
+    </section>
   );
 }
 
@@ -447,7 +749,7 @@ function StatCell({ label, value, accent = false, best = false }) {
   );
 }
 
-function ResultScreen({ state, onPlayAgain }) {
+function ResultScreen({ state, warning, onRetryScore, onShowLeaderboard, onPlayAgain }) {
   const result = state.result ?? state.final_target ?? {
     target_id: state.target_id,
     name: state.target_name,
@@ -484,8 +786,16 @@ function ResultScreen({ state, onPlayAgain }) {
         <StatCell label="Session best" value={state.best ?? 0} best />
       </div>
 
+      {(state.leaderboard?.saved === false || warning) && (
+        <div className="score-warning" role="alert">
+          <span>{state.leaderboard?.error ?? warning ?? "The score could not be saved."}</span>
+          <button className="text-button" type="button" onClick={onRetryScore}>Retry saving</button>
+        </div>
+      )}
+
       <div className="result-actions">
         <button className="button button--primary" type="button" onClick={onPlayAgain}>Play again</button>
+        <button className="button button--secondary" type="button" onClick={onShowLeaderboard}>Show leaderboard</button>
       </div>
     </section>
   );

@@ -1,10 +1,13 @@
 from __future__ import annotations
 
 import io
+import os
 import random
+import re
 import secrets
 import threading
 import time
+import uuid
 from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -19,9 +22,11 @@ from pydantic import BaseModel
 from src import ui_data
 from src.distractors import get_distractor_ids
 from src.game import points_for_attempt, record_guess
+from server.leaderboard import LeaderboardStore
 
 SESSION_COOKIE = "pokegame_session"
 ROUND_SECONDS = 30
+USERNAME_PATTERN = re.compile(r"^[A-Za-z0-9 _-]{3,20}$")
 
 
 @dataclass(frozen=True, slots=True)
@@ -79,6 +84,7 @@ class Round:
     best_streak: int = 0
     feedback_kind: Literal["idle", "wrong", "correct"] = "idle"
     feedback_text: str = ""
+    leaderboard: dict[str, Any] | None = None
 
 
 @dataclass(slots=True)
@@ -88,10 +94,41 @@ class Session:
     round: Round | None = None
     target_pool: list[int] = field(default_factory=list)
     last_target: int | None = None
+    player_id: str | None = None
+    username: str | None = None
 
 
 class GuessBody(BaseModel):
     answer_id: int
+
+
+class PlayerBody(BaseModel):
+    player_id: str
+    username: str
+
+
+def _validated_player(body: PlayerBody) -> tuple[str, str]:
+    try:
+        player_id = str(uuid.UUID(body.player_id))
+    except (ValueError, AttributeError) as exc:
+        raise HTTPException(status_code=422, detail="player_id must be a valid UUID") from exc
+    username = body.username.strip()
+    if not USERNAME_PATTERN.fullmatch(username):
+        raise HTTPException(
+            status_code=422,
+            detail="username must be 3–20 letters, numbers, spaces, underscores, or hyphens",
+        )
+    return player_id, username
+
+
+def _default_leaderboard_path() -> Path:
+    configured = os.environ.get("POKEGAME_LEADERBOARD_DB_PATH")
+    if configured:
+        return Path(configured)
+    volume = os.environ.get("RAILWAY_VOLUME_MOUNT_PATH")
+    if volume:
+        return Path(volume) / "leaderboard.sqlite3"
+    return Path(__file__).resolve().parents[1] / ".runtime" / "leaderboard.sqlite3"
 
 
 def _failure(
@@ -323,9 +360,15 @@ def _load_validated_data(data_dir: Path, *, clear_caches: bool = False) -> Valid
 
 
 class GameService:
-    def __init__(self, data_dir: Path, clock: Callable[[], float]) -> None:
+    def __init__(
+        self,
+        data_dir: Path,
+        clock: Callable[[], float],
+        leaderboard: LeaderboardStore,
+    ) -> None:
         self.data_dir = data_dir
         self.clock = clock
+        self.leaderboard = leaderboard
         self.lock = threading.RLock()
         self.sessions: dict[str, Session] = {}
         self.rng = random.Random(secrets.randbits(128))
@@ -399,11 +442,69 @@ class GameService:
         )
         session.screen = "play"
 
+    def set_player(self, session: Session, player_id: str, username: str) -> bool:
+        session.player_id = player_id
+        session.username = username
+        try:
+            self.leaderboard.upsert_player(player_id, username)
+            return True
+        except Exception:
+            return False
+
+    def clear_player(self, session: Session) -> None:
+        session.player_id = None
+        session.username = None
+        session.screen = "start"
+        session.round = None
+        session.target_pool.clear()
+        session.last_target = None
+
+    def submit_score(self, session: Session) -> dict[str, Any]:
+        round_state = session.round
+        if round_state is None or session.screen != "result":
+            return {"saved": False, "error": "No completed round is available."}
+        if round_state.leaderboard and round_state.leaderboard.get("saved"):
+            return round_state.leaderboard
+        if round_state.score <= 0:
+            round_state.leaderboard = {
+                "saved": True,
+                "eligible": False,
+                "new_best": False,
+                "rank": None,
+                "auto_show": False,
+            }
+            return round_state.leaderboard
+        if not session.player_id or not session.username:
+            round_state.leaderboard = {
+                "saved": False,
+                "error": "Choose a username before saving a score.",
+                "auto_show": False,
+            }
+            return round_state.leaderboard
+        try:
+            result = self.leaderboard.record_best(
+                session.player_id, session.username, round_state.score
+            )
+            result["auto_show"] = bool(
+                result.get("new_best")
+                and result.get("rank") is not None
+                and int(result["rank"]) <= 10
+            )
+            round_state.leaderboard = result
+        except Exception:
+            round_state.leaderboard = {
+                "saved": False,
+                "error": "The leaderboard is temporarily unavailable.",
+                "auto_show": False,
+            }
+        return round_state.leaderboard
+
     def expire(self, session: Session) -> None:
         if session.screen != "play" or session.round is None:
             return
         session.best = max(session.best, session.round.score)
         session.screen = "result"
+        self.submit_score(session)
 
     def expire_if_due(self, session: Session) -> None:
         if (
@@ -453,6 +554,10 @@ class GameService:
                     "name": target.name,
                     "artwork_url": artwork_url,
                 },
+                "player": {
+                    "username": session.username,
+                },
+                "leaderboard": round_state.leaderboard,
             }
 
         round_state = session.round
@@ -590,10 +695,15 @@ def _set_session_cookie(response: Response, session_id: str, is_new: bool) -> No
 def create_app(
     data_dir: Path | None = None,
     clock: Callable[[], float] | None = None,
+    leaderboard_db_path: Path | None = None,
 ) -> FastAPI:
     """Create an isolated game API with in-memory browser sessions."""
     resolved_data_dir = Path(data_dir or ui_data.DATA_DIR).expanduser().resolve()
-    service = GameService(resolved_data_dir, clock or time.time)
+    resolved_clock = clock or time.time
+    leaderboard = LeaderboardStore(
+        leaderboard_db_path or _default_leaderboard_path(), resolved_clock
+    )
+    service = GameService(resolved_data_dir, resolved_clock, leaderboard)
     api = FastAPI(title="Poké-Guesser API")
     api.state.game_service = service
 
@@ -640,6 +750,48 @@ def create_app(
             payload = service.state(session)
             _set_session_cookie(response, session_id, is_new)
             return payload
+
+    @api.put("/api/player")
+    def set_player(body: PlayerBody, request: Request, response: Response) -> dict[str, Any]:
+        player_id, username = _validated_player(body)
+        with service.lock:
+            session_id, session, is_new = service.get_session(request)
+            persisted = service.set_player(session, player_id, username)
+            _set_session_cookie(response, session_id, is_new)
+            return {
+                "player": {"username": username},
+                "persisted": persisted,
+                "warning": None if persisted else "The leaderboard is temporarily unavailable.",
+            }
+
+    @api.post("/api/player/logout")
+    def logout_player(request: Request, response: Response) -> dict[str, Any]:
+        with service.lock:
+            session_id, session, is_new = service.get_session(request)
+            service.clear_player(session)
+            _set_session_cookie(response, session_id, is_new)
+            return {"ok": True}
+
+    @api.get("/api/leaderboard")
+    def leaderboard_entries(request: Request, response: Response) -> dict[str, Any]:
+        with service.lock:
+            session_id, session, is_new = service.get_session(request)
+            try:
+                entries = service.leaderboard.top(session.player_id, limit=10)
+            except Exception as exc:
+                raise HTTPException(
+                    status_code=503, detail="The leaderboard is temporarily unavailable."
+                ) from exc
+            _set_session_cookie(response, session_id, is_new)
+            return {"entries": entries}
+
+    @api.post("/api/leaderboard/retry")
+    def retry_leaderboard(request: Request, response: Response) -> dict[str, Any]:
+        with service.lock:
+            session_id, session, is_new = service.get_session(request)
+            result = service.submit_score(session)
+            _set_session_cookie(response, session_id, is_new)
+            return {"leaderboard": result}
 
     @api.post("/api/back")
     def back(request: Request, response: Response) -> dict[str, Any]:

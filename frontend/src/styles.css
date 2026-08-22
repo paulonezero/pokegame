@@ -208,6 +208,60 @@ button:disabled {
   transform: translateY(1px);
 }
 
+.login-screen {
+  max-width: 520px;
+}
+
+.username-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.text-input {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 14px;
+  border: 2px solid var(--color-text);
+  outline: 0;
+  color: var(--color-text);
+  background: transparent;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.text-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: inset 0 -3px 0 var(--color-accent);
+}
+
+.field-help,
+.field-error {
+  font-size: 11.5px;
+  line-height: 1.4;
+  opacity: 0.65;
+}
+
+.field-error {
+  color: var(--color-accent-700);
+  font-weight: 700;
+  opacity: 1;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
 .session-best {
   display: flex;
   justify-content: space-between;
@@ -640,8 +694,186 @@ button:disabled {
 
 .result-actions {
   display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.result-actions .button {
+  flex: 1 1 0;
+}
+
+.score-warning {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--color-accent);
+  border-bottom: 1px solid var(--color-accent);
+  color: var(--color-accent-700);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.text-button,
+.icon-text-button {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.leaderboard-screen {
+  justify-content: flex-start;
+  max-width: 620px;
+  overflow-y: auto;
+  padding-bottom: 2px;
+}
+
+.leaderboard-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-top: 8px;
+  border-top: 2px solid var(--color-text);
+}
+
+.leaderboard-heading > svg {
+  flex: 0 0 46px;
+  width: 46px;
+  height: 46px;
+  padding: 9px;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  stroke-width: 2.3;
+}
+
+.rank-callout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 11px 14px;
+  color: var(--color-bg);
+  background: var(--color-accent);
+}
+
+.rank-callout strong {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.rank-callout span {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.leaderboard-table {
+  display: flex;
+  flex-direction: column;
+  min-height: 84px;
+  border-top: 2px solid var(--color-text);
+  border-bottom: 2px solid var(--color-text);
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr) 54px;
+  align-items: center;
+  min-height: 38px;
+  border-bottom: 1px solid var(--color-neutral-300);
+  font-size: 14px;
+}
+
+.leaderboard-row:last-child {
+  border-bottom: 0;
+}
+
+.leaderboard-row > :last-child {
+  text-align: right;
+}
+
+.leaderboard-row--head {
+  min-height: 28px;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.leaderboard-row.is-current {
+  background: var(--color-accent-200);
+}
+
+.leaderboard-name {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+  overflow: hidden;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard-name small {
+  padding: 2px 5px;
+  color: var(--color-bg);
+  background: var(--color-accent);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.board-message {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin: 0;
+  padding: 12px;
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.68;
+}
+
+.board-message--error {
+  gap: 12px;
+  color: var(--color-accent-700);
+  opacity: 1;
+}
+
+.player-controls {
+  display: flex;
   flex-direction: column;
   gap: 8px;
+  font-size: 12px;
+}
+
+.player-controls > div:not(.username-form) {
+  display: flex;
+  gap: 18px;
+}
+
+.icon-text-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon-text-button svg {
+  width: 13px;
+  height: 13px;
+}
+
+.leaderboard-play {
   margin-top: auto;
 }
 

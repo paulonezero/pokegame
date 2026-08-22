@@ -5,6 +5,7 @@ __pycache__/
 .DS_Store
 frontend/node_modules/
 frontend/dist/
+.runtime/
 
 # Build-only feature cache; runtime artwork, masks, metadata, and similarity
 # data are intentionally committed so Streamlit Cloud can start without a build step.
