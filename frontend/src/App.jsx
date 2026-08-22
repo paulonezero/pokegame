@@ -5,7 +5,7 @@ import { apiRequest } from "./api.js";
 const IDLE_FEEDBACK = "Pick the name that fits the shape.";
 const WRONG_SHAKE_MS = 380;
 const WRONG_COLLAPSE_MS = 260;
-const CORRECT_HOLD_MS = 780;
+const CORRECT_HOLD_MS = 1500;
 
 function screenName(value) {
   if (value === "round" || value === "active") return "play";
@@ -185,24 +185,26 @@ function App() {
   }, [expired, now, requestExpire]);
 
   useEffect(() => {
-    const url = game?.question?.silhouette_url;
-    if (!url) return;
-    const image = new Image();
-    image.src = url;
-    image.decode?.().catch(() => {});
-  }, [game?.question?.silhouette_url]);
+    const urls = [game?.question?.silhouette_url, game?.question?.artwork_url].filter(Boolean);
+    urls.forEach((url) => {
+      const image = new Image();
+      image.src = url;
+      image.decode?.().catch(() => {});
+    });
+  }, [game?.question?.silhouette_url, game?.question?.artwork_url]);
 
-  const startRound = () => {
+  const startRound = useCallback(() => {
     if (advanceTimerRef.current) window.clearTimeout(advanceTimerRef.current);
     expireKeyRef.current = null;
     setRowPhases({});
     call("/api/round/start", { method: "POST" });
-  };
+  }, [call]);
 
-  const backToStart = () => {
-    if (advanceTimerRef.current) window.clearTimeout(advanceTimerRef.current);
-    call("/api/back", { method: "POST" });
-  };
+  useEffect(() => {
+    if (!game || screen !== "start") return undefined;
+    const timer = window.setTimeout(startRound, 0);
+    return () => window.clearTimeout(timer);
+  }, [game, screen, startRound]);
 
   const retrySetup = () => call("/api/setup/retry", { method: "POST" });
 
@@ -291,13 +293,12 @@ function App() {
 
   const appClass = `app app--${screen || "loading"}`;
 
-  if (!game) {
-    return <main className={appClass} aria-busy="true" aria-label="Loading game" />;
+  if (!game || screen === "start") {
+    return <main className={appClass} aria-busy="true" aria-label="Starting Poké-Guesser" />;
   }
 
   return (
     <main className={appClass}>
-      {screen === "start" && <StartScreen best={game.best ?? 0} onStart={startRound} />}
       {screen === "play" && (
         <RoundScreen
           state={game}
@@ -313,31 +314,10 @@ function App() {
         />
       )}
       {screen === "result" && (
-        <ResultScreen state={game} onPlayAgain={startRound} onBack={backToStart} />
+        <ResultScreen state={game} onPlayAgain={startRound} />
       )}
       {screen === "error" && <ErrorScreen error={game.error} onRetry={retrySetup} />}
     </main>
-  );
-}
-
-function StartScreen({ best, onStart }) {
-  return (
-    <section className="center-column start-screen">
-      <div className="hero-mark" aria-hidden="true"><span /></div>
-      <div className="copy-stack">
-        <h1 className="display-heading">Name<br />the shape</h1>
-        <p className="lead">One silhouette, four names, thirty seconds. Wrong guesses drop out of the list and cost you points — the clock never stops.</p>
-      </div>
-      <div className="scoring-list" aria-label="Scoring">
-        <div><strong>3</strong><span>First guess right</span></div>
-        <div><strong>2</strong><span>Second guess</span></div>
-        <div><strong>1</strong><span>Third guess — the last one is free, and worth nothing</span></div>
-      </div>
-      <div className="start-actions">
-        <button className="button button--primary" type="button" onClick={onStart}>Start round</button>
-        <div className="session-best"><span>Best this session</span><span>{best} pts</span></div>
-      </div>
-    </section>
   );
 }
 
@@ -359,6 +339,8 @@ function RoundScreen({
   const kind = feedbackKind(state);
   const answers = question.answers ?? [];
   const targetName = question.target_name ?? (state.event?.kind === "correct" ? state.event.name : "");
+  const artworkUrl = question.artwork_url;
+  const stageImageUrl = revealed && artworkUrl ? artworkUrl : question.silhouette_url;
   const correctId = question.target_id;
   const correctPoints = state.event?.kind === "correct" ? state.event.points : null;
   const disableAll = expired || revealed;
@@ -368,6 +350,7 @@ function RoundScreen({
   return (
     <section className="play-screen">
       <div className="timer-row">
+        <span className="game-title">Poké-Guesser</span>
         <div
           className="timer-track"
           role="progressbar"
@@ -394,18 +377,17 @@ function RoundScreen({
 
       <div className="round-body">
         <div className={`stage${revealed ? " is-revealed" : ""}`}>
-          {question.silhouette_url && (
+          {stageImageUrl && (
             <img
-              className="stage-mask"
-              src={question.silhouette_url}
-              alt={revealed && targetName ? `Revealed silhouette of ${targetName}` : ""}
+              className={`stage-image${revealed && artworkUrl ? " is-artwork" : ""}`}
+              src={stageImageUrl}
+              alt={revealed && targetName ? `Full artwork of ${targetName}` : ""}
               draggable="false"
             />
           )}
           {revealed && <span className="reveal-sweep" aria-hidden="true" />}
           {revealed && targetName && <div className="reveal-banner">{targetName}</div>}
           <span className="stage-caption stage-caption--left">Q{state.q_num}</span>
-          <span className="stage-caption stage-caption--right">Expert · ranks 1–5</span>
         </div>
 
         <div className="round-controls">
@@ -465,7 +447,7 @@ function StatCell({ label, value, accent = false, best = false }) {
   );
 }
 
-function ResultScreen({ state, onPlayAgain, onBack }) {
+function ResultScreen({ state, onPlayAgain }) {
   const result = state.result ?? state.final_target ?? {
     target_id: state.target_id,
     name: state.target_name,
@@ -480,7 +462,7 @@ function ResultScreen({ state, onPlayAgain, onBack }) {
   return (
     <section className="center-column result-screen">
       <div className="result-heading">
-        <span className="result-kicker">Time&apos;s up</span>
+        <span className="result-kicker">Poké-Guesser · Time&apos;s up</span>
         <h1 className="display-heading">{state.score ?? 0} pts</h1>
         <p className="lead">{resultLine}</p>
       </div>
@@ -504,7 +486,6 @@ function ResultScreen({ state, onPlayAgain, onBack }) {
 
       <div className="result-actions">
         <button className="button button--primary" type="button" onClick={onPlayAgain}>Play again</button>
-        <button className="button button--secondary" type="button" onClick={onBack}>Back to start</button>
       </div>
     </section>
   );

@@ -139,6 +139,13 @@ class FastAPIRoundFlowTests(unittest.TestCase):
                 self.assertEqual(correct["event"]["kind"], "correct")
                 self.assertEqual(correct["event"]["points"], 2)
                 self.assertTrue(correct["question"]["revealed"])
+                self.assertEqual(
+                    correct["question"]["artwork_url"],
+                    f"/api/assets/artwork/{target_id}.png",
+                )
+                artwork = client.get(correct["question"]["artwork_url"])
+                self.assertEqual(artwork.status_code, 200)
+                self.assertEqual(artwork.headers["content-type"], "image/png")
                 self.assertEqual(correct["score"], 2)
                 self.assertEqual(correct["found"], 1)
                 self.assertEqual(correct["deadline_ms"], original_deadline)

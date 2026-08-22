@@ -463,6 +463,11 @@ class GameService:
         question = round_state.question
         target = self.data.pokemon[question.target_id]
         guess_state = question.guess_state
+        artwork_url = (
+            f"/api/assets/artwork/{target.id}.png"
+            if target.id in self.data.artwork
+            else None
+        )
         payload: dict[str, Any] = {
             "screen": "play",
             "deadline_ms": int(round_state.deadline * 1000),
@@ -484,6 +489,7 @@ class GameService:
             "question": {
                 "target_id": target.id,
                 "silhouette_url": f"/api/assets/silhouettes/{target.id}.png",
+                "artwork_url": artwork_url,
                 "answers": [
                     {"id": answer_id, "name": self.data.pokemon[answer_id].name}
                     for answer_id in question.answers
@@ -592,7 +598,7 @@ def create_app(
     """Create an isolated game API with in-memory browser sessions."""
     resolved_data_dir = Path(data_dir or ui_data.DATA_DIR).expanduser().resolve()
     service = GameService(resolved_data_dir, clock or time.time)
-    api = FastAPI(title="Pokégame API")
+    api = FastAPI(title="Poké-Guesser API")
     api.state.game_service = service
 
     @api.get("/api/state")

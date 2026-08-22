@@ -1,4 +1,4 @@
-# Name the Shape
+# Poké-Guesser
 
 A 30-second Generation I Pokémon silhouette game. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience.
 
@@ -74,7 +74,7 @@ The suite covers pure scoring and guess transitions, image processing and simila
 ## Runtime architecture
 
 - `server/app.py` — FastAPI app, validated/cached packaged data, per-browser in-memory sessions, round commands, and image endpoints.
-- `frontend/src/` — Start, Round, Result, and Setup error screens with phone/iPad portrait layouts.
+- `frontend/src/` — Round, Result, and Setup error screens with phone/iPad portrait layouts.
 - `src/` — reusable domain, data, image, and similarity modules.
 - `data/` — packaged Generation I metadata, masks, artwork, and similarity index.
 
