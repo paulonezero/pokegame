@@ -74,6 +74,8 @@ python scripts/build_similarity.py
 
 The downloader saves each completed Pokémon and can safely be rerun after an interruption. The similarity build keeps the closest 40 candidates per Pokémon, covering every supported difficulty band without packaging the full all-pairs matrix. PokéAPI form IDs (regional forms, Mega Evolutions, and similar variants) are intentionally not included in the National Pokédex range.
 
+The similarity calculation uses all available CPU cores by default; pass `--jobs 1` for a single process or `--jobs N` to set a specific worker count. Progress is atomically saved every 10,000 completed pairs to `<output>.checkpoint.json`, and an interrupted build automatically resumes from a compatible checkpoint. Compatibility includes the ordered Pokémon IDs and names, scoring constants, checkpoint format, and neighbor limit. A stale or malformed checkpoint is reported and ignored. Use `--no-resume` to deliberately restart the pair calculation, `--checkpoint` to choose another transient checkpoint path, or `--checkpoint-every N` to change the save interval. The checkpoint is removed only after the final CSV has been written successfully; checkpoint and generated feature-cache JSON files are ignored by Git.
+
 ## Tests
 
 ```bash

@@ -9,3 +9,6 @@ frontend/dist/
 # Build-only feature cache; runtime artwork, masks, metadata, and similarity
 # data are intentionally committed so Streamlit Cloud can start without a build step.
 /data/features/*.json
+
+# Interrupted similarity builds resume from this transient state.
+*.checkpoint.json

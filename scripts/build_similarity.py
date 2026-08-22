@@ -12,10 +12,13 @@ the packaged similarity index small enough to deploy with the full National Pok�
 from __future__ import annotations
 
 import argparse
+import concurrent.futures
 import csv
 import heapq
+import itertools
 import json
 import math
+import multiprocessing
 import os
 import sys
 import uuid
@@ -40,6 +43,10 @@ CSV_COLUMNS = (
     "geometric_score",
 )
 SCORE_COLUMNS = CSV_COLUMNS[4:]
+CHECKPOINT_VERSION = 1
+DEFAULT_CHECKPOINT_INTERVAL = 10_000
+
+_WORKER_PREPARED: list[dict[str, Any]] = []
 
 
 class BuildError(RuntimeError):
@@ -92,9 +99,35 @@ def parse_args() -> argparse.Namespace:
         default=40,
         help="closest candidates retained per Pokémon (default: 40; 0 keeps all)",
     )
+    parser.add_argument(
+        "--checkpoint",
+        type=Path,
+        help="checkpoint path (default: <output>.checkpoint.json)",
+    )
+    parser.add_argument(
+        "--checkpoint-every",
+        type=int,
+        default=DEFAULT_CHECKPOINT_INTERVAL,
+        help="save after this many additional pairs (default: 10000)",
+    )
+    parser.add_argument(
+        "--no-resume",
+        action="store_true",
+        help="ignore an existing checkpoint and start the pair calculation again",
+    )
+    parser.add_argument(
+        "--jobs",
+        type=int,
+        default=0,
+        help="comparison worker processes (default: available CPU count; 1 disables multiprocessing)",
+    )
     args = parser.parse_args()
     if args.max_neighbors < 0:
         parser.error("--max-neighbors cannot be negative")
+    if args.checkpoint_every < 1:
+        parser.error("--checkpoint-every must be positive")
+    if args.jobs < 0:
+        parser.error("--jobs cannot be negative")
     return args
 
 
@@ -220,7 +253,7 @@ def atomic_write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     temporary = path.with_name(f".{path.name}.{uuid.uuid4().hex}.part")
     try:
         with temporary.open("w", encoding="utf-8", newline="") as file:
-            writer = csv.DictWriter(file, fieldnames=CSV_COLUMNS)
+            writer = csv.DictWriter(file, fieldnames=CSV_COLUMNS, lineterminator="\n")
             writer.writeheader()
             for row in rows:
                 writer.writerow({column: row[column] for column in CSV_COLUMNS})
@@ -290,6 +323,316 @@ def normalize_scores(result: Any, first_id: int, second_id: int) -> dict[str, fl
     return scores
 
 
+def iter_pair_indices(size: int, start: int = 0) -> Any:
+    """Yield lexicographically ordered pair indices after ``start`` pairs."""
+    pairs = (
+        (first_index, second_index)
+        for first_index in range(size)
+        for second_index in range(first_index + 1, size)
+    )
+    return itertools.islice(pairs, start, None)
+
+
+def pair_position(size: int, completed_pairs: int) -> list[int] | None:
+    """Return the next pair-loop position, or ``None`` when complete."""
+    position = next(iter_pair_indices(size, completed_pairs), None)
+    return list(position) if position is not None else None
+
+
+def add_ranked_row(
+    heap: list[RankedRow], row: dict[str, Any], neighbor_limit: int
+) -> None:
+    entry = RankedRow(
+        overall_score=float(row["overall_score"]),
+        neg_similar_id=-int(row["similar_id"]),
+        row=row,
+    )
+    if len(heap) < neighbor_limit:
+        heapq.heappush(heap, entry)
+    elif entry > heap[0]:
+        heapq.heapreplace(heap, entry)
+
+
+def checkpoint_value(
+    prepared: list[dict[str, Any]],
+    directed_rows: dict[int, list[RankedRow]],
+    completed_pairs: int,
+    neighbor_limit: int,
+    max_neighbors: int,
+    scoring_config: dict[str, Any],
+) -> dict[str, Any]:
+    return {
+        "checkpoint_version": CHECKPOINT_VERSION,
+        "pokemon": [
+            {"id": int(item["id"]), "name": str(item["name"])} for item in prepared
+        ],
+        "ordered_pokemon_ids": [int(item["id"]) for item in prepared],
+        "max_neighbors": max_neighbors,
+        "neighbor_limit": neighbor_limit,
+        "scoring_config": scoring_config,
+        "completed_pairs": completed_pairs,
+        "next_pair": pair_position(len(prepared), completed_pairs),
+        "heaps": {
+            str(pokemon_id): [entry.row for entry in heap]
+            for pokemon_id, heap in directed_rows.items()
+        },
+    }
+
+
+def save_checkpoint(
+    path: Path,
+    prepared: list[dict[str, Any]],
+    directed_rows: dict[int, list[RankedRow]],
+    completed_pairs: int,
+    neighbor_limit: int,
+    max_neighbors: int,
+    scoring_config: dict[str, Any],
+) -> None:
+    atomic_write_json(
+        path,
+        checkpoint_value(
+            prepared,
+            directed_rows,
+            completed_pairs,
+            neighbor_limit,
+            max_neighbors,
+            scoring_config,
+        ),
+    )
+
+
+def load_checkpoint(
+    path: Path,
+    prepared: list[dict[str, Any]],
+    neighbor_limit: int,
+    max_neighbors: int,
+    scoring_config: dict[str, Any],
+) -> tuple[int, dict[int, list[RankedRow]]]:
+    """Load and strictly validate durable pair progress."""
+    try:
+        value = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise BuildError(f"cannot read checkpoint: {exc}") from exc
+
+    expected_pokemon = [
+        {"id": int(item["id"]), "name": str(item["name"])} for item in prepared
+    ]
+    expected_ids = [item["id"] for item in expected_pokemon]
+    compatibility = {
+        "checkpoint_version": CHECKPOINT_VERSION,
+        "pokemon": expected_pokemon,
+        "ordered_pokemon_ids": expected_ids,
+        "max_neighbors": max_neighbors,
+        "neighbor_limit": neighbor_limit,
+        "scoring_config": scoring_config,
+    }
+    if not isinstance(value, dict):
+        raise BuildError("checkpoint root is not an object")
+    for key, expected in compatibility.items():
+        if value.get(key) != expected:
+            raise BuildError(f"checkpoint {key} does not match this build")
+
+    pair_count = len(prepared) * (len(prepared) - 1) // 2
+    completed_pairs = value.get("completed_pairs")
+    if (
+        not isinstance(completed_pairs, int)
+        or completed_pairs < 0
+        or completed_pairs > pair_count
+    ):
+        raise BuildError("checkpoint completed_pairs is invalid")
+    if value.get("next_pair") != pair_position(len(prepared), completed_pairs):
+        raise BuildError("checkpoint pair-loop position is inconsistent")
+
+    raw_heaps = value.get("heaps")
+    if not isinstance(raw_heaps, dict) or set(raw_heaps) != {
+        str(pokemon_id) for pokemon_id in expected_ids
+    }:
+        raise BuildError("checkpoint heaps do not match the Pokémon IDs")
+
+    valid_ids = set(expected_ids)
+    directed_rows: dict[int, list[RankedRow]] = {}
+    for target_id in expected_ids:
+        raw_rows = raw_heaps[str(target_id)]
+        if not isinstance(raw_rows, list) or len(raw_rows) > neighbor_limit:
+            raise BuildError(f"checkpoint heap for #{target_id} is invalid")
+        heap: list[RankedRow] = []
+        seen_similar_ids: set[int] = set()
+        for raw_row in raw_rows:
+            if not isinstance(raw_row, dict):
+                raise BuildError(f"checkpoint row for #{target_id} is invalid")
+            try:
+                row_target_id = int(raw_row["target_id"])
+                similar_id = int(raw_row["similar_id"])
+                row = {column: raw_row[column] for column in CSV_COLUMNS}
+                scores = normalize_scores(row, row_target_id, similar_id)
+            except (KeyError, TypeError, ValueError, BuildError) as exc:
+                raise BuildError(
+                    f"checkpoint row for #{target_id} is invalid: {exc}"
+                ) from exc
+            if (
+                row_target_id != target_id
+                or similar_id not in valid_ids
+                or similar_id == target_id
+                or similar_id in seen_similar_ids
+            ):
+                raise BuildError(f"checkpoint neighbors for #{target_id} are invalid")
+            seen_similar_ids.add(similar_id)
+            row.update(scores)
+            add_ranked_row(heap, row, neighbor_limit)
+        directed_rows[target_id] = heap
+    return completed_pairs, directed_rows
+
+
+def _initialize_worker(prepared: list[dict[str, Any]]) -> None:
+    global _WORKER_PREPARED
+    _WORKER_PREPARED = prepared
+    try:
+        import cv2
+
+        cv2.setNumThreads(1)
+    except ImportError:
+        pass
+
+
+def _score_worker(pair: tuple[int, int]) -> tuple[int, int, dict[str, float]]:
+    from src.similarity import compare_silhouettes
+
+    first_index, second_index = pair
+    first = _WORKER_PREPARED[first_index]
+    second = _WORKER_PREPARED[second_index]
+    raw_scores = compare_silhouettes(
+        first["mask"],
+        second["mask"],
+        target_features=first["features"],
+        candidate_features=second["features"],
+        candidate_flipped_features=second["flipped_features"],
+    )
+    return (
+        first_index,
+        second_index,
+        normalize_scores(raw_scores, first["id"], second["id"]),
+    )
+
+
+def _batched(values: Any, size: int) -> Any:
+    iterator = iter(values)
+    while batch := tuple(itertools.islice(iterator, size)):
+        yield batch
+
+
+def calculate_similarities(
+    prepared: list[dict[str, Any]],
+    directed_rows: dict[int, list[RankedRow]],
+    completed_pairs: int,
+    neighbor_limit: int,
+    *,
+    checkpoint_path: Path,
+    checkpoint_interval: int,
+    max_neighbors: int,
+    scoring_config: dict[str, Any],
+    jobs: int,
+    scorer: Any | None = None,
+) -> int:
+    """Calculate remaining pairs and checkpoint all fully applied results."""
+    pair_count = len(prepared) * (len(prepared) - 1) // 2
+    progress_interval = max(1, min(100, pair_count // 20 if pair_count else 1))
+    next_checkpoint = completed_pairs + checkpoint_interval
+    pairs = iter_pair_indices(len(prepared), completed_pairs)
+    executor: concurrent.futures.ProcessPoolExecutor | None = None
+
+    def serial_results(batch: tuple[tuple[int, int], ...]) -> Any:
+        from src.similarity import compare_silhouettes
+
+        comparison = scorer or compare_silhouettes
+        for first_index, second_index in batch:
+            first = prepared[first_index]
+            second = prepared[second_index]
+            raw_scores = comparison(
+                first["mask"],
+                second["mask"],
+                target_features=first["features"],
+                candidate_features=second["features"],
+                candidate_flipped_features=second["flipped_features"],
+            )
+            yield (
+                first_index,
+                second_index,
+                normalize_scores(raw_scores, first["id"], second["id"]),
+            )
+
+    try:
+        if jobs > 1:
+            executor = concurrent.futures.ProcessPoolExecutor(
+                max_workers=jobs,
+                mp_context=multiprocessing.get_context("spawn"),
+                initializer=_initialize_worker,
+                initargs=(prepared,),
+            )
+        batch_size = max(1, jobs * 4)
+        for batch in _batched(pairs, batch_size):
+            results = (
+                executor.map(_score_worker, batch, chunksize=1)
+                if executor is not None
+                else serial_results(batch)
+            )
+            for first_index, second_index, scores in results:
+                first = prepared[first_index]
+                second = prepared[second_index]
+                first_row = {
+                    "target_id": first["id"],
+                    "target_name": first["name"],
+                    "similar_id": second["id"],
+                    "similar_name": second["name"],
+                    **scores,
+                }
+                second_row = {
+                    "target_id": second["id"],
+                    "target_name": second["name"],
+                    "similar_id": first["id"],
+                    "similar_name": first["name"],
+                    **scores,
+                }
+                add_ranked_row(directed_rows[first["id"]], first_row, neighbor_limit)
+                add_ranked_row(directed_rows[second["id"]], second_row, neighbor_limit)
+                completed_pairs += 1
+                if completed_pairs % progress_interval == 0 or completed_pairs == pair_count:
+                    print(
+                        f"  pairs: {completed_pairs}/{pair_count} "
+                        f"({completed_pairs / pair_count * 100:.1f}%)",
+                        flush=True,
+                    )
+                if completed_pairs >= next_checkpoint and completed_pairs < pair_count:
+                    save_checkpoint(
+                        checkpoint_path,
+                        prepared,
+                        directed_rows,
+                        completed_pairs,
+                        neighbor_limit,
+                        max_neighbors,
+                        scoring_config,
+                    )
+                    print(
+                        f"  checkpoint: {completed_pairs}/{pair_count} pairs saved to "
+                        f"{display_path(checkpoint_path)}",
+                        flush=True,
+                    )
+                    next_checkpoint = completed_pairs + checkpoint_interval
+    finally:
+        if completed_pairs < pair_count:
+            save_checkpoint(
+                checkpoint_path,
+                prepared,
+                directed_rows,
+                completed_pairs,
+                neighbor_limit,
+                max_neighbors,
+                scoring_config,
+            )
+        if executor is not None:
+            executor.shutdown(wait=True, cancel_futures=True)
+    return completed_pairs
+
+
 def main() -> int:
     args = parse_args()
     metadata_path = project_path(args.metadata)
@@ -305,7 +648,8 @@ def main() -> int:
 
             from src.features import extract_features, serialize_features
             from src.image_processing import process_silhouette
-            from src.similarity import compare_silhouettes
+            from src.config import DEFAULT_MAX_IOU_SHIFT, DEFAULT_WEIGHTS
+            from src.similarity import normalize_weights
         except ImportError as exc:
             missing = exc.name or str(exc)
             raise BuildError(
@@ -395,74 +739,84 @@ def main() -> int:
         atomic_write_json(features_dir / "index.json", feature_index)
 
         pair_count = len(prepared) * (len(prepared) - 1) // 2
-        print(
-            f"Calculating {pair_count} unordered pairs with mirror handling...",
-            flush=True,
-        )
         neighbor_limit = (
             min(args.max_neighbors, max(0, len(prepared) - 1))
             if args.max_neighbors
             else max(0, len(prepared) - 1)
         )
+        checkpoint_path = project_path(args.checkpoint) if args.checkpoint else Path(
+            f"{output_path}.checkpoint.json"
+        )
+        jobs = args.jobs or max(1, os.cpu_count() or 1)
+        scoring_config = {
+            "algorithm": "mirror-aware-silhouette-v1",
+            "mask_size": MASK_SIZE,
+            "max_iou_shift": DEFAULT_MAX_IOU_SHIFT,
+            "weights": normalize_weights(DEFAULT_WEIGHTS),
+            "score_columns": list(SCORE_COLUMNS),
+        }
         directed_rows: dict[int, list[RankedRow]] = {
             item["id"]: [] for item in prepared
         }
         completed_pairs = 0
-        progress_interval = max(1, min(100, pair_count // 20 if pair_count else 1))
-        for first_index, first in enumerate(prepared):
-            for second in prepared[first_index + 1 :]:
-                try:
-                    raw_scores = compare_silhouettes(
-                        first["mask"],
-                        second["mask"],
-                        target_features=first["features"],
-                        candidate_features=second["features"],
-                        candidate_flipped_features=second["flipped_features"],
-                    )
-                except (KeyError, TypeError, ValueError) as exc:
-                    raise BuildError(
-                        f"could not compare #{first['id']} ({first['name']}) with "
-                        f"#{second['id']} ({second['name']}): {exc}"
-                    ) from exc
-                scores = normalize_scores(raw_scores, first["id"], second["id"])
+        if checkpoint_path.is_file() and not args.no_resume:
+            try:
+                completed_pairs, directed_rows = load_checkpoint(
+                    checkpoint_path,
+                    prepared,
+                    neighbor_limit,
+                    args.max_neighbors,
+                    scoring_config,
+                )
+                print(
+                    f"Resuming from {display_path(checkpoint_path)} at "
+                    f"{completed_pairs}/{pair_count} pairs.",
+                    flush=True,
+                )
+            except BuildError as exc:
+                print(
+                    f"Ignoring incompatible checkpoint at "
+                    f"{display_path(checkpoint_path)}: {exc}",
+                    file=sys.stderr,
+                    flush=True,
+                )
+        elif checkpoint_path.is_file():
+            print(
+                f"Ignoring existing checkpoint because --no-resume was supplied: "
+                f"{display_path(checkpoint_path)}",
+                flush=True,
+            )
 
-                first_row = {
-                    "target_id": first["id"],
-                    "target_name": first["name"],
-                    "similar_id": second["id"],
-                    "similar_name": second["name"],
-                    **scores,
-                }
-                second_row = {
-                    "target_id": second["id"],
-                    "target_name": second["name"],
-                    "similar_id": first["id"],
-                    "similar_name": first["name"],
-                    **scores,
-                }
-                for target_id, row in (
-                    (first["id"], first_row),
-                    (second["id"], second_row),
-                ):
-                    # Higher scores are better; for ties, lower Pokédex IDs win.
-                    entry = RankedRow(
-                        overall_score=float(row["overall_score"]),
-                        neg_similar_id=-int(row["similar_id"]),
-                        row=row,
-                    )
-                    heap = directed_rows[target_id]
-                    if len(heap) < neighbor_limit:
-                        heapq.heappush(heap, entry)
-                    elif entry > heap[0]:
-                        heapq.heapreplace(heap, entry)
-                completed_pairs += 1
-                if completed_pairs % progress_interval == 0 or completed_pairs == pair_count:
-                    print(
-                        f"  pairs: {completed_pairs}/{pair_count} "
-                        f"({completed_pairs / pair_count * 100:.1f}%)",
-                        flush=True,
-                    )
+        print(
+            f"Calculating {pair_count} unordered pairs with mirror handling "
+            f"using {jobs} worker{'s' if jobs != 1 else ''}...",
+            flush=True,
+        )
+        try:
+            completed_pairs = calculate_similarities(
+                prepared,
+                directed_rows,
+                completed_pairs,
+                neighbor_limit,
+                checkpoint_path=checkpoint_path,
+                checkpoint_interval=args.checkpoint_every,
+                max_neighbors=args.max_neighbors,
+                scoring_config=scoring_config,
+                jobs=jobs,
+            )
+        except (KeyError, TypeError, ValueError) as exc:
+            raise BuildError(f"could not compare silhouettes: {exc}") from exc
 
+        # Keep a fully complete recovery point until the atomic CSV replacement succeeds.
+        save_checkpoint(
+            checkpoint_path,
+            prepared,
+            directed_rows,
+            completed_pairs,
+            neighbor_limit,
+            args.max_neighbors,
+            scoring_config,
+        )
         rows: list[dict[str, Any]] = []
         for item in prepared:
             target_rows = [entry.row for entry in directed_rows[item["id"]]]
@@ -471,12 +825,16 @@ def main() -> int:
             )
             rows.extend(target_rows)
         atomic_write_csv(output_path, rows)
+        checkpoint_path.unlink(missing_ok=True)
         print(
             f"Saved {len(rows)} directed rows to {display_path(output_path)} "
             f"({neighbor_limit} candidates per target).", 
             flush=True,
         )
         return 0
+    except KeyboardInterrupt:
+        print("Interrupted; completed pair progress was checkpointed.", file=sys.stderr)
+        return 130
     except (BuildError, OSError) as exc:
         print(f"ERROR: {exc}", file=sys.stderr)
         return 1
