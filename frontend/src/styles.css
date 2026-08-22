@@ -910,6 +910,7 @@ button:disabled {
 
 .leaderboard-table {
   display: flex;
+  flex: none;
   flex-direction: column;
   min-height: 84px;
   border-top: 2px solid var(--color-text);
