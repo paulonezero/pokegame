@@ -1,9 +1,0 @@
-.venv/
-__pycache__/
-*.py[cod]
-.pytest_cache/
-.DS_Store
-
-# Build-only feature cache; runtime artwork, masks, metadata, and similarity
-# data are intentionally committed so Streamlit Cloud can start without a build step.
-/data/features/*.json
