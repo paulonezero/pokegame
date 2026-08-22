@@ -1,6 +1,6 @@
 # Poké-Guesser
 
-A 30-second Pokémon silhouette game covering every packaged National Pokédex species. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience. Players choose a password-free browser identity and compete on a persistent global top-10 leaderboard.
+A 30-second Pokémon silhouette game covering every packaged National Pokédex species. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience. Players choose a password-free browser identity and compete on a persistent global top-10 leaderboard where every qualifying round is listed.
 
 Gameplay is fully local at runtime: metadata, silhouettes, artwork, and the precomputed similarity index are packaged under `data/`. No PokéAPI requests or pairwise image comparisons occur while playing.
 
@@ -62,7 +62,7 @@ docker run --rm -p 8000:8000 pokegame
 
 Then open `http://127.0.0.1:8000`.
 
-Session-best scores still reset when the process restarts, while global personal bests survive on the SQLite volume. To scale beyond one replica, move sessions and leaderboard storage to shared services such as Redis and Postgres first.
+Session-best scores still reset when the process restarts, while global leaderboard scores survive on the SQLite volume. To scale beyond one replica, move sessions and leaderboard storage to shared services such as Redis and Postgres first.
 
 For local development, leaderboard data is written to the ignored `.runtime/leaderboard.sqlite3` file. Set `POKEGAME_LEADERBOARD_DB_PATH` to use a different SQLite path.
 
@@ -85,12 +85,12 @@ The similarity calculation uses all available CPU cores by default; pass `--jobs
 python -m unittest discover -s tests -v
 ```
 
-The suite covers pure scoring and guess transitions, image processing and similarity generation, distractor rank bands, the FastAPI round flow, and leaderboard identity, persistence, ranking, tie, outage, rename, and logout behavior.
+The suite covers pure scoring and guess transitions, image processing and similarity generation, distractor rank bands, the FastAPI round flow, and leaderboard identity, persistence, ranking, tie, outage, and logout behavior.
 
 ## Runtime architecture
 
 - `server/app.py` — FastAPI app, validated/cached packaged data, per-browser in-memory sessions, round commands, leaderboard APIs, and image endpoints.
-- `server/leaderboard.py` — transactional SQLite personal-best storage and deterministic top-10 ranking.
+- `server/leaderboard.py` — transactional SQLite round-score storage and deterministic top-10 ranking.
 - `frontend/src/` — Round, Result, and Setup error screens with phone/iPad portrait layouts.
 - `src/` — reusable domain, data, image, and similarity modules.
 - `data/` — packaged Pokémon metadata, masks, artwork, and similarity index.

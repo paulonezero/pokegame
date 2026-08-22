@@ -106,7 +106,7 @@ def main() -> int:
                 command(
                     "Runtime.evaluate",
                     {
-                        "expression": "(()=>{const input=document.querySelector('#username');if(input){const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(input,'Smoke Player');input.dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('.username-form')?.requestSubmit();}})()"
+                        "expression": "(()=>{const input=document.querySelector('#username');if(input){window.localStorage.setItem('pokegame:sound','false');const setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set;setter.call(input,'Smoke Player');input.dispatchEvent(new Event('input',{bubbles:true}));document.querySelector('.username-form')?.requestSubmit();}})()"
                     },
                 )
                 command("Page.reload")
@@ -120,6 +120,15 @@ def main() -> int:
                 )
                 value = measurement["result"]["result"]["value"]
                 result = json.loads(value)
+                reveal = command(
+                    "Runtime.evaluate",
+                    {
+                        "expression": "(async()=>{const state=await fetch('/api/state').then(r=>r.json());const target=state.question.answers.find(a=>a.id===state.question.target_id);[...document.querySelectorAll('.answer-row')].find(button=>button.querySelector('.answer-name')?.textContent===target.name)?.click();return await new Promise(resolve=>{const deadline=Date.now()+3000;const check=()=>{const card=document.querySelector('.last-correct');const question=document.querySelector('.stage-caption--left')?.textContent;if(card&&question==='Q2')resolve({shown:true,name:card.querySelector('strong')?.textContent,question});else if(Date.now()>deadline)resolve({shown:false,question});else setTimeout(check,50)};check()})})()",
+                        "awaitPromise": True,
+                        "returnByValue": True,
+                    },
+                )
+                result["reveal"] = reveal["result"]["result"]["value"]
                 submission = command(
                     "Runtime.evaluate",
                     {
@@ -140,14 +149,16 @@ def main() -> int:
                 )
                 result["leaderboard"] = json.loads(board["result"]["result"]["value"])
                 result["submission"] = submission.get("result", {}).get("result", {}).get("value")
-                results.append((width, height, result))
-                command(
+                logout = command(
                     "Runtime.evaluate",
                     {
-                        "expression": "fetch('/api/player/logout',{method:'POST'}).finally(()=>window.localStorage.clear())",
+                        "expression": "(async()=>{document.querySelector('.player-name-logout')?.click();return await new Promise(resolve=>{const deadline=Date.now()+3000;const check=()=>{if(document.querySelector('.login-screen'))resolve(true);else if(Date.now()>deadline)resolve(false);else setTimeout(check,50)};check()})})()",
                         "awaitPromise": True,
+                        "returnByValue": True,
                     },
                 )
+                result["logout"] = logout["result"]["result"]["value"]
+                results.append((width, height, result))
 
             errors = [
                 item
@@ -170,6 +181,10 @@ def main() -> int:
                 raise AssertionError(
                     f"Stage does not match the {expected}pt target at {width}×{height}: {stage}"
                 )
+            if not result["reveal"]["shown"] or result["reveal"]["question"] != "Q2":
+                raise AssertionError(f"Side reveal did not advance immediately at {width}×{height}: {result['reveal']}")
+            if not result["logout"]:
+                raise AssertionError(f"Username logout control did not return to login at {width}×{height}")
             board = result["leaderboard"]
             if not board["screen"] or not board["rows"] or not board["current"] or not board["callout"]:
                 raise AssertionError(f"Qualifying leaderboard did not render at {width}×{height}: {board}")

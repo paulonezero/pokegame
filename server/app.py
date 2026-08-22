@@ -469,7 +469,6 @@ class GameService:
             round_state.leaderboard = {
                 "saved": True,
                 "eligible": False,
-                "new_best": False,
                 "rank": None,
                 "auto_show": False,
             }
@@ -482,12 +481,11 @@ class GameService:
             }
             return round_state.leaderboard
         try:
-            result = self.leaderboard.record_best(
+            result = self.leaderboard.record_score(
                 session.player_id, session.username, round_state.score
             )
             result["auto_show"] = bool(
-                result.get("new_best")
-                and result.get("rank") is not None
+                result.get("rank") is not None
                 and int(result["rank"]) <= 10
             )
             round_state.leaderboard = result

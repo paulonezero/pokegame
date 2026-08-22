@@ -1,11 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AlertCircle, LogOut, Pencil, Trophy, Volume2, VolumeX } from "lucide-react";
+import { AlertCircle, Trophy, Volume2, VolumeX } from "lucide-react";
 import { apiRequest } from "./api.js";
 
 const IDLE_FEEDBACK = "Pick the name that fits the shape.";
 const WRONG_SHAKE_MS = 380;
 const WRONG_COLLAPSE_MS = 260;
-const CORRECT_HOLD_MS = 1500;
 const PLAYER_KEY = "pokegame:player:v1";
 const USERNAME_PATTERN = /^[A-Za-z0-9 _-]{3,20}$/;
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
@@ -108,12 +107,12 @@ function App() {
   const [leaderboardLoading, setLeaderboardLoading] = useState(false);
   const [leaderboardError, setLeaderboardError] = useState("");
   const [leaderboardCallout, setLeaderboardCallout] = useState(null);
+  const [recentReveal, setRecentReveal] = useState(null);
 
   const gameRef = useRef(game);
   const soundRef = useRef(sound);
   const operationRef = useRef(false);
   const expireKeyRef = useRef(null);
-  const advanceTimerRef = useRef(null);
   const animationTimersRef = useRef(new Set());
   const autoOpenedRef = useRef(null);
 
@@ -189,7 +188,6 @@ function App() {
 
   useEffect(() => {
     return () => {
-      if (advanceTimerRef.current) window.clearTimeout(advanceTimerRef.current);
       animationTimersRef.current.forEach((timer) => window.clearTimeout(timer));
     };
   }, []);
@@ -236,10 +234,10 @@ function App() {
   }, [game?.question?.silhouette_url, game?.question?.artwork_url]);
 
   const startRound = useCallback(() => {
-    if (advanceTimerRef.current) window.clearTimeout(advanceTimerRef.current);
     expireKeyRef.current = null;
     setShowLeaderboard(false);
     setLeaderboardCallout(null);
+    setRecentReveal(null);
     setRowPhases({});
     call("/api/round/start", { method: "POST" });
   }, [call]);
@@ -285,31 +283,6 @@ function App() {
     setGame(null);
     setPlayer(nextPlayer);
     return true;
-  };
-
-  const changeName = async (usernameValue) => {
-    const username = usernameValue.trim();
-    if (!player || !USERNAME_PATTERN.test(username)) return false;
-    setLoginPending(true);
-    try {
-      const payload = await apiRequest("/api/player", {
-        method: "PUT",
-        body: { player_id: player.playerId, username },
-      });
-      const nextPlayer = { ...player, username };
-      writePlayer(nextPlayer);
-      setPlayer(nextPlayer);
-      setProfileWarning(payload?.warning ?? "");
-      setLeaderboard((entries) => entries.map((entry) => (
-        entry.is_current ? { ...entry, username } : entry
-      )));
-      return true;
-    } catch (error) {
-      setLeaderboardError(error?.message ?? "The username could not be changed.");
-      return false;
-    } finally {
-      setLoginPending(false);
-    }
   };
 
   const logout = async () => {
@@ -417,13 +390,12 @@ function App() {
 
     if (event?.kind === "correct") {
       notify("correct", soundRef.current);
-      if (advanceTimerRef.current) window.clearTimeout(advanceTimerRef.current);
-      advanceTimerRef.current = window.setTimeout(() => {
-        const latest = gameRef.current;
-        if (screenName(latest?.screen) === "play" && latest?.question?.revealed) {
-          call("/api/round/advance", { method: "POST" });
-        }
-      }, CORRECT_HOLD_MS);
+      setRecentReveal({
+        name: event.name ?? next.question?.target_name,
+        artworkUrl: next.question?.artwork_url,
+        points: event.points ?? 0,
+      });
+      await call("/api/round/advance", { method: "POST" });
     }
   };
 
@@ -446,9 +418,7 @@ function App() {
           error={leaderboardError}
           callout={leaderboardCallout}
           player={player}
-          pending={loginPending}
           onRetry={() => openLeaderboard(leaderboardCallout)}
-          onChangeName={changeName}
           onLogout={logout}
           onPlayAgain={startRound}
         />
@@ -465,6 +435,7 @@ function App() {
           secondsLeft={secondsLeft}
           timerFraction={timerFraction}
           expired={expired}
+          recentReveal={recentReveal}
         />
       )}
       {!showLeaderboard && screen === "result" && (
@@ -481,8 +452,8 @@ function App() {
   );
 }
 
-function UsernameForm({ initialValue = "", submitLabel, pending = false, onSubmit, onCancel }) {
-  const [username, setUsername] = useState(initialValue);
+function UsernameForm({ submitLabel, onSubmit }) {
+  const [username, setUsername] = useState("");
   const [error, setError] = useState("");
 
   const submit = async (event) => {
@@ -511,14 +482,12 @@ function UsernameForm({ initialValue = "", submitLabel, pending = false, onSubmi
         maxLength="20"
         autoComplete="username"
         autoFocus
-        disabled={pending}
         aria-describedby={error ? "username-error" : "username-help"}
       />
       <span id="username-help" className="field-help">No password. This name is public and stored in this browser.</span>
       {error && <span id="username-error" className="field-error" role="alert">{error}</span>}
       <div className="form-actions">
-        <button className="button button--primary" type="submit" disabled={pending}>{submitLabel}</button>
-        {onCancel && <button className="button button--secondary" type="button" onClick={onCancel} disabled={pending}>Cancel</button>}
+        <button className="button button--primary" type="submit">{submitLabel}</button>
       </div>
     </form>
   );
@@ -531,7 +500,7 @@ function LoginScreen({ onLogin }) {
       <div className="copy-stack">
         <span className="result-kicker">Global leaderboard</span>
         <h1 className="display-heading">Choose your name</h1>
-        <p className="lead">Your best 30-second score can appear in the global top 10.</p>
+        <p className="lead">Every 30-second score that qualifies can appear in the global top 10.</p>
       </div>
       <UsernameForm submitLabel="Start playing" onSubmit={onLogin} />
     </section>
@@ -544,20 +513,10 @@ function LeaderboardScreen({
   error,
   callout,
   player,
-  pending,
   onRetry,
-  onChangeName,
   onLogout,
   onPlayAgain,
 }) {
-  const [editing, setEditing] = useState(false);
-
-  const saveName = async (username) => {
-    const saved = await onChangeName(username);
-    if (saved) setEditing(false);
-    return saved;
-  };
-
   return (
     <section className="center-column leaderboard-screen">
       <div className="leaderboard-heading">
@@ -571,7 +530,7 @@ function LeaderboardScreen({
       {callout && (
         <div className="rank-callout" role="status">
           <strong>You reached #{callout.rank}</strong>
-          <span>New personal best · {callout.score} pts</span>
+          <span>Top 10 score · {callout.score} pts</span>
         </div>
       )}
 
@@ -599,26 +558,13 @@ function LeaderboardScreen({
       </div>
 
       <div className="player-controls">
-        {editing ? (
-          <UsernameForm
-            initialValue={player.username}
-            submitLabel="Save name"
-            pending={pending}
-            onSubmit={saveName}
-            onCancel={() => setEditing(false)}
-          />
-        ) : (
-          <>
-            <span>Playing as <strong>{player.username}</strong></span>
-            <div>
-              <button className="icon-text-button" type="button" onClick={() => setEditing(true)}><Pencil aria-hidden="true" /> Change name</button>
-              <button className="icon-text-button" type="button" onClick={onLogout}><LogOut aria-hidden="true" /> Log out</button>
-            </div>
-          </>
-        )}
+        <span>Playing as</span>
+        <button className="player-name-logout" type="button" onClick={onLogout} aria-label={`Log out ${player.username}`}>
+          {player.username}
+        </button>
       </div>
 
-      {!editing && <button className="button button--primary leaderboard-play" type="button" onClick={onPlayAgain}>Play again</button>}
+      <button className="button button--primary leaderboard-play" type="button" onClick={onPlayAgain}>Play again</button>
     </section>
   );
 }
@@ -634,6 +580,7 @@ function RoundScreen({
   secondsLeft,
   timerFraction,
   expired,
+  recentReveal,
 }) {
   const question = state.question ?? {};
   const removed = new Set(question.removed_ids ?? []);
@@ -678,7 +625,7 @@ function RoundScreen({
       </div>
 
       <div className="round-body">
-        <div className={`stage${revealed ? " is-revealed" : ""}`}>
+        <div className={`stage${revealed ? " is-revealed" : ""}${recentReveal ? " has-side-reveal" : ""}`}>
           {stageImageUrl && (
             <img
               className={`stage-image${revealed && artworkUrl ? " is-artwork" : ""}`}
@@ -690,6 +637,14 @@ function RoundScreen({
           {revealed && <span className="reveal-sweep" aria-hidden="true" />}
           {revealed && targetName && <div className="reveal-banner">{targetName}</div>}
           <span className="stage-caption stage-caption--left">Q{state.q_num}</span>
+          {recentReveal && (
+            <aside className="last-correct" aria-live="polite">
+              <span>Last correct</span>
+              {recentReveal.artworkUrl && <img src={recentReveal.artworkUrl} alt="" />}
+              <strong>{recentReveal.name}</strong>
+              <small>+{recentReveal.points}</small>
+            </aside>
+          )}
         </div>
 
         <div className="round-controls">

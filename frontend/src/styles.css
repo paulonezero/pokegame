@@ -397,6 +397,11 @@ button:disabled {
   object-fit: contain;
   pointer-events: none;
   user-select: none;
+  transition: transform 0.2s ease;
+}
+
+.stage.has-side-reveal .stage-image {
+  transform: translateX(-16%);
 }
 
 .stage-image.is-artwork {
@@ -420,6 +425,55 @@ button:disabled {
 
 .stage-caption--right {
   right: 12px;
+}
+
+.last-correct {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  display: flex;
+  width: 88px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 8px 6px;
+  border-left: 1px solid var(--color-neutral-300);
+  background: rgba(243, 242, 242, 0.94);
+  text-align: center;
+  animation: popIn 0.2s ease;
+}
+
+.last-correct > span,
+.last-correct > small {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.last-correct img {
+  display: block;
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.last-correct strong {
+  width: 100%;
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.last-correct > small {
+  color: var(--color-accent-700);
+  opacity: 1;
 }
 
 .reveal-sweep {
@@ -716,8 +770,7 @@ button:disabled {
   font-weight: 700;
 }
 
-.text-button,
-.icon-text-button {
+.text-button {
   padding: 0;
   border: 0;
   border-bottom: 1px solid currentColor;
@@ -852,25 +905,19 @@ button:disabled {
 
 .player-controls {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
+  align-items: baseline;
+  gap: 5px;
   font-size: 12px;
 }
 
-.player-controls > div:not(.username-form) {
-  display: flex;
-  gap: 18px;
-}
-
-.icon-text-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.icon-text-button svg {
-  width: 13px;
-  height: 13px;
+.player-name-logout {
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  color: var(--color-text);
+  background: transparent;
+  font-weight: 800;
+  cursor: pointer;
 }
 
 .leaderboard-play {
@@ -1013,6 +1060,21 @@ button:disabled {
 
   .stage-caption {
     font-size: 9.5px;
+  }
+
+  .last-correct {
+    width: 118px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .last-correct img {
+    width: 82px;
+    height: 82px;
+  }
+
+  .last-correct strong {
+    font-size: 15px;
   }
 
   .reveal-banner {

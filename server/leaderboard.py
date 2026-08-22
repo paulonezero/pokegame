@@ -9,7 +9,7 @@ from typing import Any
 
 
 class LeaderboardStore:
-    """Small SQLite store for public player names and personal-best scores."""
+    """Small SQLite store for public player names and ranked round scores."""
 
     def __init__(self, path: Path, clock: Callable[[], float] | None = None) -> None:
         self.path = Path(path).expanduser().resolve()
@@ -49,6 +49,49 @@ class LeaderboardStore:
                     ON players(best_score DESC, achieved_at ASC, player_id ASC)
                     """
                 )
+                connection.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS scores (
+                        score_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        player_id TEXT NOT NULL,
+                        score INTEGER NOT NULL,
+                        achieved_at REAL NOT NULL,
+                        FOREIGN KEY(player_id) REFERENCES players(player_id)
+                    )
+                    """
+                )
+                connection.execute(
+                    """
+                    CREATE INDEX IF NOT EXISTS scores_ranking
+                    ON scores(score DESC, achieved_at ASC, score_id ASC)
+                    """
+                )
+                connection.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS leaderboard_meta (
+                        key TEXT PRIMARY KEY,
+                        value TEXT NOT NULL
+                    )
+                    """
+                )
+                migrated = connection.execute(
+                    "SELECT 1 FROM leaderboard_meta WHERE key = 'best_scores_migrated'"
+                ).fetchone()
+                if migrated is None:
+                    connection.execute(
+                        """
+                        INSERT INTO scores(player_id, score, achieved_at)
+                        SELECT player_id, best_score, achieved_at
+                        FROM players
+                        WHERE best_score IS NOT NULL AND best_score > 0
+                        """
+                    )
+                    connection.execute(
+                        """
+                        INSERT INTO leaderboard_meta(key, value)
+                        VALUES ('best_scores_migrated', '1')
+                        """
+                    )
             self._ready = True
 
     def upsert_player(self, player_id: str, username: str) -> None:
@@ -66,74 +109,52 @@ class LeaderboardStore:
                 (player_id, username, now),
             )
 
-    def record_best(self, player_id: str, username: str, score: int) -> dict[str, Any]:
+    def record_score(self, player_id: str, username: str, score: int) -> dict[str, Any]:
         self._ensure_schema()
         score = int(score)
         if score <= 0:
-            return {"saved": True, "eligible": False, "new_best": False, "rank": None}
+            return {"saved": True, "eligible": False, "rank": None}
 
         now = float(self.clock())
         with self._connect() as connection:
             connection.execute("BEGIN IMMEDIATE")
-            existing = connection.execute(
-                "SELECT best_score FROM players WHERE player_id = ?", (player_id,)
-            ).fetchone()
-            old_score = existing["best_score"] if existing else None
-            new_best = old_score is None or score > int(old_score)
-
-            if existing is None:
-                connection.execute(
-                    """
-                    INSERT INTO players(
-                        player_id, username, best_score, achieved_at, updated_at
-                    ) VALUES (?, ?, ?, ?, ?)
-                    """,
-                    (player_id, username, score, now, now),
-                )
-            elif new_best:
-                connection.execute(
-                    """
-                    UPDATE players
-                    SET username = ?, best_score = ?, achieved_at = ?, updated_at = ?
-                    WHERE player_id = ?
-                    """,
-                    (username, score, now, now, player_id),
-                )
-            else:
-                connection.execute(
-                    "UPDATE players SET username = ?, updated_at = ? WHERE player_id = ?",
-                    (username, now, player_id),
-                )
-
-            player = connection.execute(
-                "SELECT best_score, achieved_at FROM players WHERE player_id = ?",
-                (player_id,),
-            ).fetchone()
+            connection.execute(
+                """
+                INSERT INTO players(player_id, username, updated_at)
+                VALUES (?, ?, ?)
+                ON CONFLICT(player_id) DO UPDATE SET
+                    username = excluded.username,
+                    updated_at = excluded.updated_at
+                """,
+                (player_id, username, now),
+            )
+            cursor = connection.execute(
+                "INSERT INTO scores(player_id, score, achieved_at) VALUES (?, ?, ?)",
+                (player_id, score, now),
+            )
+            score_id = int(cursor.lastrowid)
             rank = connection.execute(
                 """
                 SELECT 1 + COUNT(*) AS rank
-                FROM players
-                WHERE best_score IS NOT NULL AND best_score > 0 AND (
-                    best_score > ? OR
-                    (best_score = ? AND achieved_at < ?) OR
-                    (best_score = ? AND achieved_at = ? AND player_id < ?)
-                )
+                FROM scores
+                WHERE score > ? OR
+                    (score = ? AND achieved_at < ?) OR
+                    (score = ? AND achieved_at = ? AND score_id < ?)
                 """,
                 (
-                    player["best_score"],
-                    player["best_score"],
-                    player["achieved_at"],
-                    player["best_score"],
-                    player["achieved_at"],
-                    player_id,
+                    score,
+                    score,
+                    now,
+                    score,
+                    now,
+                    score_id,
                 ),
             ).fetchone()["rank"]
 
         return {
             "saved": True,
             "eligible": True,
-            "new_best": new_best,
-            "personal_best": int(player["best_score"]),
+            "score": score,
             "rank": int(rank),
         }
 
@@ -142,10 +163,11 @@ class LeaderboardStore:
         with self._connect() as connection:
             rows = connection.execute(
                 """
-                SELECT player_id, username, best_score, achieved_at
-                FROM players
-                WHERE best_score IS NOT NULL AND best_score > 0
-                ORDER BY best_score DESC, achieved_at ASC, player_id ASC
+                SELECT scores.player_id, players.username, scores.score, scores.achieved_at
+                FROM scores
+                JOIN players ON players.player_id = scores.player_id
+                WHERE scores.score > 0
+                ORDER BY scores.score DESC, scores.achieved_at ASC, scores.score_id ASC
                 LIMIT ?
                 """,
                 (int(limit),),
@@ -154,7 +176,7 @@ class LeaderboardStore:
             {
                 "rank": index,
                 "username": row["username"],
-                "score": int(row["best_score"]),
+                "score": int(row["score"]),
                 "achieved_at": row["achieved_at"],
                 "is_current": bool(player_id and row["player_id"] == player_id),
             }
