@@ -1,0 +1,83 @@
+# Name the Shape
+
+A 30-second Generation I Pokémon silhouette game. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience.
+
+Gameplay is fully local at runtime: metadata, silhouettes, artwork, and the precomputed similarity index are packaged under `data/`. No PokéAPI requests or pairwise image comparisons occur while playing.
+
+## Requirements
+
+- Python 3.12+
+- Node.js 20+
+
+## Install
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+npm --prefix frontend install
+```
+
+## Develop
+
+Run both FastAPI and Vite with one command:
+
+```bash
+python scripts/dev.py
+```
+
+Open `http://127.0.0.1:5173`. Vite proxies `/api` requests to FastAPI at `http://127.0.0.1:8000`.
+
+## Production-style local run
+
+Build the frontend, then let FastAPI serve it and the API from one process:
+
+```bash
+npm --prefix frontend run build
+uvicorn server.app:app --host 127.0.0.1 --port 8000
+```
+
+Open `http://127.0.0.1:8000`.
+
+## Deploy to Railway
+
+The repository includes `Dockerfile` and `railway.json`, so Railway builds the React frontend and serves it from the same FastAPI service.
+
+1. Push the repository, including the packaged `data/` assets, to GitHub.
+2. In Railway, choose **New Project → Deploy from GitHub repo** and select this repository.
+3. Leave the service root directory blank (the repository root).
+4. Railway will detect `railway.json` and build with `Dockerfile`.
+5. In **Settings → Networking**, choose **Generate Domain**.
+6. Keep the service at one replica because browser sessions are currently stored in process memory.
+
+No application environment variables or persistent volume are required. Railway supplies `PORT`, and the container starts one Uvicorn worker automatically.
+
+To test the same container locally:
+
+```bash
+docker build -t pokegame .
+docker run --rm -p 8000:8000 pokegame
+```
+
+Then open `http://127.0.0.1:8000`.
+
+Deployments and service restarts reset session-best scores because there is intentionally no database. To scale beyond one replica, move sessions to a shared store such as Redis first.
+
+## Tests
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+The suite covers pure scoring and guess transitions, image processing and similarity generation, distractor rank bands, and the FastAPI round flow including wrong-answer removal, second-attempt scoring, advancement on an unchanged deadline, late-guess rejection, target-pool behavior, setup recovery, and replay.
+
+## Runtime architecture
+
+- `server/app.py` — FastAPI app, validated/cached packaged data, per-browser in-memory sessions, round commands, and image endpoints.
+- `frontend/src/` — Start, Round, Result, and Setup error screens with phone/iPad portrait layouts.
+- `src/` — reusable domain, data, image, and similarity modules.
+- `data/` — packaged Generation I metadata, masks, artwork, and similarity index.
+
+Session state is process-local. Running multiple backend workers would require a shared session store or sticky sessions; the default command intentionally uses one worker.
+
+Set `POKEGAME_DATA_DIR` to test or run against an alternate packaged data directory.

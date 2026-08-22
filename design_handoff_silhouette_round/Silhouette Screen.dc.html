@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/modernist-18647bfd-01ce-4473-92e9-7c5658dbe797/styles.css">
+<script src="_ds/modernist-18647bfd-01ce-4473-92e9-7c5658dbe797/_ds_bundle.js"></script>
+<style>
+@keyframes shakeX{0%,100%{transform:translateX(0)}18%{transform:translateX(-7px)}36%{transform:translateX(6px)}54%{transform:translateX(-4px)}72%{transform:translateX(3px)}}
+@keyframes popIn{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes riseIn{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes sweep{0%{transform:translateY(102%)}100%{transform:translateY(-102%)}}
+</style>
+</helmet>
+
+<div style="{{ rootStyle }}">
+
+  <sc-if value="{{ isStart }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ centerColStyle }}">
+      <div style="{{ heroMarkStyle }}">
+        <div style="{{ heroShapeStyle }}"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <h2 style="{{ h2Style }}">Name<br>the shape</h2>
+        <p style="{{ leadStyle }}">One silhouette, four names, thirty seconds. Wrong guesses drop out of the list and cost you points — the clock never stops.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;border-top:2px solid var(--color-divider)">
+        <div style="display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--color-neutral-300)"><span style="{{ ruleNumStyle }}">3</span><span style="{{ ruleTextStyle }}">First guess right</span></div>
+        <div style="display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--color-neutral-300)"><span style="{{ ruleNumStyle }}">2</span><span style="{{ ruleTextStyle }}">Second guess</span></div>
+        <div style="display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:2px solid var(--color-divider)"><span style="{{ ruleNumStyle }}">1</span><span style="{{ ruleTextStyle }}">Third guess — the last one is free, and worth nothing</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <button class="btn btn-primary" onClick="{{ startRound }}" style="{{ primaryBtnStyle }}">Start round</button>
+        <div style="display:flex;justify-content:space-between;font-size:12px;letter-spacing:.06em;text-transform:uppercase;opacity:.6"><span>Best this session</span><span>{{ best }} pts</span></div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isPlay }}" hint-placeholder-val="{{ true }}">
+    <div style="flex:1;display:flex;flex-direction:column;gap:12px;min-height:0">
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="{{ timerTrackStyle }}">
+          <div style="{{ timerBarStyle }}"></div>
+        </div>
+        <span style="{{ timerLabelStyle }}">{{ timeLabel }}</span>
+        <button onClick="{{ toggleSound }}" style="{{ soundBtnStyle }}" aria-label="Sound and haptics">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z"></path><path style="{{ soundWaveStyle }}" d="M16 9a4 4 0 0 1 0 6"></path><path style="{{ soundMuteStyle }}" d="M22 9l-5 6M17 9l5 6"></path></svg>
+        </button>
+      </div>
+
+      <div style="{{ bodyStyle }}">
+
+        <div style="{{ stageStyle }}">
+          <div style="{{ silhouetteStyle }}"></div>
+          <div style="{{ sweepStyle }}"></div>
+          <div style="{{ revealNameStyle }}">{{ revealName }}</div>
+          <span style="position:absolute;top:10px;left:12px;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;opacity:.5">Q{{ qNum }}</span>
+          <span style="position:absolute;top:10px;right:12px;font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;opacity:.5">{{ difficultyLabel }}</span>
+        </div>
+
+        <div style="{{ controlsStyle }}">
+          <div style="display:flex;border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text)">
+            <div style="{{ statCellStyle }}">
+              <span style="{{ statLabelStyle }}">Score</span>
+              <span style="{{ statValueStyle }}">{{ score }}</span>
+            </div>
+            <div style="{{ statCellStyle }}">
+              <span style="{{ statLabelStyle }}">Named</span>
+              <span style="{{ statValueStyle }}">{{ found }}</span>
+            </div>
+            <div style="{{ streakCellStyle }}">
+              <span style="{{ statLabelStyle }}">Streak</span>
+              <span style="{{ statValueStyle }}">{{ streakLabel }}</span>
+            </div>
+          </div>
+
+          <div style="{{ feedbackStyle }}">{{ feedbackText }}</div>
+
+          <div style="{{ answersWrapStyle }}">
+            <sc-for list="{{ answers }}" as="a" hint-placeholder-count="4">
+              <button onClick="{{ a.onPick }}" style="{{ a.style }}">
+                <span>{{ a.name }}</span>
+                <span style="{{ a.badgeStyle }}">{{ a.badge }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ centerColStyle }}">
+      <div style="display:flex;flex-direction:column;gap:2px;border-top:2px solid var(--color-text);padding-top:10px">
+        <span style="font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-accent-700)">Time's up</span>
+        <h2 style="{{ h2Style }}">{{ score }} pts</h2>
+        <p style="{{ leadStyle }}">{{ resultLine }}</p>
+      </div>
+
+      <div style="display:flex;gap:16px;align-items:stretch;border-top:1px solid var(--color-neutral-300);border-bottom:1px solid var(--color-neutral-300);padding:14px 0">
+        <div style="{{ resultArtStyle }}"><div style="{{ resultShapeStyle }}"></div></div>
+        <div style="display:flex;flex-direction:column;gap:2px;min-width:0;justify-content:center">
+          <span style="{{ statLabelStyle }}">Last one was</span>
+          <span style="{{ resultNameStyle }}">{{ revealName }}</span>
+          <span style="font-size:12px;opacity:.6">Full artwork, revealed at expiry</span>
+        </div>
+      </div>
+
+      <div style="display:flex;border-bottom:2px solid var(--color-text)">
+        <div style="{{ statCellStyle }}">
+          <span style="{{ statLabelStyle }}">Named</span>
+          <span style="{{ statValueStyle }}">{{ found }}</span>
+        </div>
+        <div style="{{ statCellStyle }}">
+          <span style="{{ statLabelStyle }}">Best streak</span>
+          <span style="{{ statValueStyle }}">{{ bestStreak }}</span>
+        </div>
+        <div style="{{ bestCellStyle }}">
+          <span style="{{ statLabelStyle }}">Session best</span>
+          <span style="{{ statValueStyle }}">{{ best }}</span>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-primary" onClick="{{ startRound }}" style="{{ primaryBtnStyle }}">Play again</button>
+        <button class="btn btn-secondary" onClick="{{ goStart }}" style="{{ secondaryBtnStyle }}">Back to start</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isError }}" hint-placeholder-val="{{ false }}">
+    <div style="{{ centerColStyle }}">
+      <div style="width:56px;height:56px;background:var(--color-accent);display:grid;place-items:center;flex:none">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--color-bg)" stroke-width="2" stroke-linecap="round"><path d="M12 7v6"></path><path d="M12 17h.01"></path></svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <h2 style="{{ h2Style }}">Data isn't ready</h2>
+        <p style="{{ leadStyle }}">No silhouette mask found for target 118. Expected a 256×256 grayscale PNG at <span style="background:var(--color-neutral-200);padding:1px 5px;border-bottom:2px solid var(--color-text)">data/silhouettes/118.png</span>.</p>
+      </div>
+      <div style="border-top:2px solid var(--color-text);border-bottom:2px solid var(--color-text);padding:12px 0;display:flex;flex-direction:column;gap:8px">
+        <span style="{{ statLabelStyle }}">Fix</span>
+        <span style="font-size:13.5px;font-weight:600;letter-spacing:-.01em">python scripts/build_similarity.py</span>
+        <span style="font-size:12.5px;opacity:.7">Then reload. The round can't start until every playable target has a mask and three similarity rows.</span>
+      </div>
+      <button class="btn btn-secondary" onClick="{{ goStart }}" style="{{ secondaryBtnStyle }}">Retry</button>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:402,&quot;height&quot;:874},&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;phone&quot;,&quot;options&quot;:[&quot;phone&quot;,&quot;tablet&quot;],&quot;tsType&quot;:&quot;'phone' | 'tablet'&quot;},&quot;screen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;play&quot;,&quot;options&quot;:[&quot;start&quot;,&quot;play&quot;,&quot;result&quot;,&quot;error&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;nav&quot;:{&quot;editor&quot;:null,&quot;default&quot;:0,&quot;tsType&quot;:&quot;number&quot;},&quot;roundSeconds&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:30,&quot;tsType&quot;:&quot;number&quot;,&quot;min&quot;:10,&quot;max&quot;:90,&quot;step&quot;:5,&quot;unit&quot;:&quot;s&quot;},&quot;difficulty&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;expert&quot;,&quot;options&quot;:[&quot;easy&quot;,&quot;normal&quot;,&quot;hard&quot;,&quot;expert&quot;],&quot;tsType&quot;:&quot;string&quot;},&quot;showPointsBadges&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+const CREATURES = [
+  { name: "Aluvia", seed: 11 }, { name: "Bracken", seed: 27 }, { name: "Cindril", seed: 43 },
+  { name: "Dovemoss", seed: 58 }, { name: "Emberkin", seed: 72 }, { name: "Fennow", seed: 91 },
+  { name: "Glimmer", seed: 104 }, { name: "Harrowe", seed: 119 }, { name: "Ilexa", seed: 133 },
+  { name: "Juneberry", seed: 147 }, { name: "Kestrelle", seed: 6 }, { name: "Lumen", seed: 88 },
+];
+
+function blobPath(seed) {
+  let s = seed * 9301 + 49297;
+  const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
+  const n = 26, pts = [];
+  for (let i = 0; i < n; i++) {
+    const t = (i / n) * Math.PI * 2;
+    const lobe = 0.30 + 0.13 * Math.sin(t * 3 + seed) + 0.09 * Math.cos(t * 5 - seed);
+    const r = 0.30 + lobe * (0.55 + 0.45 * rnd());
+    pts.push((50 + Math.cos(t) * r * 96).toFixed(1) + "% " + (50 + Math.sin(t) * r * 88).toFixed(1) + "%");
+  }
+  return "polygon(" + pts.join(",") + ")";
+}
+
+const POINTS = [3, 2, 1, 0];
+
+class Component extends DCLogic {
+  state = {
+    screen: "play", timeLeft: 30, deadline: null,
+    score: 0, found: 0, qNum: 1, attempt: 1,
+    streak: 0, bestStreak: 0, best: 0, sound: true,
+    targetIdx: 4, answers: [], removed: [], reveal: false,
+    feedback: null, order: [],
+  };
+
+  componentDidMount() {
+    this.newQuestion(true);
+    this.tick = setInterval(() => {
+      const { deadline, screen } = this.state;
+      if (screen !== "play" || !deadline) return;
+      const left = Math.max(0, (deadline - Date.now()) / 1000);
+      if (left <= 0) this.endRound(); else this.setState({ timeLeft: left });
+    }, 240);
+  }
+  componentDidUpdate(prev) {
+    const want = this.props.screen;
+    if (want && (want !== prev.screen || this.props.nav !== prev.nav)) {
+      if (want === "play") this.startRound();
+      else this.setState({ screen: want, deadline: null, reveal: want === "result" });
+    }
+  }
+  componentWillUnmount() { clearInterval(this.tick); if (this.t) clearTimeout(this.t); }
+
+  seconds() { return this.props.roundSeconds ?? 30; }
+  tablet() { return (this.props.device ?? "phone") === "tablet"; }
+
+  pool() {
+    const idx = CREATURES.map((_, i) => i);
+    for (let i = idx.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [idx[i], idx[j]] = [idx[j], idx[i]]; }
+    return idx;
+  }
+
+  newQuestion(init) {
+    let order = this.state.order.length ? this.state.order.slice() : this.pool();
+    let targetIdx = order.pop();
+    if (targetIdx === this.state.targetIdx && order.length) { const alt = order.pop(); order.push(targetIdx); targetIdx = alt; }
+    const others = CREATURES.map((_, i) => i).filter(i => i !== targetIdx).sort(() => Math.random() - 0.5).slice(0, 3);
+    const answers = [targetIdx, ...others].sort(() => Math.random() - 0.5);
+    const patch = { order, targetIdx, answers, removed: [], attempt: 1, reveal: false, qNum: init ? 1 : this.state.qNum + 1, feedback: null };
+    if (init) Object.assign(patch, { score: 0, found: 0, streak: 0, bestStreak: 0, timeLeft: this.seconds(), deadline: Date.now() + this.seconds() * 1000, screen: "play" });
+    this.setState(patch);
+  }
+
+  startRound = () => { if (this.t) clearTimeout(this.t); this.newQuestion(true); };
+  goStart = () => this.setState({ screen: "start", deadline: null });
+  toggleSound = () => this.setState(s => ({ sound: !s.sound }));
+  endRound() { this.setState(s => ({ screen: "result", timeLeft: 0, deadline: null, reveal: true, best: Math.max(s.best, s.score) })); }
+
+  pick(idx) {
+    const s = this.state;
+    if (s.reveal || s.removed.indexOf(idx) >= 0) return;
+    if (s.deadline && Date.now() >= s.deadline) { this.endRound(); return; }
+    if (idx === s.targetIdx) {
+      const pts = POINTS[Math.min(s.attempt - 1, 3)];
+      const streak = s.attempt === 1 ? s.streak + 1 : 0;
+      this.setState({
+        reveal: true, score: s.score + pts, found: s.found + 1, streak,
+        bestStreak: Math.max(s.bestStreak, streak),
+        feedback: { kind: "ok", text: "Correct — " + CREATURES[idx].name + (pts ? " · +" + pts : " · no points left") },
+      });
+      this.t = setTimeout(() => { if (this.state.screen === "play") this.newQuestion(false); }, 780);
+    } else {
+      this.setState({
+        shaking: idx, attempt: s.attempt + 1, streak: 0,
+        feedback: { kind: "no", text: "Not " + CREATURES[idx].name + " — removed. " + POINTS[Math.min(s.attempt, 3)] + " pts left." },
+      });
+      this.t = setTimeout(() => this.setState({ shaking: null, collapsing: idx }), 380);
+      setTimeout(() => this.setState(st => ({ collapsing: null, removed: st.removed.concat([idx]) })), 660);
+    }
+  }
+
+  renderVals() {
+    const s = this.state, t = this.tablet();
+    const total = this.seconds();
+    const frac = Math.max(0, Math.min(1, s.timeLeft / total));
+    const low = s.timeLeft <= 10;
+    const target = CREATURES[s.targetIdx] || CREATURES[0];
+    const pts = POINTS[Math.min(s.attempt - 1, 3)];
+    const badges = this.props.showPointsBadges ?? true;
+
+    const rowH = t ? 74 : 56;
+    const answers = s.answers.map(idx => {
+      const removed = s.removed.indexOf(idx) >= 0;
+      const shaking = s.shaking === idx, collapsing = s.collapsing === idx;
+      const hit = s.reveal && idx === s.targetIdx;
+      let style = "display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;min-height:" + rowH +
+        "px;padding:0 0 0 " + (t ? 24 : 18) + "px;border-radius:0;cursor:pointer;font-family:var(--font-heading);font-weight:800;font-size:" +
+        (t ? 22 : 17) + "px;letter-spacing:-.01em;text-align:left;transition:max-height .26s ease,opacity .22s ease,margin .26s ease,background .16s ease;overflow:hidden;" +
+        "max-height:" + rowH + "px;";
+      if (hit) style += "background:var(--color-text);color:var(--color-bg);border:2px solid var(--color-text);";
+      else if (shaking) style += "background:var(--color-accent);color:var(--color-bg);border:2px solid var(--color-accent);animation:shakeX .38s ease;";
+      else if (collapsing) style += "background:var(--color-accent-200);color:var(--color-accent-800);border:2px solid transparent;max-height:0;min-height:0;opacity:0;margin-top:" + (t ? -10 : -8) + "px;";
+      else style += "background:transparent;color:var(--color-text);border:2px solid var(--color-text);";
+      if (removed) style += "display:none;";
+      return {
+        idx, name: CREATURES[idx].name, style,
+        badge: hit ? "+" + POINTS[Math.min(s.attempt - 1, 3)] : String(pts),
+        badgeStyle: "flex:none;align-self:stretch;width:" + (t ? 68 : 52) + "px;display:grid;place-items:center;font-family:var(--font-body);font-size:" +
+          (t ? 15 : 13) + "px;font-weight:600;background:" + (hit ? "rgba(255,255,255,.16)" : "var(--color-neutral-200)") +
+          ";color:" + (hit ? "var(--color-bg)" : "var(--color-neutral-700)") + (badges ? "" : ";display:none"),
+        onPick: () => this.pick(idx),
+      };
+    });
+
+    const fb = s.feedback;
+    const statLabel = "font-size:" + (t ? 11 : 9.5) + "px;letter-spacing:.11em;text-transform:uppercase;opacity:.6";
+    const statValue = "font-family:var(--font-heading);font-weight:800;font-size:" + (t ? 34 : 24) + "px;line-height:1.1;letter-spacing:-.02em";
+    const statCell = "flex:1;padding:" + (t ? "12px 14px" : "8px 10px") + ";display:flex;flex-direction:column;border-right:1px solid var(--color-neutral-300)";
+    const btn = "width:100%;min-height:" + (t ? 66 : 58) + "px;font-size:" + (t ? 21 : 18) +
+      "px;justify-content:flex-start;padding-left:" + (t ? 24 : 18) + "px;text-transform:uppercase;letter-spacing:.02em;cursor:pointer";
+
+    return {
+      isStart: s.screen === "start", isPlay: s.screen === "play",
+      isResult: s.screen === "result", isError: s.screen === "error",
+      score: s.score, found: s.found, qNum: s.qNum, best: s.best, bestStreak: s.bestStreak,
+      timeLabel: Math.ceil(s.timeLeft) + "s",
+      revealName: target.name,
+      difficultyLabel: (this.props.difficulty ?? "expert") + " · ranks " +
+        ({ easy: "15–40", normal: "5–20", hard: "2–10", expert: "1–5" }[this.props.difficulty ?? "expert"]),
+      resultLine: s.found === 1 ? "One shape named in " + total + " seconds." : s.found + " shapes named in " + total + " seconds.",
+      streakLabel: s.streak > 0 ? "×" + s.streak : "—",
+
+      rootStyle: "height:100%;display:flex;flex-direction:column;font-family:var(--font-body);background:var(--color-bg);padding:" +
+        (t ? "34px 40px 40px" : "56px 18px 34px"),
+      centerColStyle: "flex:1;display:flex;flex-direction:column;justify-content:center;gap:" + (t ? 26 : 18) +
+        "px;animation:riseIn .3s ease both;min-height:0;width:100%;max-width:" + (t ? "620px" : "none"),
+      bodyStyle: "flex:1;min-height:0;display:flex;flex-direction:column;gap:" + (t ? 16 : 12) + "px",
+      controlsStyle: "display:flex;flex-direction:column;gap:" + (t ? 16 : 12) + "px;flex:none",
+      answersWrapStyle: "display:flex;flex-direction:column;gap:" + (t ? 10 : 8) + "px;flex:none;min-height:" +
+        (t ? rowH * 4 + 30 : rowH * 4 + 24) + "px",
+      stageStyle: "position:relative;flex:1;min-height:0;aspect-ratio:1;align-self:center;max-width:100%;" +
+        "background:var(--color-neutral-200);display:grid;place-items:center;overflow:hidden;border:2px solid var(--color-text)",
+      silhouetteStyle: "width:66%;height:66%;clip-path:" + blobPath(target.seed) +
+        ";transition:background .4s ease;background:" + (s.reveal ? "var(--color-neutral-500)" : "var(--color-text)") + (s.reveal ? ";animation:popIn .3s ease" : ""),
+      sweepStyle: "position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent,color-mix(in srgb,#fff 60%,transparent),transparent);" +
+        (s.reveal ? "animation:sweep .6s ease" : "display:none"),
+      revealNameStyle: "position:absolute;bottom:0;left:0;right:0;font-family:var(--font-heading);font-weight:800;font-size:" + (t ? 18 : 14) +
+        "px;letter-spacing:.02em;text-transform:uppercase;padding:" + (t ? "8px 16px" : "5px 12px") +
+        ";background:var(--color-text);color:var(--color-bg);" + (s.reveal ? "" : "display:none"),
+
+      timerTrackStyle: "flex:1;height:" + (t ? 14 : 10) + "px;background:var(--color-neutral-300);overflow:hidden",
+      timerBarStyle: "height:100%;transition:width .24s linear,background .4s ease;width:" + (frac * 100).toFixed(2) +
+        "%;background:" + (low ? "var(--color-accent)" : "var(--color-text)"),
+      timerLabelStyle: "font-family:var(--font-heading);font-weight:800;font-size:" + (t ? 24 : 18) +
+        "px;letter-spacing:-.02em;min-width:" + (t ? 56 : 42) + "px;text-align:right;color:" + (low ? "var(--color-accent)" : "var(--color-text)"),
+      soundBtnStyle: "flex:none;width:" + (t ? 40 : 34) + "px;height:" + (t ? 40 : 34) +
+        "px;display:grid;place-items:center;cursor:pointer;border:2px solid var(--color-text);background:" +
+        (s.sound ? "var(--color-text)" : "transparent") + ";color:" + (s.sound ? "var(--color-bg)" : "var(--color-neutral-600)"),
+      soundWaveStyle: s.sound ? "" : "display:none",
+      soundMuteStyle: s.sound ? "display:none" : "",
+
+      statLabelStyle: statLabel, statValueStyle: statValue, statCellStyle: statCell,
+      streakCellStyle: statCell + ";border-right:0;transition:background .3s ease;background:" + (s.streak > 1 ? "var(--color-accent-200)" : "transparent"),
+      bestCellStyle: statCell + ";border-right:0;background:var(--color-accent);color:var(--color-bg)",
+      feedbackStyle: (t ? "flex:none;" : "") + "min-height:" + (t ? 40 : 32) + "px;display:flex;align-items:center;padding:0 " + (t ? 16 : 12) + "px;font-size:" +
+        (t ? 14.5 : 12.5) + "px;font-weight:600;letter-spacing:.01em;transition:background .18s ease;background:" +
+        (fb ? (fb.kind === "ok" ? "var(--color-text)" : "var(--color-accent-200)") : "var(--color-neutral-200)") +
+        ";color:" + (fb ? (fb.kind === "ok" ? "var(--color-bg)" : "var(--color-accent-800)") : "var(--color-neutral-600)"),
+      feedbackText: fb ? fb.text : "Pick the name that fits the shape.",
+
+      h2Style: "font-size:" + (t ? 60 : 40) + "px;margin:0;line-height:.96;letter-spacing:-.03em;text-transform:uppercase;font-family:var(--font-heading);font-weight:800",
+      leadStyle: "margin:0;font-size:" + (t ? 18 : 15) + "px;opacity:.78;text-wrap:pretty",
+      ruleNumStyle: "font-family:var(--font-heading);font-weight:800;font-size:" + (t ? 19 : 15) + "px;width:" + (t ? 28 : 22) + "px;color:var(--color-accent)",
+      ruleTextStyle: "font-size:" + (t ? 17 : 14) + "px",
+      primaryBtnStyle: btn, secondaryBtnStyle: btn.replace("min-height:" + (t ? 66 : 58), "min-height:" + (t ? 54 : 48)).replace("font-size:" + (t ? 21 : 18), "font-size:" + (t ? 16 : 14)),
+      heroMarkStyle: "width:" + (t ? 176 : 132) + "px;height:" + (t ? 176 : 132) +
+        "px;background:var(--color-neutral-200);display:grid;place-items:center;border:2px solid var(--color-text);flex:none",
+      heroShapeStyle: "width:" + (t ? 104 : 78) + "px;height:" + (t ? 104 : 78) +
+        "px;background:var(--color-text);clip-path:polygon(50% 2%,66% 14%,80% 12%,76% 28%,92% 40%,84% 56%,94% 72%,74% 74%,64% 92%,50% 82%,36% 94%,26% 74%,7% 71%,17% 55%,8% 39%,24% 28%,20% 12%,34% 15%)",
+      resultArtStyle: "flex:none;width:" + (t ? 140 : 104) + "px;height:" + (t ? 140 : 104) +
+        "px;background:var(--color-neutral-200);border:2px solid var(--color-text);display:grid;place-items:center",
+      resultShapeStyle: "width:" + (t ? 100 : 76) + "px;height:" + (t ? 100 : 76) + "px;background:var(--color-neutral-500);clip-path:" + blobPath(target.seed),
+      resultNameStyle: "font-family:var(--font-heading);font-weight:800;font-size:" + (t ? 34 : 26) + "px;line-height:1.05;letter-spacing:-.02em",
+
+      answers,
+      startRound: this.startRound, goStart: this.goStart, toggleSound: this.toggleSound,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
