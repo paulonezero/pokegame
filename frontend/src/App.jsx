@@ -626,6 +626,7 @@ function RoundScreen({
 
       <div className="round-body">
         <div className={`stage-row${recentReveal ? " has-reveal" : ""}`}>
+          {recentReveal && <span className="stage-balance" aria-hidden="true" />}
           <div className={`stage${revealed ? " is-revealed" : ""}`}>
             {stageImageUrl && (
               <img
@@ -641,7 +642,7 @@ function RoundScreen({
           </div>
           {recentReveal && (
             <aside className="last-correct" aria-live="polite">
-              <span>Last correct</span>
+              <span className="correct-badge">✓ Correct!</span>
               {recentReveal.artworkUrl && <img src={recentReveal.artworkUrl} alt="" />}
               <strong>{recentReveal.name}</strong>
               <small>+{recentReveal.points}</small>

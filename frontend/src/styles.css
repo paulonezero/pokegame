@@ -386,13 +386,19 @@ button:disabled {
   justify-content: center;
   width: 100%;
   min-height: 0;
-  gap: 8px;
+  gap: 6px;
 }
 
 .stage-row.has-reveal .stage {
   flex: 0 1 auto;
-  max-width: calc(100% - 76px);
+  max-width: calc(100% - 128px);
   max-height: 100%;
+}
+
+.stage-balance {
+  display: block;
+  flex: 0 0 58px;
+  width: 58px;
 }
 
 .stage {
@@ -444,20 +450,19 @@ button:disabled {
 
 .last-correct {
   display: flex;
-  flex: 0 0 68px;
-  width: 68px;
+  flex: 0 0 58px;
+  width: 58px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 4px;
-  padding: 7px 5px;
-  border: 1px solid var(--color-neutral-300);
+  padding: 6px 4px;
+  border: 2px solid var(--color-text);
   background: var(--color-bg);
   text-align: center;
   animation: popIn 0.2s ease;
 }
 
-.last-correct > span,
 .last-correct > small {
   font-size: 8px;
   font-weight: 800;
@@ -466,10 +471,24 @@ button:disabled {
   opacity: 0.65;
 }
 
+.correct-badge {
+  display: block;
+  width: calc(100% + 8px);
+  margin: -6px -4px 1px;
+  padding: 4px 1px;
+  color: var(--color-bg);
+  background: var(--color-text);
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  animation: successPulse 0.45s ease both;
+}
+
 .last-correct img {
   display: block;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
 }
 
@@ -1075,13 +1094,18 @@ button:disabled {
   }
 
   .last-correct {
-    flex-basis: 88px;
-    width: 88px;
+    flex-basis: 78px;
+    width: 78px;
     padding: 9px 7px;
   }
 
+  .stage-balance {
+    flex-basis: 78px;
+    width: 78px;
+  }
+
   .stage-row.has-reveal .stage {
-    max-width: calc(100% - 96px);
+    max-width: calc(100% - 176px);
   }
 
   .last-correct img {
@@ -1091,6 +1115,13 @@ button:disabled {
 
   .last-correct strong {
     font-size: 15px;
+  }
+
+  .correct-badge {
+    width: calc(100% + 14px);
+    margin: -9px -7px 2px;
+    padding: 5px 2px;
+    font-size: 9px;
   }
 
   .reveal-banner {
@@ -1165,6 +1196,12 @@ button:disabled {
 @keyframes popIn {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes successPulse {
+  0% { transform: scale(0.75); opacity: 0; }
+  55% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
 }
 
 @keyframes riseIn {
