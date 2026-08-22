@@ -135,7 +135,13 @@ def load_metadata(path_string: str = str(METADATA_PATH)) -> list[dict[str, Any]]
     return sorted(records, key=lambda record: record["id"])
 
 
+def playable_pokemon(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Return every valid National Pokédex record available to the game."""
+    return [record for record in records if int(record["id"]) > 0]
+
+
 def generation_one(records: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Return Generation I records for callers that explicitly need that subset."""
     explicit = [record for record in records if record.get("generation") == 1]
     return explicit or [record for record in records if 1 <= record["id"] <= 151]
 

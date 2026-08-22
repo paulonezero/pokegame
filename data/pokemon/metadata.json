@@ -1424,5 +1424,8330 @@
       "psychic"
     ],
     "artwork_path": "data/pokemon/artwork/151.png"
+  },
+  {
+    "id": 152,
+    "name": "chikorita",
+    "generation": 2,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/152.png"
+  },
+  {
+    "id": 153,
+    "name": "bayleef",
+    "generation": 2,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/153.png"
+  },
+  {
+    "id": 154,
+    "name": "meganium",
+    "generation": 2,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/154.png"
+  },
+  {
+    "id": 155,
+    "name": "cyndaquil",
+    "generation": 2,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/155.png"
+  },
+  {
+    "id": 156,
+    "name": "quilava",
+    "generation": 2,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/156.png"
+  },
+  {
+    "id": 157,
+    "name": "typhlosion",
+    "generation": 2,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/157.png"
+  },
+  {
+    "id": 158,
+    "name": "totodile",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/158.png"
+  },
+  {
+    "id": 159,
+    "name": "croconaw",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/159.png"
+  },
+  {
+    "id": 160,
+    "name": "feraligatr",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/160.png"
+  },
+  {
+    "id": 161,
+    "name": "sentret",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/161.png"
+  },
+  {
+    "id": 162,
+    "name": "furret",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/162.png"
+  },
+  {
+    "id": 163,
+    "name": "hoothoot",
+    "generation": 2,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/163.png"
+  },
+  {
+    "id": 164,
+    "name": "noctowl",
+    "generation": 2,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/164.png"
+  },
+  {
+    "id": 165,
+    "name": "ledyba",
+    "generation": 2,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/165.png"
+  },
+  {
+    "id": 166,
+    "name": "ledian",
+    "generation": 2,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/166.png"
+  },
+  {
+    "id": 167,
+    "name": "spinarak",
+    "generation": 2,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/167.png"
+  },
+  {
+    "id": 168,
+    "name": "ariados",
+    "generation": 2,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/168.png"
+  },
+  {
+    "id": 169,
+    "name": "crobat",
+    "generation": 2,
+    "types": [
+      "poison",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/169.png"
+  },
+  {
+    "id": 170,
+    "name": "chinchou",
+    "generation": 2,
+    "types": [
+      "water",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/170.png"
+  },
+  {
+    "id": 171,
+    "name": "lanturn",
+    "generation": 2,
+    "types": [
+      "water",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/171.png"
+  },
+  {
+    "id": 172,
+    "name": "pichu",
+    "generation": 2,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/172.png"
+  },
+  {
+    "id": 173,
+    "name": "cleffa",
+    "generation": 2,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/173.png"
+  },
+  {
+    "id": 174,
+    "name": "igglybuff",
+    "generation": 2,
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/174.png"
+  },
+  {
+    "id": 175,
+    "name": "togepi",
+    "generation": 2,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/175.png"
+  },
+  {
+    "id": 176,
+    "name": "togetic",
+    "generation": 2,
+    "types": [
+      "fairy",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/176.png"
+  },
+  {
+    "id": 177,
+    "name": "natu",
+    "generation": 2,
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/177.png"
+  },
+  {
+    "id": 178,
+    "name": "xatu",
+    "generation": 2,
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/178.png"
+  },
+  {
+    "id": 179,
+    "name": "mareep",
+    "generation": 2,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/179.png"
+  },
+  {
+    "id": 180,
+    "name": "flaaffy",
+    "generation": 2,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/180.png"
+  },
+  {
+    "id": 181,
+    "name": "ampharos",
+    "generation": 2,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/181.png"
+  },
+  {
+    "id": 182,
+    "name": "bellossom",
+    "generation": 2,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/182.png"
+  },
+  {
+    "id": 183,
+    "name": "marill",
+    "generation": 2,
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/183.png"
+  },
+  {
+    "id": 184,
+    "name": "azumarill",
+    "generation": 2,
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/184.png"
+  },
+  {
+    "id": 185,
+    "name": "sudowoodo",
+    "generation": 2,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/185.png"
+  },
+  {
+    "id": 186,
+    "name": "politoed",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/186.png"
+  },
+  {
+    "id": 187,
+    "name": "hoppip",
+    "generation": 2,
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/187.png"
+  },
+  {
+    "id": 188,
+    "name": "skiploom",
+    "generation": 2,
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/188.png"
+  },
+  {
+    "id": 189,
+    "name": "jumpluff",
+    "generation": 2,
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/189.png"
+  },
+  {
+    "id": 190,
+    "name": "aipom",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/190.png"
+  },
+  {
+    "id": 191,
+    "name": "sunkern",
+    "generation": 2,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/191.png"
+  },
+  {
+    "id": 192,
+    "name": "sunflora",
+    "generation": 2,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/192.png"
+  },
+  {
+    "id": 193,
+    "name": "yanma",
+    "generation": 2,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/193.png"
+  },
+  {
+    "id": 194,
+    "name": "wooper",
+    "generation": 2,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/194.png"
+  },
+  {
+    "id": 195,
+    "name": "quagsire",
+    "generation": 2,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/195.png"
+  },
+  {
+    "id": 196,
+    "name": "espeon",
+    "generation": 2,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/196.png"
+  },
+  {
+    "id": 197,
+    "name": "umbreon",
+    "generation": 2,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/197.png"
+  },
+  {
+    "id": 198,
+    "name": "murkrow",
+    "generation": 2,
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/198.png"
+  },
+  {
+    "id": 199,
+    "name": "slowking",
+    "generation": 2,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/199.png"
+  },
+  {
+    "id": 200,
+    "name": "misdreavus",
+    "generation": 2,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/200.png"
+  },
+  {
+    "id": 201,
+    "name": "unown",
+    "generation": 2,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/201.png"
+  },
+  {
+    "id": 202,
+    "name": "wobbuffet",
+    "generation": 2,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/202.png"
+  },
+  {
+    "id": 203,
+    "name": "girafarig",
+    "generation": 2,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/203.png"
+  },
+  {
+    "id": 204,
+    "name": "pineco",
+    "generation": 2,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/204.png"
+  },
+  {
+    "id": 205,
+    "name": "forretress",
+    "generation": 2,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/205.png"
+  },
+  {
+    "id": 206,
+    "name": "dunsparce",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/206.png"
+  },
+  {
+    "id": 207,
+    "name": "gligar",
+    "generation": 2,
+    "types": [
+      "ground",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/207.png"
+  },
+  {
+    "id": 208,
+    "name": "steelix",
+    "generation": 2,
+    "types": [
+      "steel",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/208.png"
+  },
+  {
+    "id": 209,
+    "name": "snubbull",
+    "generation": 2,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/209.png"
+  },
+  {
+    "id": 210,
+    "name": "granbull",
+    "generation": 2,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/210.png"
+  },
+  {
+    "id": 211,
+    "name": "qwilfish",
+    "generation": 2,
+    "types": [
+      "water",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/211.png"
+  },
+  {
+    "id": 212,
+    "name": "scizor",
+    "generation": 2,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/212.png"
+  },
+  {
+    "id": 213,
+    "name": "shuckle",
+    "generation": 2,
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/213.png"
+  },
+  {
+    "id": 214,
+    "name": "heracross",
+    "generation": 2,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/214.png"
+  },
+  {
+    "id": 215,
+    "name": "sneasel",
+    "generation": 2,
+    "types": [
+      "dark",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/215.png"
+  },
+  {
+    "id": 216,
+    "name": "teddiursa",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/216.png"
+  },
+  {
+    "id": 217,
+    "name": "ursaring",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/217.png"
+  },
+  {
+    "id": 218,
+    "name": "slugma",
+    "generation": 2,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/218.png"
+  },
+  {
+    "id": 219,
+    "name": "magcargo",
+    "generation": 2,
+    "types": [
+      "fire",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/219.png"
+  },
+  {
+    "id": 220,
+    "name": "swinub",
+    "generation": 2,
+    "types": [
+      "ice",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/220.png"
+  },
+  {
+    "id": 221,
+    "name": "piloswine",
+    "generation": 2,
+    "types": [
+      "ice",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/221.png"
+  },
+  {
+    "id": 222,
+    "name": "corsola",
+    "generation": 2,
+    "types": [
+      "water",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/222.png"
+  },
+  {
+    "id": 223,
+    "name": "remoraid",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/223.png"
+  },
+  {
+    "id": 224,
+    "name": "octillery",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/224.png"
+  },
+  {
+    "id": 225,
+    "name": "delibird",
+    "generation": 2,
+    "types": [
+      "ice",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/225.png"
+  },
+  {
+    "id": 226,
+    "name": "mantine",
+    "generation": 2,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/226.png"
+  },
+  {
+    "id": 227,
+    "name": "skarmory",
+    "generation": 2,
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/227.png"
+  },
+  {
+    "id": 228,
+    "name": "houndour",
+    "generation": 2,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/228.png"
+  },
+  {
+    "id": 229,
+    "name": "houndoom",
+    "generation": 2,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/229.png"
+  },
+  {
+    "id": 230,
+    "name": "kingdra",
+    "generation": 2,
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/230.png"
+  },
+  {
+    "id": 231,
+    "name": "phanpy",
+    "generation": 2,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/231.png"
+  },
+  {
+    "id": 232,
+    "name": "donphan",
+    "generation": 2,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/232.png"
+  },
+  {
+    "id": 233,
+    "name": "porygon2",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/233.png"
+  },
+  {
+    "id": 234,
+    "name": "stantler",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/234.png"
+  },
+  {
+    "id": 235,
+    "name": "smeargle",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/235.png"
+  },
+  {
+    "id": 236,
+    "name": "tyrogue",
+    "generation": 2,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/236.png"
+  },
+  {
+    "id": 237,
+    "name": "hitmontop",
+    "generation": 2,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/237.png"
+  },
+  {
+    "id": 238,
+    "name": "smoochum",
+    "generation": 2,
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/238.png"
+  },
+  {
+    "id": 239,
+    "name": "elekid",
+    "generation": 2,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/239.png"
+  },
+  {
+    "id": 240,
+    "name": "magby",
+    "generation": 2,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/240.png"
+  },
+  {
+    "id": 241,
+    "name": "miltank",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/241.png"
+  },
+  {
+    "id": 242,
+    "name": "blissey",
+    "generation": 2,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/242.png"
+  },
+  {
+    "id": 243,
+    "name": "raikou",
+    "generation": 2,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/243.png"
+  },
+  {
+    "id": 244,
+    "name": "entei",
+    "generation": 2,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/244.png"
+  },
+  {
+    "id": 245,
+    "name": "suicune",
+    "generation": 2,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/245.png"
+  },
+  {
+    "id": 246,
+    "name": "larvitar",
+    "generation": 2,
+    "types": [
+      "rock",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/246.png"
+  },
+  {
+    "id": 247,
+    "name": "pupitar",
+    "generation": 2,
+    "types": [
+      "rock",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/247.png"
+  },
+  {
+    "id": 248,
+    "name": "tyranitar",
+    "generation": 2,
+    "types": [
+      "rock",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/248.png"
+  },
+  {
+    "id": 249,
+    "name": "lugia",
+    "generation": 2,
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/249.png"
+  },
+  {
+    "id": 250,
+    "name": "ho-oh",
+    "generation": 2,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/250.png"
+  },
+  {
+    "id": 251,
+    "name": "celebi",
+    "generation": 2,
+    "types": [
+      "psychic",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/251.png"
+  },
+  {
+    "id": 252,
+    "name": "treecko",
+    "generation": 3,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/252.png"
+  },
+  {
+    "id": 253,
+    "name": "grovyle",
+    "generation": 3,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/253.png"
+  },
+  {
+    "id": 254,
+    "name": "sceptile",
+    "generation": 3,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/254.png"
+  },
+  {
+    "id": 255,
+    "name": "torchic",
+    "generation": 3,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/255.png"
+  },
+  {
+    "id": 256,
+    "name": "combusken",
+    "generation": 3,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/256.png"
+  },
+  {
+    "id": 257,
+    "name": "blaziken",
+    "generation": 3,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/257.png"
+  },
+  {
+    "id": 258,
+    "name": "mudkip",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/258.png"
+  },
+  {
+    "id": 259,
+    "name": "marshtomp",
+    "generation": 3,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/259.png"
+  },
+  {
+    "id": 260,
+    "name": "swampert",
+    "generation": 3,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/260.png"
+  },
+  {
+    "id": 261,
+    "name": "poochyena",
+    "generation": 3,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/261.png"
+  },
+  {
+    "id": 262,
+    "name": "mightyena",
+    "generation": 3,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/262.png"
+  },
+  {
+    "id": 263,
+    "name": "zigzagoon",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/263.png"
+  },
+  {
+    "id": 264,
+    "name": "linoone",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/264.png"
+  },
+  {
+    "id": 265,
+    "name": "wurmple",
+    "generation": 3,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/265.png"
+  },
+  {
+    "id": 266,
+    "name": "silcoon",
+    "generation": 3,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/266.png"
+  },
+  {
+    "id": 267,
+    "name": "beautifly",
+    "generation": 3,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/267.png"
+  },
+  {
+    "id": 268,
+    "name": "cascoon",
+    "generation": 3,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/268.png"
+  },
+  {
+    "id": 269,
+    "name": "dustox",
+    "generation": 3,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/269.png"
+  },
+  {
+    "id": 270,
+    "name": "lotad",
+    "generation": 3,
+    "types": [
+      "water",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/270.png"
+  },
+  {
+    "id": 271,
+    "name": "lombre",
+    "generation": 3,
+    "types": [
+      "water",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/271.png"
+  },
+  {
+    "id": 272,
+    "name": "ludicolo",
+    "generation": 3,
+    "types": [
+      "water",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/272.png"
+  },
+  {
+    "id": 273,
+    "name": "seedot",
+    "generation": 3,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/273.png"
+  },
+  {
+    "id": 274,
+    "name": "nuzleaf",
+    "generation": 3,
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/274.png"
+  },
+  {
+    "id": 275,
+    "name": "shiftry",
+    "generation": 3,
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/275.png"
+  },
+  {
+    "id": 276,
+    "name": "taillow",
+    "generation": 3,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/276.png"
+  },
+  {
+    "id": 277,
+    "name": "swellow",
+    "generation": 3,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/277.png"
+  },
+  {
+    "id": 278,
+    "name": "wingull",
+    "generation": 3,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/278.png"
+  },
+  {
+    "id": 279,
+    "name": "pelipper",
+    "generation": 3,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/279.png"
+  },
+  {
+    "id": 280,
+    "name": "ralts",
+    "generation": 3,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/280.png"
+  },
+  {
+    "id": 281,
+    "name": "kirlia",
+    "generation": 3,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/281.png"
+  },
+  {
+    "id": 282,
+    "name": "gardevoir",
+    "generation": 3,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/282.png"
+  },
+  {
+    "id": 283,
+    "name": "surskit",
+    "generation": 3,
+    "types": [
+      "bug",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/283.png"
+  },
+  {
+    "id": 284,
+    "name": "masquerain",
+    "generation": 3,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/284.png"
+  },
+  {
+    "id": 285,
+    "name": "shroomish",
+    "generation": 3,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/285.png"
+  },
+  {
+    "id": 286,
+    "name": "breloom",
+    "generation": 3,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/286.png"
+  },
+  {
+    "id": 287,
+    "name": "slakoth",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/287.png"
+  },
+  {
+    "id": 288,
+    "name": "vigoroth",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/288.png"
+  },
+  {
+    "id": 289,
+    "name": "slaking",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/289.png"
+  },
+  {
+    "id": 290,
+    "name": "nincada",
+    "generation": 3,
+    "types": [
+      "bug",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/290.png"
+  },
+  {
+    "id": 291,
+    "name": "ninjask",
+    "generation": 3,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/291.png"
+  },
+  {
+    "id": 292,
+    "name": "shedinja",
+    "generation": 3,
+    "types": [
+      "bug",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/292.png"
+  },
+  {
+    "id": 293,
+    "name": "whismur",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/293.png"
+  },
+  {
+    "id": 294,
+    "name": "loudred",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/294.png"
+  },
+  {
+    "id": 295,
+    "name": "exploud",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/295.png"
+  },
+  {
+    "id": 296,
+    "name": "makuhita",
+    "generation": 3,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/296.png"
+  },
+  {
+    "id": 297,
+    "name": "hariyama",
+    "generation": 3,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/297.png"
+  },
+  {
+    "id": 298,
+    "name": "azurill",
+    "generation": 3,
+    "types": [
+      "normal",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/298.png"
+  },
+  {
+    "id": 299,
+    "name": "nosepass",
+    "generation": 3,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/299.png"
+  },
+  {
+    "id": 300,
+    "name": "skitty",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/300.png"
+  },
+  {
+    "id": 301,
+    "name": "delcatty",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/301.png"
+  },
+  {
+    "id": 302,
+    "name": "sableye",
+    "generation": 3,
+    "types": [
+      "dark",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/302.png"
+  },
+  {
+    "id": 303,
+    "name": "mawile",
+    "generation": 3,
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/303.png"
+  },
+  {
+    "id": 304,
+    "name": "aron",
+    "generation": 3,
+    "types": [
+      "steel",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/304.png"
+  },
+  {
+    "id": 305,
+    "name": "lairon",
+    "generation": 3,
+    "types": [
+      "steel",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/305.png"
+  },
+  {
+    "id": 306,
+    "name": "aggron",
+    "generation": 3,
+    "types": [
+      "steel",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/306.png"
+  },
+  {
+    "id": 307,
+    "name": "meditite",
+    "generation": 3,
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/307.png"
+  },
+  {
+    "id": 308,
+    "name": "medicham",
+    "generation": 3,
+    "types": [
+      "fighting",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/308.png"
+  },
+  {
+    "id": 309,
+    "name": "electrike",
+    "generation": 3,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/309.png"
+  },
+  {
+    "id": 310,
+    "name": "manectric",
+    "generation": 3,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/310.png"
+  },
+  {
+    "id": 311,
+    "name": "plusle",
+    "generation": 3,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/311.png"
+  },
+  {
+    "id": 312,
+    "name": "minun",
+    "generation": 3,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/312.png"
+  },
+  {
+    "id": 313,
+    "name": "volbeat",
+    "generation": 3,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/313.png"
+  },
+  {
+    "id": 314,
+    "name": "illumise",
+    "generation": 3,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/314.png"
+  },
+  {
+    "id": 315,
+    "name": "roselia",
+    "generation": 3,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/315.png"
+  },
+  {
+    "id": 316,
+    "name": "gulpin",
+    "generation": 3,
+    "types": [
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/316.png"
+  },
+  {
+    "id": 317,
+    "name": "swalot",
+    "generation": 3,
+    "types": [
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/317.png"
+  },
+  {
+    "id": 318,
+    "name": "carvanha",
+    "generation": 3,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/318.png"
+  },
+  {
+    "id": 319,
+    "name": "sharpedo",
+    "generation": 3,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/319.png"
+  },
+  {
+    "id": 320,
+    "name": "wailmer",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/320.png"
+  },
+  {
+    "id": 321,
+    "name": "wailord",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/321.png"
+  },
+  {
+    "id": 322,
+    "name": "numel",
+    "generation": 3,
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/322.png"
+  },
+  {
+    "id": 323,
+    "name": "camerupt",
+    "generation": 3,
+    "types": [
+      "fire",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/323.png"
+  },
+  {
+    "id": 324,
+    "name": "torkoal",
+    "generation": 3,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/324.png"
+  },
+  {
+    "id": 325,
+    "name": "spoink",
+    "generation": 3,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/325.png"
+  },
+  {
+    "id": 326,
+    "name": "grumpig",
+    "generation": 3,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/326.png"
+  },
+  {
+    "id": 327,
+    "name": "spinda",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/327.png"
+  },
+  {
+    "id": 328,
+    "name": "trapinch",
+    "generation": 3,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/328.png"
+  },
+  {
+    "id": 329,
+    "name": "vibrava",
+    "generation": 3,
+    "types": [
+      "ground",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/329.png"
+  },
+  {
+    "id": 330,
+    "name": "flygon",
+    "generation": 3,
+    "types": [
+      "ground",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/330.png"
+  },
+  {
+    "id": 331,
+    "name": "cacnea",
+    "generation": 3,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/331.png"
+  },
+  {
+    "id": 332,
+    "name": "cacturne",
+    "generation": 3,
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/332.png"
+  },
+  {
+    "id": 333,
+    "name": "swablu",
+    "generation": 3,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/333.png"
+  },
+  {
+    "id": 334,
+    "name": "altaria",
+    "generation": 3,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/334.png"
+  },
+  {
+    "id": 335,
+    "name": "zangoose",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/335.png"
+  },
+  {
+    "id": 336,
+    "name": "seviper",
+    "generation": 3,
+    "types": [
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/336.png"
+  },
+  {
+    "id": 337,
+    "name": "lunatone",
+    "generation": 3,
+    "types": [
+      "rock",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/337.png"
+  },
+  {
+    "id": 338,
+    "name": "solrock",
+    "generation": 3,
+    "types": [
+      "rock",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/338.png"
+  },
+  {
+    "id": 339,
+    "name": "barboach",
+    "generation": 3,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/339.png"
+  },
+  {
+    "id": 340,
+    "name": "whiscash",
+    "generation": 3,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/340.png"
+  },
+  {
+    "id": 341,
+    "name": "corphish",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/341.png"
+  },
+  {
+    "id": 342,
+    "name": "crawdaunt",
+    "generation": 3,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/342.png"
+  },
+  {
+    "id": 343,
+    "name": "baltoy",
+    "generation": 3,
+    "types": [
+      "ground",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/343.png"
+  },
+  {
+    "id": 344,
+    "name": "claydol",
+    "generation": 3,
+    "types": [
+      "ground",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/344.png"
+  },
+  {
+    "id": 345,
+    "name": "lileep",
+    "generation": 3,
+    "types": [
+      "rock",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/345.png"
+  },
+  {
+    "id": 346,
+    "name": "cradily",
+    "generation": 3,
+    "types": [
+      "rock",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/346.png"
+  },
+  {
+    "id": 347,
+    "name": "anorith",
+    "generation": 3,
+    "types": [
+      "rock",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/347.png"
+  },
+  {
+    "id": 348,
+    "name": "armaldo",
+    "generation": 3,
+    "types": [
+      "rock",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/348.png"
+  },
+  {
+    "id": 349,
+    "name": "feebas",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/349.png"
+  },
+  {
+    "id": 350,
+    "name": "milotic",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/350.png"
+  },
+  {
+    "id": 351,
+    "name": "castform",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/351.png"
+  },
+  {
+    "id": 352,
+    "name": "kecleon",
+    "generation": 3,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/352.png"
+  },
+  {
+    "id": 353,
+    "name": "shuppet",
+    "generation": 3,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/353.png"
+  },
+  {
+    "id": 354,
+    "name": "banette",
+    "generation": 3,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/354.png"
+  },
+  {
+    "id": 355,
+    "name": "duskull",
+    "generation": 3,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/355.png"
+  },
+  {
+    "id": 356,
+    "name": "dusclops",
+    "generation": 3,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/356.png"
+  },
+  {
+    "id": 357,
+    "name": "tropius",
+    "generation": 3,
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/357.png"
+  },
+  {
+    "id": 358,
+    "name": "chimecho",
+    "generation": 3,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/358.png"
+  },
+  {
+    "id": 359,
+    "name": "absol",
+    "generation": 3,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/359.png"
+  },
+  {
+    "id": 360,
+    "name": "wynaut",
+    "generation": 3,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/360.png"
+  },
+  {
+    "id": 361,
+    "name": "snorunt",
+    "generation": 3,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/361.png"
+  },
+  {
+    "id": 362,
+    "name": "glalie",
+    "generation": 3,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/362.png"
+  },
+  {
+    "id": 363,
+    "name": "spheal",
+    "generation": 3,
+    "types": [
+      "ice",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/363.png"
+  },
+  {
+    "id": 364,
+    "name": "sealeo",
+    "generation": 3,
+    "types": [
+      "ice",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/364.png"
+  },
+  {
+    "id": 365,
+    "name": "walrein",
+    "generation": 3,
+    "types": [
+      "ice",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/365.png"
+  },
+  {
+    "id": 366,
+    "name": "clamperl",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/366.png"
+  },
+  {
+    "id": 367,
+    "name": "huntail",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/367.png"
+  },
+  {
+    "id": 368,
+    "name": "gorebyss",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/368.png"
+  },
+  {
+    "id": 369,
+    "name": "relicanth",
+    "generation": 3,
+    "types": [
+      "water",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/369.png"
+  },
+  {
+    "id": 370,
+    "name": "luvdisc",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/370.png"
+  },
+  {
+    "id": 371,
+    "name": "bagon",
+    "generation": 3,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/371.png"
+  },
+  {
+    "id": 372,
+    "name": "shelgon",
+    "generation": 3,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/372.png"
+  },
+  {
+    "id": 373,
+    "name": "salamence",
+    "generation": 3,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/373.png"
+  },
+  {
+    "id": 374,
+    "name": "beldum",
+    "generation": 3,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/374.png"
+  },
+  {
+    "id": 375,
+    "name": "metang",
+    "generation": 3,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/375.png"
+  },
+  {
+    "id": 376,
+    "name": "metagross",
+    "generation": 3,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/376.png"
+  },
+  {
+    "id": 377,
+    "name": "regirock",
+    "generation": 3,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/377.png"
+  },
+  {
+    "id": 378,
+    "name": "regice",
+    "generation": 3,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/378.png"
+  },
+  {
+    "id": 379,
+    "name": "registeel",
+    "generation": 3,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/379.png"
+  },
+  {
+    "id": 380,
+    "name": "latias",
+    "generation": 3,
+    "types": [
+      "dragon",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/380.png"
+  },
+  {
+    "id": 381,
+    "name": "latios",
+    "generation": 3,
+    "types": [
+      "dragon",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/381.png"
+  },
+  {
+    "id": 382,
+    "name": "kyogre",
+    "generation": 3,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/382.png"
+  },
+  {
+    "id": 383,
+    "name": "groudon",
+    "generation": 3,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/383.png"
+  },
+  {
+    "id": 384,
+    "name": "rayquaza",
+    "generation": 3,
+    "types": [
+      "dragon",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/384.png"
+  },
+  {
+    "id": 385,
+    "name": "jirachi",
+    "generation": 3,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/385.png"
+  },
+  {
+    "id": 386,
+    "name": "deoxys-normal",
+    "generation": 3,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/386.png"
+  },
+  {
+    "id": 387,
+    "name": "turtwig",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/387.png"
+  },
+  {
+    "id": 388,
+    "name": "grotle",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/388.png"
+  },
+  {
+    "id": 389,
+    "name": "torterra",
+    "generation": 4,
+    "types": [
+      "grass",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/389.png"
+  },
+  {
+    "id": 390,
+    "name": "chimchar",
+    "generation": 4,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/390.png"
+  },
+  {
+    "id": 391,
+    "name": "monferno",
+    "generation": 4,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/391.png"
+  },
+  {
+    "id": 392,
+    "name": "infernape",
+    "generation": 4,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/392.png"
+  },
+  {
+    "id": 393,
+    "name": "piplup",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/393.png"
+  },
+  {
+    "id": 394,
+    "name": "prinplup",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/394.png"
+  },
+  {
+    "id": 395,
+    "name": "empoleon",
+    "generation": 4,
+    "types": [
+      "water",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/395.png"
+  },
+  {
+    "id": 396,
+    "name": "starly",
+    "generation": 4,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/396.png"
+  },
+  {
+    "id": 397,
+    "name": "staravia",
+    "generation": 4,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/397.png"
+  },
+  {
+    "id": 398,
+    "name": "staraptor",
+    "generation": 4,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/398.png"
+  },
+  {
+    "id": 399,
+    "name": "bidoof",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/399.png"
+  },
+  {
+    "id": 400,
+    "name": "bibarel",
+    "generation": 4,
+    "types": [
+      "normal",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/400.png"
+  },
+  {
+    "id": 401,
+    "name": "kricketot",
+    "generation": 4,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/401.png"
+  },
+  {
+    "id": 402,
+    "name": "kricketune",
+    "generation": 4,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/402.png"
+  },
+  {
+    "id": 403,
+    "name": "shinx",
+    "generation": 4,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/403.png"
+  },
+  {
+    "id": 404,
+    "name": "luxio",
+    "generation": 4,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/404.png"
+  },
+  {
+    "id": 405,
+    "name": "luxray",
+    "generation": 4,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/405.png"
+  },
+  {
+    "id": 406,
+    "name": "budew",
+    "generation": 4,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/406.png"
+  },
+  {
+    "id": 407,
+    "name": "roserade",
+    "generation": 4,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/407.png"
+  },
+  {
+    "id": 408,
+    "name": "cranidos",
+    "generation": 4,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/408.png"
+  },
+  {
+    "id": 409,
+    "name": "rampardos",
+    "generation": 4,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/409.png"
+  },
+  {
+    "id": 410,
+    "name": "shieldon",
+    "generation": 4,
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/410.png"
+  },
+  {
+    "id": 411,
+    "name": "bastiodon",
+    "generation": 4,
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/411.png"
+  },
+  {
+    "id": 412,
+    "name": "burmy",
+    "generation": 4,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/412.png"
+  },
+  {
+    "id": 413,
+    "name": "wormadam-plant",
+    "generation": 4,
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/413.png"
+  },
+  {
+    "id": 414,
+    "name": "mothim",
+    "generation": 4,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/414.png"
+  },
+  {
+    "id": 415,
+    "name": "combee",
+    "generation": 4,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/415.png"
+  },
+  {
+    "id": 416,
+    "name": "vespiquen",
+    "generation": 4,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/416.png"
+  },
+  {
+    "id": 417,
+    "name": "pachirisu",
+    "generation": 4,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/417.png"
+  },
+  {
+    "id": 418,
+    "name": "buizel",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/418.png"
+  },
+  {
+    "id": 419,
+    "name": "floatzel",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/419.png"
+  },
+  {
+    "id": 420,
+    "name": "cherubi",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/420.png"
+  },
+  {
+    "id": 421,
+    "name": "cherrim",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/421.png"
+  },
+  {
+    "id": 422,
+    "name": "shellos",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/422.png"
+  },
+  {
+    "id": 423,
+    "name": "gastrodon",
+    "generation": 4,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/423.png"
+  },
+  {
+    "id": 424,
+    "name": "ambipom",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/424.png"
+  },
+  {
+    "id": 425,
+    "name": "drifloon",
+    "generation": 4,
+    "types": [
+      "ghost",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/425.png"
+  },
+  {
+    "id": 426,
+    "name": "drifblim",
+    "generation": 4,
+    "types": [
+      "ghost",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/426.png"
+  },
+  {
+    "id": 427,
+    "name": "buneary",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/427.png"
+  },
+  {
+    "id": 428,
+    "name": "lopunny",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/428.png"
+  },
+  {
+    "id": 429,
+    "name": "mismagius",
+    "generation": 4,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/429.png"
+  },
+  {
+    "id": 430,
+    "name": "honchkrow",
+    "generation": 4,
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/430.png"
+  },
+  {
+    "id": 431,
+    "name": "glameow",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/431.png"
+  },
+  {
+    "id": 432,
+    "name": "purugly",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/432.png"
+  },
+  {
+    "id": 433,
+    "name": "chingling",
+    "generation": 4,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/433.png"
+  },
+  {
+    "id": 434,
+    "name": "stunky",
+    "generation": 4,
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/434.png"
+  },
+  {
+    "id": 435,
+    "name": "skuntank",
+    "generation": 4,
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/435.png"
+  },
+  {
+    "id": 436,
+    "name": "bronzor",
+    "generation": 4,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/436.png"
+  },
+  {
+    "id": 437,
+    "name": "bronzong",
+    "generation": 4,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/437.png"
+  },
+  {
+    "id": 438,
+    "name": "bonsly",
+    "generation": 4,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/438.png"
+  },
+  {
+    "id": 439,
+    "name": "mime-jr",
+    "generation": 4,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/439.png"
+  },
+  {
+    "id": 440,
+    "name": "happiny",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/440.png"
+  },
+  {
+    "id": 441,
+    "name": "chatot",
+    "generation": 4,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/441.png"
+  },
+  {
+    "id": 442,
+    "name": "spiritomb",
+    "generation": 4,
+    "types": [
+      "ghost",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/442.png"
+  },
+  {
+    "id": 443,
+    "name": "gible",
+    "generation": 4,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/443.png"
+  },
+  {
+    "id": 444,
+    "name": "gabite",
+    "generation": 4,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/444.png"
+  },
+  {
+    "id": 445,
+    "name": "garchomp",
+    "generation": 4,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/445.png"
+  },
+  {
+    "id": 446,
+    "name": "munchlax",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/446.png"
+  },
+  {
+    "id": 447,
+    "name": "riolu",
+    "generation": 4,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/447.png"
+  },
+  {
+    "id": 448,
+    "name": "lucario",
+    "generation": 4,
+    "types": [
+      "fighting",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/448.png"
+  },
+  {
+    "id": 449,
+    "name": "hippopotas",
+    "generation": 4,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/449.png"
+  },
+  {
+    "id": 450,
+    "name": "hippowdon",
+    "generation": 4,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/450.png"
+  },
+  {
+    "id": 451,
+    "name": "skorupi",
+    "generation": 4,
+    "types": [
+      "poison",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/451.png"
+  },
+  {
+    "id": 452,
+    "name": "drapion",
+    "generation": 4,
+    "types": [
+      "poison",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/452.png"
+  },
+  {
+    "id": 453,
+    "name": "croagunk",
+    "generation": 4,
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/453.png"
+  },
+  {
+    "id": 454,
+    "name": "toxicroak",
+    "generation": 4,
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/454.png"
+  },
+  {
+    "id": 455,
+    "name": "carnivine",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/455.png"
+  },
+  {
+    "id": 456,
+    "name": "finneon",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/456.png"
+  },
+  {
+    "id": 457,
+    "name": "lumineon",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/457.png"
+  },
+  {
+    "id": 458,
+    "name": "mantyke",
+    "generation": 4,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/458.png"
+  },
+  {
+    "id": 459,
+    "name": "snover",
+    "generation": 4,
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/459.png"
+  },
+  {
+    "id": 460,
+    "name": "abomasnow",
+    "generation": 4,
+    "types": [
+      "grass",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/460.png"
+  },
+  {
+    "id": 461,
+    "name": "weavile",
+    "generation": 4,
+    "types": [
+      "dark",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/461.png"
+  },
+  {
+    "id": 462,
+    "name": "magnezone",
+    "generation": 4,
+    "types": [
+      "electric",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/462.png"
+  },
+  {
+    "id": 463,
+    "name": "lickilicky",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/463.png"
+  },
+  {
+    "id": 464,
+    "name": "rhyperior",
+    "generation": 4,
+    "types": [
+      "ground",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/464.png"
+  },
+  {
+    "id": 465,
+    "name": "tangrowth",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/465.png"
+  },
+  {
+    "id": 466,
+    "name": "electivire",
+    "generation": 4,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/466.png"
+  },
+  {
+    "id": 467,
+    "name": "magmortar",
+    "generation": 4,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/467.png"
+  },
+  {
+    "id": 468,
+    "name": "togekiss",
+    "generation": 4,
+    "types": [
+      "fairy",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/468.png"
+  },
+  {
+    "id": 469,
+    "name": "yanmega",
+    "generation": 4,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/469.png"
+  },
+  {
+    "id": 470,
+    "name": "leafeon",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/470.png"
+  },
+  {
+    "id": 471,
+    "name": "glaceon",
+    "generation": 4,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/471.png"
+  },
+  {
+    "id": 472,
+    "name": "gliscor",
+    "generation": 4,
+    "types": [
+      "ground",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/472.png"
+  },
+  {
+    "id": 473,
+    "name": "mamoswine",
+    "generation": 4,
+    "types": [
+      "ice",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/473.png"
+  },
+  {
+    "id": 474,
+    "name": "porygon-z",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/474.png"
+  },
+  {
+    "id": 475,
+    "name": "gallade",
+    "generation": 4,
+    "types": [
+      "psychic",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/475.png"
+  },
+  {
+    "id": 476,
+    "name": "probopass",
+    "generation": 4,
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/476.png"
+  },
+  {
+    "id": 477,
+    "name": "dusknoir",
+    "generation": 4,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/477.png"
+  },
+  {
+    "id": 478,
+    "name": "froslass",
+    "generation": 4,
+    "types": [
+      "ice",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/478.png"
+  },
+  {
+    "id": 479,
+    "name": "rotom",
+    "generation": 4,
+    "types": [
+      "electric",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/479.png"
+  },
+  {
+    "id": 480,
+    "name": "uxie",
+    "generation": 4,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/480.png"
+  },
+  {
+    "id": 481,
+    "name": "mesprit",
+    "generation": 4,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/481.png"
+  },
+  {
+    "id": 482,
+    "name": "azelf",
+    "generation": 4,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/482.png"
+  },
+  {
+    "id": 483,
+    "name": "dialga",
+    "generation": 4,
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/483.png"
+  },
+  {
+    "id": 484,
+    "name": "palkia",
+    "generation": 4,
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/484.png"
+  },
+  {
+    "id": 485,
+    "name": "heatran",
+    "generation": 4,
+    "types": [
+      "fire",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/485.png"
+  },
+  {
+    "id": 486,
+    "name": "regigigas",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/486.png"
+  },
+  {
+    "id": 487,
+    "name": "giratina-altered",
+    "generation": 4,
+    "types": [
+      "ghost",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/487.png"
+  },
+  {
+    "id": 488,
+    "name": "cresselia",
+    "generation": 4,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/488.png"
+  },
+  {
+    "id": 489,
+    "name": "phione",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/489.png"
+  },
+  {
+    "id": 490,
+    "name": "manaphy",
+    "generation": 4,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/490.png"
+  },
+  {
+    "id": 491,
+    "name": "darkrai",
+    "generation": 4,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/491.png"
+  },
+  {
+    "id": 492,
+    "name": "shaymin-land",
+    "generation": 4,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/492.png"
+  },
+  {
+    "id": 493,
+    "name": "arceus",
+    "generation": 4,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/493.png"
+  },
+  {
+    "id": 494,
+    "name": "victini",
+    "generation": 5,
+    "types": [
+      "psychic",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/494.png"
+  },
+  {
+    "id": 495,
+    "name": "snivy",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/495.png"
+  },
+  {
+    "id": 496,
+    "name": "servine",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/496.png"
+  },
+  {
+    "id": 497,
+    "name": "serperior",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/497.png"
+  },
+  {
+    "id": 498,
+    "name": "tepig",
+    "generation": 5,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/498.png"
+  },
+  {
+    "id": 499,
+    "name": "pignite",
+    "generation": 5,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/499.png"
+  },
+  {
+    "id": 500,
+    "name": "emboar",
+    "generation": 5,
+    "types": [
+      "fire",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/500.png"
+  },
+  {
+    "id": 501,
+    "name": "oshawott",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/501.png"
+  },
+  {
+    "id": 502,
+    "name": "dewott",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/502.png"
+  },
+  {
+    "id": 503,
+    "name": "samurott",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/503.png"
+  },
+  {
+    "id": 504,
+    "name": "patrat",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/504.png"
+  },
+  {
+    "id": 505,
+    "name": "watchog",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/505.png"
+  },
+  {
+    "id": 506,
+    "name": "lillipup",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/506.png"
+  },
+  {
+    "id": 507,
+    "name": "herdier",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/507.png"
+  },
+  {
+    "id": 508,
+    "name": "stoutland",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/508.png"
+  },
+  {
+    "id": 509,
+    "name": "purrloin",
+    "generation": 5,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/509.png"
+  },
+  {
+    "id": 510,
+    "name": "liepard",
+    "generation": 5,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/510.png"
+  },
+  {
+    "id": 511,
+    "name": "pansage",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/511.png"
+  },
+  {
+    "id": 512,
+    "name": "simisage",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/512.png"
+  },
+  {
+    "id": 513,
+    "name": "pansear",
+    "generation": 5,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/513.png"
+  },
+  {
+    "id": 514,
+    "name": "simisear",
+    "generation": 5,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/514.png"
+  },
+  {
+    "id": 515,
+    "name": "panpour",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/515.png"
+  },
+  {
+    "id": 516,
+    "name": "simipour",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/516.png"
+  },
+  {
+    "id": 517,
+    "name": "munna",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/517.png"
+  },
+  {
+    "id": 518,
+    "name": "musharna",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/518.png"
+  },
+  {
+    "id": 519,
+    "name": "pidove",
+    "generation": 5,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/519.png"
+  },
+  {
+    "id": 520,
+    "name": "tranquill",
+    "generation": 5,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/520.png"
+  },
+  {
+    "id": 521,
+    "name": "unfezant",
+    "generation": 5,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/521.png"
+  },
+  {
+    "id": 522,
+    "name": "blitzle",
+    "generation": 5,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/522.png"
+  },
+  {
+    "id": 523,
+    "name": "zebstrika",
+    "generation": 5,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/523.png"
+  },
+  {
+    "id": 524,
+    "name": "roggenrola",
+    "generation": 5,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/524.png"
+  },
+  {
+    "id": 525,
+    "name": "boldore",
+    "generation": 5,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/525.png"
+  },
+  {
+    "id": 526,
+    "name": "gigalith",
+    "generation": 5,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/526.png"
+  },
+  {
+    "id": 527,
+    "name": "woobat",
+    "generation": 5,
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/527.png"
+  },
+  {
+    "id": 528,
+    "name": "swoobat",
+    "generation": 5,
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/528.png"
+  },
+  {
+    "id": 529,
+    "name": "drilbur",
+    "generation": 5,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/529.png"
+  },
+  {
+    "id": 530,
+    "name": "excadrill",
+    "generation": 5,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/530.png"
+  },
+  {
+    "id": 531,
+    "name": "audino",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/531.png"
+  },
+  {
+    "id": 532,
+    "name": "timburr",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/532.png"
+  },
+  {
+    "id": 533,
+    "name": "gurdurr",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/533.png"
+  },
+  {
+    "id": 534,
+    "name": "conkeldurr",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/534.png"
+  },
+  {
+    "id": 535,
+    "name": "tympole",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/535.png"
+  },
+  {
+    "id": 536,
+    "name": "palpitoad",
+    "generation": 5,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/536.png"
+  },
+  {
+    "id": 537,
+    "name": "seismitoad",
+    "generation": 5,
+    "types": [
+      "water",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/537.png"
+  },
+  {
+    "id": 538,
+    "name": "throh",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/538.png"
+  },
+  {
+    "id": 539,
+    "name": "sawk",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/539.png"
+  },
+  {
+    "id": 540,
+    "name": "sewaddle",
+    "generation": 5,
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/540.png"
+  },
+  {
+    "id": 541,
+    "name": "swadloon",
+    "generation": 5,
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/541.png"
+  },
+  {
+    "id": 542,
+    "name": "leavanny",
+    "generation": 5,
+    "types": [
+      "bug",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/542.png"
+  },
+  {
+    "id": 543,
+    "name": "venipede",
+    "generation": 5,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/543.png"
+  },
+  {
+    "id": 544,
+    "name": "whirlipede",
+    "generation": 5,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/544.png"
+  },
+  {
+    "id": 545,
+    "name": "scolipede",
+    "generation": 5,
+    "types": [
+      "bug",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/545.png"
+  },
+  {
+    "id": 546,
+    "name": "cottonee",
+    "generation": 5,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/546.png"
+  },
+  {
+    "id": 547,
+    "name": "whimsicott",
+    "generation": 5,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/547.png"
+  },
+  {
+    "id": 548,
+    "name": "petilil",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/548.png"
+  },
+  {
+    "id": 549,
+    "name": "lilligant",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/549.png"
+  },
+  {
+    "id": 550,
+    "name": "basculin-red-striped",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/550.png"
+  },
+  {
+    "id": 551,
+    "name": "sandile",
+    "generation": 5,
+    "types": [
+      "ground",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/551.png"
+  },
+  {
+    "id": 552,
+    "name": "krokorok",
+    "generation": 5,
+    "types": [
+      "ground",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/552.png"
+  },
+  {
+    "id": 553,
+    "name": "krookodile",
+    "generation": 5,
+    "types": [
+      "ground",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/553.png"
+  },
+  {
+    "id": 554,
+    "name": "darumaka",
+    "generation": 5,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/554.png"
+  },
+  {
+    "id": 555,
+    "name": "darmanitan-standard",
+    "generation": 5,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/555.png"
+  },
+  {
+    "id": 556,
+    "name": "maractus",
+    "generation": 5,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/556.png"
+  },
+  {
+    "id": 557,
+    "name": "dwebble",
+    "generation": 5,
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/557.png"
+  },
+  {
+    "id": 558,
+    "name": "crustle",
+    "generation": 5,
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/558.png"
+  },
+  {
+    "id": 559,
+    "name": "scraggy",
+    "generation": 5,
+    "types": [
+      "dark",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/559.png"
+  },
+  {
+    "id": 560,
+    "name": "scrafty",
+    "generation": 5,
+    "types": [
+      "dark",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/560.png"
+  },
+  {
+    "id": 561,
+    "name": "sigilyph",
+    "generation": 5,
+    "types": [
+      "psychic",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/561.png"
+  },
+  {
+    "id": 562,
+    "name": "yamask",
+    "generation": 5,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/562.png"
+  },
+  {
+    "id": 563,
+    "name": "cofagrigus",
+    "generation": 5,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/563.png"
+  },
+  {
+    "id": 564,
+    "name": "tirtouga",
+    "generation": 5,
+    "types": [
+      "water",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/564.png"
+  },
+  {
+    "id": 565,
+    "name": "carracosta",
+    "generation": 5,
+    "types": [
+      "water",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/565.png"
+  },
+  {
+    "id": 566,
+    "name": "archen",
+    "generation": 5,
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/566.png"
+  },
+  {
+    "id": 567,
+    "name": "archeops",
+    "generation": 5,
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/567.png"
+  },
+  {
+    "id": 568,
+    "name": "trubbish",
+    "generation": 5,
+    "types": [
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/568.png"
+  },
+  {
+    "id": 569,
+    "name": "garbodor",
+    "generation": 5,
+    "types": [
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/569.png"
+  },
+  {
+    "id": 570,
+    "name": "zorua",
+    "generation": 5,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/570.png"
+  },
+  {
+    "id": 571,
+    "name": "zoroark",
+    "generation": 5,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/571.png"
+  },
+  {
+    "id": 572,
+    "name": "minccino",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/572.png"
+  },
+  {
+    "id": 573,
+    "name": "cinccino",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/573.png"
+  },
+  {
+    "id": 574,
+    "name": "gothita",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/574.png"
+  },
+  {
+    "id": 575,
+    "name": "gothorita",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/575.png"
+  },
+  {
+    "id": 576,
+    "name": "gothitelle",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/576.png"
+  },
+  {
+    "id": 577,
+    "name": "solosis",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/577.png"
+  },
+  {
+    "id": 578,
+    "name": "duosion",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/578.png"
+  },
+  {
+    "id": 579,
+    "name": "reuniclus",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/579.png"
+  },
+  {
+    "id": 580,
+    "name": "ducklett",
+    "generation": 5,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/580.png"
+  },
+  {
+    "id": 581,
+    "name": "swanna",
+    "generation": 5,
+    "types": [
+      "water",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/581.png"
+  },
+  {
+    "id": 582,
+    "name": "vanillite",
+    "generation": 5,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/582.png"
+  },
+  {
+    "id": 583,
+    "name": "vanillish",
+    "generation": 5,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/583.png"
+  },
+  {
+    "id": 584,
+    "name": "vanilluxe",
+    "generation": 5,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/584.png"
+  },
+  {
+    "id": 585,
+    "name": "deerling",
+    "generation": 5,
+    "types": [
+      "normal",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/585.png"
+  },
+  {
+    "id": 586,
+    "name": "sawsbuck",
+    "generation": 5,
+    "types": [
+      "normal",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/586.png"
+  },
+  {
+    "id": 587,
+    "name": "emolga",
+    "generation": 5,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/587.png"
+  },
+  {
+    "id": 588,
+    "name": "karrablast",
+    "generation": 5,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/588.png"
+  },
+  {
+    "id": 589,
+    "name": "escavalier",
+    "generation": 5,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/589.png"
+  },
+  {
+    "id": 590,
+    "name": "foongus",
+    "generation": 5,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/590.png"
+  },
+  {
+    "id": 591,
+    "name": "amoonguss",
+    "generation": 5,
+    "types": [
+      "grass",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/591.png"
+  },
+  {
+    "id": 592,
+    "name": "frillish-male",
+    "generation": 5,
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/592.png"
+  },
+  {
+    "id": 593,
+    "name": "jellicent-male",
+    "generation": 5,
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/593.png"
+  },
+  {
+    "id": 594,
+    "name": "alomomola",
+    "generation": 5,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/594.png"
+  },
+  {
+    "id": 595,
+    "name": "joltik",
+    "generation": 5,
+    "types": [
+      "bug",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/595.png"
+  },
+  {
+    "id": 596,
+    "name": "galvantula",
+    "generation": 5,
+    "types": [
+      "bug",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/596.png"
+  },
+  {
+    "id": 597,
+    "name": "ferroseed",
+    "generation": 5,
+    "types": [
+      "grass",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/597.png"
+  },
+  {
+    "id": 598,
+    "name": "ferrothorn",
+    "generation": 5,
+    "types": [
+      "grass",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/598.png"
+  },
+  {
+    "id": 599,
+    "name": "klink",
+    "generation": 5,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/599.png"
+  },
+  {
+    "id": 600,
+    "name": "klang",
+    "generation": 5,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/600.png"
+  },
+  {
+    "id": 601,
+    "name": "klinklang",
+    "generation": 5,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/601.png"
+  },
+  {
+    "id": 602,
+    "name": "tynamo",
+    "generation": 5,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/602.png"
+  },
+  {
+    "id": 603,
+    "name": "eelektrik",
+    "generation": 5,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/603.png"
+  },
+  {
+    "id": 604,
+    "name": "eelektross",
+    "generation": 5,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/604.png"
+  },
+  {
+    "id": 605,
+    "name": "elgyem",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/605.png"
+  },
+  {
+    "id": 606,
+    "name": "beheeyem",
+    "generation": 5,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/606.png"
+  },
+  {
+    "id": 607,
+    "name": "litwick",
+    "generation": 5,
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/607.png"
+  },
+  {
+    "id": 608,
+    "name": "lampent",
+    "generation": 5,
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/608.png"
+  },
+  {
+    "id": 609,
+    "name": "chandelure",
+    "generation": 5,
+    "types": [
+      "ghost",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/609.png"
+  },
+  {
+    "id": 610,
+    "name": "axew",
+    "generation": 5,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/610.png"
+  },
+  {
+    "id": 611,
+    "name": "fraxure",
+    "generation": 5,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/611.png"
+  },
+  {
+    "id": 612,
+    "name": "haxorus",
+    "generation": 5,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/612.png"
+  },
+  {
+    "id": 613,
+    "name": "cubchoo",
+    "generation": 5,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/613.png"
+  },
+  {
+    "id": 614,
+    "name": "beartic",
+    "generation": 5,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/614.png"
+  },
+  {
+    "id": 615,
+    "name": "cryogonal",
+    "generation": 5,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/615.png"
+  },
+  {
+    "id": 616,
+    "name": "shelmet",
+    "generation": 5,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/616.png"
+  },
+  {
+    "id": 617,
+    "name": "accelgor",
+    "generation": 5,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/617.png"
+  },
+  {
+    "id": 618,
+    "name": "stunfisk",
+    "generation": 5,
+    "types": [
+      "ground",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/618.png"
+  },
+  {
+    "id": 619,
+    "name": "mienfoo",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/619.png"
+  },
+  {
+    "id": 620,
+    "name": "mienshao",
+    "generation": 5,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/620.png"
+  },
+  {
+    "id": 621,
+    "name": "druddigon",
+    "generation": 5,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/621.png"
+  },
+  {
+    "id": 622,
+    "name": "golett",
+    "generation": 5,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/622.png"
+  },
+  {
+    "id": 623,
+    "name": "golurk",
+    "generation": 5,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/623.png"
+  },
+  {
+    "id": 624,
+    "name": "pawniard",
+    "generation": 5,
+    "types": [
+      "dark",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/624.png"
+  },
+  {
+    "id": 625,
+    "name": "bisharp",
+    "generation": 5,
+    "types": [
+      "dark",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/625.png"
+  },
+  {
+    "id": 626,
+    "name": "bouffalant",
+    "generation": 5,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/626.png"
+  },
+  {
+    "id": 627,
+    "name": "rufflet",
+    "generation": 5,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/627.png"
+  },
+  {
+    "id": 628,
+    "name": "braviary",
+    "generation": 5,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/628.png"
+  },
+  {
+    "id": 629,
+    "name": "vullaby",
+    "generation": 5,
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/629.png"
+  },
+  {
+    "id": 630,
+    "name": "mandibuzz",
+    "generation": 5,
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/630.png"
+  },
+  {
+    "id": 631,
+    "name": "heatmor",
+    "generation": 5,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/631.png"
+  },
+  {
+    "id": 632,
+    "name": "durant",
+    "generation": 5,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/632.png"
+  },
+  {
+    "id": 633,
+    "name": "deino",
+    "generation": 5,
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/633.png"
+  },
+  {
+    "id": 634,
+    "name": "zweilous",
+    "generation": 5,
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/634.png"
+  },
+  {
+    "id": 635,
+    "name": "hydreigon",
+    "generation": 5,
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/635.png"
+  },
+  {
+    "id": 636,
+    "name": "larvesta",
+    "generation": 5,
+    "types": [
+      "bug",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/636.png"
+  },
+  {
+    "id": 637,
+    "name": "volcarona",
+    "generation": 5,
+    "types": [
+      "bug",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/637.png"
+  },
+  {
+    "id": 638,
+    "name": "cobalion",
+    "generation": 5,
+    "types": [
+      "steel",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/638.png"
+  },
+  {
+    "id": 639,
+    "name": "terrakion",
+    "generation": 5,
+    "types": [
+      "rock",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/639.png"
+  },
+  {
+    "id": 640,
+    "name": "virizion",
+    "generation": 5,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/640.png"
+  },
+  {
+    "id": 641,
+    "name": "tornadus-incarnate",
+    "generation": 5,
+    "types": [
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/641.png"
+  },
+  {
+    "id": 642,
+    "name": "thundurus-incarnate",
+    "generation": 5,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/642.png"
+  },
+  {
+    "id": 643,
+    "name": "reshiram",
+    "generation": 5,
+    "types": [
+      "dragon",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/643.png"
+  },
+  {
+    "id": 644,
+    "name": "zekrom",
+    "generation": 5,
+    "types": [
+      "dragon",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/644.png"
+  },
+  {
+    "id": 645,
+    "name": "landorus-incarnate",
+    "generation": 5,
+    "types": [
+      "ground",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/645.png"
+  },
+  {
+    "id": 646,
+    "name": "kyurem",
+    "generation": 5,
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/646.png"
+  },
+  {
+    "id": 647,
+    "name": "keldeo-ordinary",
+    "generation": 5,
+    "types": [
+      "water",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/647.png"
+  },
+  {
+    "id": 648,
+    "name": "meloetta-aria",
+    "generation": 5,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/648.png"
+  },
+  {
+    "id": 649,
+    "name": "genesect",
+    "generation": 5,
+    "types": [
+      "bug",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/649.png"
+  },
+  {
+    "id": 650,
+    "name": "chespin",
+    "generation": 6,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/650.png"
+  },
+  {
+    "id": 651,
+    "name": "quilladin",
+    "generation": 6,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/651.png"
+  },
+  {
+    "id": 652,
+    "name": "chesnaught",
+    "generation": 6,
+    "types": [
+      "grass",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/652.png"
+  },
+  {
+    "id": 653,
+    "name": "fennekin",
+    "generation": 6,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/653.png"
+  },
+  {
+    "id": 654,
+    "name": "braixen",
+    "generation": 6,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/654.png"
+  },
+  {
+    "id": 655,
+    "name": "delphox",
+    "generation": 6,
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/655.png"
+  },
+  {
+    "id": 656,
+    "name": "froakie",
+    "generation": 6,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/656.png"
+  },
+  {
+    "id": 657,
+    "name": "frogadier",
+    "generation": 6,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/657.png"
+  },
+  {
+    "id": 658,
+    "name": "greninja",
+    "generation": 6,
+    "types": [
+      "water",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/658.png"
+  },
+  {
+    "id": 659,
+    "name": "bunnelby",
+    "generation": 6,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/659.png"
+  },
+  {
+    "id": 660,
+    "name": "diggersby",
+    "generation": 6,
+    "types": [
+      "normal",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/660.png"
+  },
+  {
+    "id": 661,
+    "name": "fletchling",
+    "generation": 6,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/661.png"
+  },
+  {
+    "id": 662,
+    "name": "fletchinder",
+    "generation": 6,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/662.png"
+  },
+  {
+    "id": 663,
+    "name": "talonflame",
+    "generation": 6,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/663.png"
+  },
+  {
+    "id": 664,
+    "name": "scatterbug",
+    "generation": 6,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/664.png"
+  },
+  {
+    "id": 665,
+    "name": "spewpa",
+    "generation": 6,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/665.png"
+  },
+  {
+    "id": 666,
+    "name": "vivillon",
+    "generation": 6,
+    "types": [
+      "bug",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/666.png"
+  },
+  {
+    "id": 667,
+    "name": "litleo",
+    "generation": 6,
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/667.png"
+  },
+  {
+    "id": 668,
+    "name": "pyroar-male",
+    "generation": 6,
+    "types": [
+      "fire",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/668.png"
+  },
+  {
+    "id": 669,
+    "name": "flabebe",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/669.png"
+  },
+  {
+    "id": 670,
+    "name": "floette",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/670.png"
+  },
+  {
+    "id": 671,
+    "name": "florges",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/671.png"
+  },
+  {
+    "id": 672,
+    "name": "skiddo",
+    "generation": 6,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/672.png"
+  },
+  {
+    "id": 673,
+    "name": "gogoat",
+    "generation": 6,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/673.png"
+  },
+  {
+    "id": 674,
+    "name": "pancham",
+    "generation": 6,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/674.png"
+  },
+  {
+    "id": 675,
+    "name": "pangoro",
+    "generation": 6,
+    "types": [
+      "fighting",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/675.png"
+  },
+  {
+    "id": 676,
+    "name": "furfrou",
+    "generation": 6,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/676.png"
+  },
+  {
+    "id": 677,
+    "name": "espurr",
+    "generation": 6,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/677.png"
+  },
+  {
+    "id": 678,
+    "name": "meowstic-male",
+    "generation": 6,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/678.png"
+  },
+  {
+    "id": 679,
+    "name": "honedge",
+    "generation": 6,
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/679.png"
+  },
+  {
+    "id": 680,
+    "name": "doublade",
+    "generation": 6,
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/680.png"
+  },
+  {
+    "id": 681,
+    "name": "aegislash-shield",
+    "generation": 6,
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/681.png"
+  },
+  {
+    "id": 682,
+    "name": "spritzee",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/682.png"
+  },
+  {
+    "id": 683,
+    "name": "aromatisse",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/683.png"
+  },
+  {
+    "id": 684,
+    "name": "swirlix",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/684.png"
+  },
+  {
+    "id": 685,
+    "name": "slurpuff",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/685.png"
+  },
+  {
+    "id": 686,
+    "name": "inkay",
+    "generation": 6,
+    "types": [
+      "dark",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/686.png"
+  },
+  {
+    "id": 687,
+    "name": "malamar",
+    "generation": 6,
+    "types": [
+      "dark",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/687.png"
+  },
+  {
+    "id": 688,
+    "name": "binacle",
+    "generation": 6,
+    "types": [
+      "rock",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/688.png"
+  },
+  {
+    "id": 689,
+    "name": "barbaracle",
+    "generation": 6,
+    "types": [
+      "rock",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/689.png"
+  },
+  {
+    "id": 690,
+    "name": "skrelp",
+    "generation": 6,
+    "types": [
+      "poison",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/690.png"
+  },
+  {
+    "id": 691,
+    "name": "dragalge",
+    "generation": 6,
+    "types": [
+      "poison",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/691.png"
+  },
+  {
+    "id": 692,
+    "name": "clauncher",
+    "generation": 6,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/692.png"
+  },
+  {
+    "id": 693,
+    "name": "clawitzer",
+    "generation": 6,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/693.png"
+  },
+  {
+    "id": 694,
+    "name": "helioptile",
+    "generation": 6,
+    "types": [
+      "electric",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/694.png"
+  },
+  {
+    "id": 695,
+    "name": "heliolisk",
+    "generation": 6,
+    "types": [
+      "electric",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/695.png"
+  },
+  {
+    "id": 696,
+    "name": "tyrunt",
+    "generation": 6,
+    "types": [
+      "rock",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/696.png"
+  },
+  {
+    "id": 697,
+    "name": "tyrantrum",
+    "generation": 6,
+    "types": [
+      "rock",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/697.png"
+  },
+  {
+    "id": 698,
+    "name": "amaura",
+    "generation": 6,
+    "types": [
+      "rock",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/698.png"
+  },
+  {
+    "id": 699,
+    "name": "aurorus",
+    "generation": 6,
+    "types": [
+      "rock",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/699.png"
+  },
+  {
+    "id": 700,
+    "name": "sylveon",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/700.png"
+  },
+  {
+    "id": 701,
+    "name": "hawlucha",
+    "generation": 6,
+    "types": [
+      "fighting",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/701.png"
+  },
+  {
+    "id": 702,
+    "name": "dedenne",
+    "generation": 6,
+    "types": [
+      "electric",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/702.png"
+  },
+  {
+    "id": 703,
+    "name": "carbink",
+    "generation": 6,
+    "types": [
+      "rock",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/703.png"
+  },
+  {
+    "id": 704,
+    "name": "goomy",
+    "generation": 6,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/704.png"
+  },
+  {
+    "id": 705,
+    "name": "sliggoo",
+    "generation": 6,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/705.png"
+  },
+  {
+    "id": 706,
+    "name": "goodra",
+    "generation": 6,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/706.png"
+  },
+  {
+    "id": 707,
+    "name": "klefki",
+    "generation": 6,
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/707.png"
+  },
+  {
+    "id": 708,
+    "name": "phantump",
+    "generation": 6,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/708.png"
+  },
+  {
+    "id": 709,
+    "name": "trevenant",
+    "generation": 6,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/709.png"
+  },
+  {
+    "id": 710,
+    "name": "pumpkaboo-average",
+    "generation": 6,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/710.png"
+  },
+  {
+    "id": 711,
+    "name": "gourgeist-average",
+    "generation": 6,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/711.png"
+  },
+  {
+    "id": 712,
+    "name": "bergmite",
+    "generation": 6,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/712.png"
+  },
+  {
+    "id": 713,
+    "name": "avalugg",
+    "generation": 6,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/713.png"
+  },
+  {
+    "id": 714,
+    "name": "noibat",
+    "generation": 6,
+    "types": [
+      "flying",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/714.png"
+  },
+  {
+    "id": 715,
+    "name": "noivern",
+    "generation": 6,
+    "types": [
+      "flying",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/715.png"
+  },
+  {
+    "id": 716,
+    "name": "xerneas",
+    "generation": 6,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/716.png"
+  },
+  {
+    "id": 717,
+    "name": "yveltal",
+    "generation": 6,
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/717.png"
+  },
+  {
+    "id": 718,
+    "name": "zygarde-50",
+    "generation": 6,
+    "types": [
+      "dragon",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/718.png"
+  },
+  {
+    "id": 719,
+    "name": "diancie",
+    "generation": 6,
+    "types": [
+      "rock",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/719.png"
+  },
+  {
+    "id": 720,
+    "name": "hoopa",
+    "generation": 6,
+    "types": [
+      "psychic",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/720.png"
+  },
+  {
+    "id": 721,
+    "name": "volcanion",
+    "generation": 6,
+    "types": [
+      "fire",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/721.png"
+  },
+  {
+    "id": 722,
+    "name": "rowlet",
+    "generation": 7,
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/722.png"
+  },
+  {
+    "id": 723,
+    "name": "dartrix",
+    "generation": 7,
+    "types": [
+      "grass",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/723.png"
+  },
+  {
+    "id": 724,
+    "name": "decidueye",
+    "generation": 7,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/724.png"
+  },
+  {
+    "id": 725,
+    "name": "litten",
+    "generation": 7,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/725.png"
+  },
+  {
+    "id": 726,
+    "name": "torracat",
+    "generation": 7,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/726.png"
+  },
+  {
+    "id": 727,
+    "name": "incineroar",
+    "generation": 7,
+    "types": [
+      "fire",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/727.png"
+  },
+  {
+    "id": 728,
+    "name": "popplio",
+    "generation": 7,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/728.png"
+  },
+  {
+    "id": 729,
+    "name": "brionne",
+    "generation": 7,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/729.png"
+  },
+  {
+    "id": 730,
+    "name": "primarina",
+    "generation": 7,
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/730.png"
+  },
+  {
+    "id": 731,
+    "name": "pikipek",
+    "generation": 7,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/731.png"
+  },
+  {
+    "id": 732,
+    "name": "trumbeak",
+    "generation": 7,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/732.png"
+  },
+  {
+    "id": 733,
+    "name": "toucannon",
+    "generation": 7,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/733.png"
+  },
+  {
+    "id": 734,
+    "name": "yungoos",
+    "generation": 7,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/734.png"
+  },
+  {
+    "id": 735,
+    "name": "gumshoos",
+    "generation": 7,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/735.png"
+  },
+  {
+    "id": 736,
+    "name": "grubbin",
+    "generation": 7,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/736.png"
+  },
+  {
+    "id": 737,
+    "name": "charjabug",
+    "generation": 7,
+    "types": [
+      "bug",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/737.png"
+  },
+  {
+    "id": 738,
+    "name": "vikavolt",
+    "generation": 7,
+    "types": [
+      "bug",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/738.png"
+  },
+  {
+    "id": 739,
+    "name": "crabrawler",
+    "generation": 7,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/739.png"
+  },
+  {
+    "id": 740,
+    "name": "crabominable",
+    "generation": 7,
+    "types": [
+      "fighting",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/740.png"
+  },
+  {
+    "id": 741,
+    "name": "oricorio-baile",
+    "generation": 7,
+    "types": [
+      "fire",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/741.png"
+  },
+  {
+    "id": 742,
+    "name": "cutiefly",
+    "generation": 7,
+    "types": [
+      "bug",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/742.png"
+  },
+  {
+    "id": 743,
+    "name": "ribombee",
+    "generation": 7,
+    "types": [
+      "bug",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/743.png"
+  },
+  {
+    "id": 744,
+    "name": "rockruff",
+    "generation": 7,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/744.png"
+  },
+  {
+    "id": 745,
+    "name": "lycanroc-midday",
+    "generation": 7,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/745.png"
+  },
+  {
+    "id": 746,
+    "name": "wishiwashi-solo",
+    "generation": 7,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/746.png"
+  },
+  {
+    "id": 747,
+    "name": "mareanie",
+    "generation": 7,
+    "types": [
+      "poison",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/747.png"
+  },
+  {
+    "id": 748,
+    "name": "toxapex",
+    "generation": 7,
+    "types": [
+      "poison",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/748.png"
+  },
+  {
+    "id": 749,
+    "name": "mudbray",
+    "generation": 7,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/749.png"
+  },
+  {
+    "id": 750,
+    "name": "mudsdale",
+    "generation": 7,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/750.png"
+  },
+  {
+    "id": 751,
+    "name": "dewpider",
+    "generation": 7,
+    "types": [
+      "water",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/751.png"
+  },
+  {
+    "id": 752,
+    "name": "araquanid",
+    "generation": 7,
+    "types": [
+      "water",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/752.png"
+  },
+  {
+    "id": 753,
+    "name": "fomantis",
+    "generation": 7,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/753.png"
+  },
+  {
+    "id": 754,
+    "name": "lurantis",
+    "generation": 7,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/754.png"
+  },
+  {
+    "id": 755,
+    "name": "morelull",
+    "generation": 7,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/755.png"
+  },
+  {
+    "id": 756,
+    "name": "shiinotic",
+    "generation": 7,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/756.png"
+  },
+  {
+    "id": 757,
+    "name": "salandit",
+    "generation": 7,
+    "types": [
+      "poison",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/757.png"
+  },
+  {
+    "id": 758,
+    "name": "salazzle",
+    "generation": 7,
+    "types": [
+      "poison",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/758.png"
+  },
+  {
+    "id": 759,
+    "name": "stufful",
+    "generation": 7,
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/759.png"
+  },
+  {
+    "id": 760,
+    "name": "bewear",
+    "generation": 7,
+    "types": [
+      "normal",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/760.png"
+  },
+  {
+    "id": 761,
+    "name": "bounsweet",
+    "generation": 7,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/761.png"
+  },
+  {
+    "id": 762,
+    "name": "steenee",
+    "generation": 7,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/762.png"
+  },
+  {
+    "id": 763,
+    "name": "tsareena",
+    "generation": 7,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/763.png"
+  },
+  {
+    "id": 764,
+    "name": "comfey",
+    "generation": 7,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/764.png"
+  },
+  {
+    "id": 765,
+    "name": "oranguru",
+    "generation": 7,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/765.png"
+  },
+  {
+    "id": 766,
+    "name": "passimian",
+    "generation": 7,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/766.png"
+  },
+  {
+    "id": 767,
+    "name": "wimpod",
+    "generation": 7,
+    "types": [
+      "bug",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/767.png"
+  },
+  {
+    "id": 768,
+    "name": "golisopod",
+    "generation": 7,
+    "types": [
+      "bug",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/768.png"
+  },
+  {
+    "id": 769,
+    "name": "sandygast",
+    "generation": 7,
+    "types": [
+      "ghost",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/769.png"
+  },
+  {
+    "id": 770,
+    "name": "palossand",
+    "generation": 7,
+    "types": [
+      "ghost",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/770.png"
+  },
+  {
+    "id": 771,
+    "name": "pyukumuku",
+    "generation": 7,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/771.png"
+  },
+  {
+    "id": 772,
+    "name": "type-null",
+    "generation": 7,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/772.png"
+  },
+  {
+    "id": 773,
+    "name": "silvally",
+    "generation": 7,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/773.png"
+  },
+  {
+    "id": 774,
+    "name": "minior-red-meteor",
+    "generation": 7,
+    "types": [
+      "rock",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/774.png"
+  },
+  {
+    "id": 775,
+    "name": "komala",
+    "generation": 7,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/775.png"
+  },
+  {
+    "id": 776,
+    "name": "turtonator",
+    "generation": 7,
+    "types": [
+      "fire",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/776.png"
+  },
+  {
+    "id": 777,
+    "name": "togedemaru",
+    "generation": 7,
+    "types": [
+      "electric",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/777.png"
+  },
+  {
+    "id": 778,
+    "name": "mimikyu-disguised",
+    "generation": 7,
+    "types": [
+      "ghost",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/778.png"
+  },
+  {
+    "id": 779,
+    "name": "bruxish",
+    "generation": 7,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/779.png"
+  },
+  {
+    "id": 780,
+    "name": "drampa",
+    "generation": 7,
+    "types": [
+      "normal",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/780.png"
+  },
+  {
+    "id": 781,
+    "name": "dhelmise",
+    "generation": 7,
+    "types": [
+      "ghost",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/781.png"
+  },
+  {
+    "id": 782,
+    "name": "jangmo-o",
+    "generation": 7,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/782.png"
+  },
+  {
+    "id": 783,
+    "name": "hakamo-o",
+    "generation": 7,
+    "types": [
+      "dragon",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/783.png"
+  },
+  {
+    "id": 784,
+    "name": "kommo-o",
+    "generation": 7,
+    "types": [
+      "dragon",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/784.png"
+  },
+  {
+    "id": 785,
+    "name": "tapu-koko",
+    "generation": 7,
+    "types": [
+      "electric",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/785.png"
+  },
+  {
+    "id": 786,
+    "name": "tapu-lele",
+    "generation": 7,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/786.png"
+  },
+  {
+    "id": 787,
+    "name": "tapu-bulu",
+    "generation": 7,
+    "types": [
+      "grass",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/787.png"
+  },
+  {
+    "id": 788,
+    "name": "tapu-fini",
+    "generation": 7,
+    "types": [
+      "water",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/788.png"
+  },
+  {
+    "id": 789,
+    "name": "cosmog",
+    "generation": 7,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/789.png"
+  },
+  {
+    "id": 790,
+    "name": "cosmoem",
+    "generation": 7,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/790.png"
+  },
+  {
+    "id": 791,
+    "name": "solgaleo",
+    "generation": 7,
+    "types": [
+      "psychic",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/791.png"
+  },
+  {
+    "id": 792,
+    "name": "lunala",
+    "generation": 7,
+    "types": [
+      "psychic",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/792.png"
+  },
+  {
+    "id": 793,
+    "name": "nihilego",
+    "generation": 7,
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/793.png"
+  },
+  {
+    "id": 794,
+    "name": "buzzwole",
+    "generation": 7,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/794.png"
+  },
+  {
+    "id": 795,
+    "name": "pheromosa",
+    "generation": 7,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/795.png"
+  },
+  {
+    "id": 796,
+    "name": "xurkitree",
+    "generation": 7,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/796.png"
+  },
+  {
+    "id": 797,
+    "name": "celesteela",
+    "generation": 7,
+    "types": [
+      "steel",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/797.png"
+  },
+  {
+    "id": 798,
+    "name": "kartana",
+    "generation": 7,
+    "types": [
+      "grass",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/798.png"
+  },
+  {
+    "id": 799,
+    "name": "guzzlord",
+    "generation": 7,
+    "types": [
+      "dark",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/799.png"
+  },
+  {
+    "id": 800,
+    "name": "necrozma",
+    "generation": 7,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/800.png"
+  },
+  {
+    "id": 801,
+    "name": "magearna",
+    "generation": 7,
+    "types": [
+      "steel",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/801.png"
+  },
+  {
+    "id": 802,
+    "name": "marshadow",
+    "generation": 7,
+    "types": [
+      "fighting",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/802.png"
+  },
+  {
+    "id": 803,
+    "name": "poipole",
+    "generation": 7,
+    "types": [
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/803.png"
+  },
+  {
+    "id": 804,
+    "name": "naganadel",
+    "generation": 7,
+    "types": [
+      "poison",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/804.png"
+  },
+  {
+    "id": 805,
+    "name": "stakataka",
+    "generation": 7,
+    "types": [
+      "rock",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/805.png"
+  },
+  {
+    "id": 806,
+    "name": "blacephalon",
+    "generation": 7,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/806.png"
+  },
+  {
+    "id": 807,
+    "name": "zeraora",
+    "generation": 7,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/807.png"
+  },
+  {
+    "id": 808,
+    "name": "meltan",
+    "generation": 7,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/808.png"
+  },
+  {
+    "id": 809,
+    "name": "melmetal",
+    "generation": 7,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/809.png"
+  },
+  {
+    "id": 810,
+    "name": "grookey",
+    "generation": 8,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/810.png"
+  },
+  {
+    "id": 811,
+    "name": "thwackey",
+    "generation": 8,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/811.png"
+  },
+  {
+    "id": 812,
+    "name": "rillaboom",
+    "generation": 8,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/812.png"
+  },
+  {
+    "id": 813,
+    "name": "scorbunny",
+    "generation": 8,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/813.png"
+  },
+  {
+    "id": 814,
+    "name": "raboot",
+    "generation": 8,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/814.png"
+  },
+  {
+    "id": 815,
+    "name": "cinderace",
+    "generation": 8,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/815.png"
+  },
+  {
+    "id": 816,
+    "name": "sobble",
+    "generation": 8,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/816.png"
+  },
+  {
+    "id": 817,
+    "name": "drizzile",
+    "generation": 8,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/817.png"
+  },
+  {
+    "id": 818,
+    "name": "inteleon",
+    "generation": 8,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/818.png"
+  },
+  {
+    "id": 819,
+    "name": "skwovet",
+    "generation": 8,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/819.png"
+  },
+  {
+    "id": 820,
+    "name": "greedent",
+    "generation": 8,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/820.png"
+  },
+  {
+    "id": 821,
+    "name": "rookidee",
+    "generation": 8,
+    "types": [
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/821.png"
+  },
+  {
+    "id": 822,
+    "name": "corvisquire",
+    "generation": 8,
+    "types": [
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/822.png"
+  },
+  {
+    "id": 823,
+    "name": "corviknight",
+    "generation": 8,
+    "types": [
+      "flying",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/823.png"
+  },
+  {
+    "id": 824,
+    "name": "blipbug",
+    "generation": 8,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/824.png"
+  },
+  {
+    "id": 825,
+    "name": "dottler",
+    "generation": 8,
+    "types": [
+      "bug",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/825.png"
+  },
+  {
+    "id": 826,
+    "name": "orbeetle",
+    "generation": 8,
+    "types": [
+      "bug",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/826.png"
+  },
+  {
+    "id": 827,
+    "name": "nickit",
+    "generation": 8,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/827.png"
+  },
+  {
+    "id": 828,
+    "name": "thievul",
+    "generation": 8,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/828.png"
+  },
+  {
+    "id": 829,
+    "name": "gossifleur",
+    "generation": 8,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/829.png"
+  },
+  {
+    "id": 830,
+    "name": "eldegoss",
+    "generation": 8,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/830.png"
+  },
+  {
+    "id": 831,
+    "name": "wooloo",
+    "generation": 8,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/831.png"
+  },
+  {
+    "id": 832,
+    "name": "dubwool",
+    "generation": 8,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/832.png"
+  },
+  {
+    "id": 833,
+    "name": "chewtle",
+    "generation": 8,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/833.png"
+  },
+  {
+    "id": 834,
+    "name": "drednaw",
+    "generation": 8,
+    "types": [
+      "water",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/834.png"
+  },
+  {
+    "id": 835,
+    "name": "yamper",
+    "generation": 8,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/835.png"
+  },
+  {
+    "id": 836,
+    "name": "boltund",
+    "generation": 8,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/836.png"
+  },
+  {
+    "id": 837,
+    "name": "rolycoly",
+    "generation": 8,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/837.png"
+  },
+  {
+    "id": 838,
+    "name": "carkol",
+    "generation": 8,
+    "types": [
+      "rock",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/838.png"
+  },
+  {
+    "id": 839,
+    "name": "coalossal",
+    "generation": 8,
+    "types": [
+      "rock",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/839.png"
+  },
+  {
+    "id": 840,
+    "name": "applin",
+    "generation": 8,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/840.png"
+  },
+  {
+    "id": 841,
+    "name": "flapple",
+    "generation": 8,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/841.png"
+  },
+  {
+    "id": 842,
+    "name": "appletun",
+    "generation": 8,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/842.png"
+  },
+  {
+    "id": 843,
+    "name": "silicobra",
+    "generation": 8,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/843.png"
+  },
+  {
+    "id": 844,
+    "name": "sandaconda",
+    "generation": 8,
+    "types": [
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/844.png"
+  },
+  {
+    "id": 845,
+    "name": "cramorant",
+    "generation": 8,
+    "types": [
+      "flying",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/845.png"
+  },
+  {
+    "id": 846,
+    "name": "arrokuda",
+    "generation": 8,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/846.png"
+  },
+  {
+    "id": 847,
+    "name": "barraskewda",
+    "generation": 8,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/847.png"
+  },
+  {
+    "id": 848,
+    "name": "toxel",
+    "generation": 8,
+    "types": [
+      "electric",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/848.png"
+  },
+  {
+    "id": 849,
+    "name": "toxtricity-amped",
+    "generation": 8,
+    "types": [
+      "electric",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/849.png"
+  },
+  {
+    "id": 850,
+    "name": "sizzlipede",
+    "generation": 8,
+    "types": [
+      "fire",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/850.png"
+  },
+  {
+    "id": 851,
+    "name": "centiskorch",
+    "generation": 8,
+    "types": [
+      "fire",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/851.png"
+  },
+  {
+    "id": 852,
+    "name": "clobbopus",
+    "generation": 8,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/852.png"
+  },
+  {
+    "id": 853,
+    "name": "grapploct",
+    "generation": 8,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/853.png"
+  },
+  {
+    "id": 854,
+    "name": "sinistea",
+    "generation": 8,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/854.png"
+  },
+  {
+    "id": 855,
+    "name": "polteageist",
+    "generation": 8,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/855.png"
+  },
+  {
+    "id": 856,
+    "name": "hatenna",
+    "generation": 8,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/856.png"
+  },
+  {
+    "id": 857,
+    "name": "hattrem",
+    "generation": 8,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/857.png"
+  },
+  {
+    "id": 858,
+    "name": "hatterene",
+    "generation": 8,
+    "types": [
+      "psychic",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/858.png"
+  },
+  {
+    "id": 859,
+    "name": "impidimp",
+    "generation": 8,
+    "types": [
+      "dark",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/859.png"
+  },
+  {
+    "id": 860,
+    "name": "morgrem",
+    "generation": 8,
+    "types": [
+      "dark",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/860.png"
+  },
+  {
+    "id": 861,
+    "name": "grimmsnarl",
+    "generation": 8,
+    "types": [
+      "dark",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/861.png"
+  },
+  {
+    "id": 862,
+    "name": "obstagoon",
+    "generation": 8,
+    "types": [
+      "dark",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/862.png"
+  },
+  {
+    "id": 863,
+    "name": "perrserker",
+    "generation": 8,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/863.png"
+  },
+  {
+    "id": 864,
+    "name": "cursola",
+    "generation": 8,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/864.png"
+  },
+  {
+    "id": 865,
+    "name": "sirfetchd",
+    "generation": 8,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/865.png"
+  },
+  {
+    "id": 866,
+    "name": "mr-rime",
+    "generation": 8,
+    "types": [
+      "ice",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/866.png"
+  },
+  {
+    "id": 867,
+    "name": "runerigus",
+    "generation": 8,
+    "types": [
+      "ground",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/867.png"
+  },
+  {
+    "id": 868,
+    "name": "milcery",
+    "generation": 8,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/868.png"
+  },
+  {
+    "id": 869,
+    "name": "alcremie",
+    "generation": 8,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/869.png"
+  },
+  {
+    "id": 870,
+    "name": "falinks",
+    "generation": 8,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/870.png"
+  },
+  {
+    "id": 871,
+    "name": "pincurchin",
+    "generation": 8,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/871.png"
+  },
+  {
+    "id": 872,
+    "name": "snom",
+    "generation": 8,
+    "types": [
+      "ice",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/872.png"
+  },
+  {
+    "id": 873,
+    "name": "frosmoth",
+    "generation": 8,
+    "types": [
+      "ice",
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/873.png"
+  },
+  {
+    "id": 874,
+    "name": "stonjourner",
+    "generation": 8,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/874.png"
+  },
+  {
+    "id": 875,
+    "name": "eiscue-ice",
+    "generation": 8,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/875.png"
+  },
+  {
+    "id": 876,
+    "name": "indeedee-male",
+    "generation": 8,
+    "types": [
+      "psychic",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/876.png"
+  },
+  {
+    "id": 877,
+    "name": "morpeko-full-belly",
+    "generation": 8,
+    "types": [
+      "electric",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/877.png"
+  },
+  {
+    "id": 878,
+    "name": "cufant",
+    "generation": 8,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/878.png"
+  },
+  {
+    "id": 879,
+    "name": "copperajah",
+    "generation": 8,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/879.png"
+  },
+  {
+    "id": 880,
+    "name": "dracozolt",
+    "generation": 8,
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/880.png"
+  },
+  {
+    "id": 881,
+    "name": "arctozolt",
+    "generation": 8,
+    "types": [
+      "electric",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/881.png"
+  },
+  {
+    "id": 882,
+    "name": "dracovish",
+    "generation": 8,
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/882.png"
+  },
+  {
+    "id": 883,
+    "name": "arctovish",
+    "generation": 8,
+    "types": [
+      "water",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/883.png"
+  },
+  {
+    "id": 884,
+    "name": "duraludon",
+    "generation": 8,
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/884.png"
+  },
+  {
+    "id": 885,
+    "name": "dreepy",
+    "generation": 8,
+    "types": [
+      "dragon",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/885.png"
+  },
+  {
+    "id": 886,
+    "name": "drakloak",
+    "generation": 8,
+    "types": [
+      "dragon",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/886.png"
+  },
+  {
+    "id": 887,
+    "name": "dragapult",
+    "generation": 8,
+    "types": [
+      "dragon",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/887.png"
+  },
+  {
+    "id": 888,
+    "name": "zacian",
+    "generation": 8,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/888.png"
+  },
+  {
+    "id": 889,
+    "name": "zamazenta",
+    "generation": 8,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/889.png"
+  },
+  {
+    "id": 890,
+    "name": "eternatus",
+    "generation": 8,
+    "types": [
+      "poison",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/890.png"
+  },
+  {
+    "id": 891,
+    "name": "kubfu",
+    "generation": 8,
+    "types": [
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/891.png"
+  },
+  {
+    "id": 892,
+    "name": "urshifu-single-strike",
+    "generation": 8,
+    "types": [
+      "fighting",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/892.png"
+  },
+  {
+    "id": 893,
+    "name": "zarude",
+    "generation": 8,
+    "types": [
+      "dark",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/893.png"
+  },
+  {
+    "id": 894,
+    "name": "regieleki",
+    "generation": 8,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/894.png"
+  },
+  {
+    "id": 895,
+    "name": "regidrago",
+    "generation": 8,
+    "types": [
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/895.png"
+  },
+  {
+    "id": 896,
+    "name": "glastrier",
+    "generation": 8,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/896.png"
+  },
+  {
+    "id": 897,
+    "name": "spectrier",
+    "generation": 8,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/897.png"
+  },
+  {
+    "id": 898,
+    "name": "calyrex",
+    "generation": 8,
+    "types": [
+      "psychic",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/898.png"
+  },
+  {
+    "id": 899,
+    "name": "wyrdeer",
+    "generation": 8,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/899.png"
+  },
+  {
+    "id": 900,
+    "name": "kleavor",
+    "generation": 8,
+    "types": [
+      "bug",
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/900.png"
+  },
+  {
+    "id": 901,
+    "name": "ursaluna",
+    "generation": 8,
+    "types": [
+      "ground",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/901.png"
+  },
+  {
+    "id": 902,
+    "name": "basculegion-male",
+    "generation": 8,
+    "types": [
+      "water",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/902.png"
+  },
+  {
+    "id": 903,
+    "name": "sneasler",
+    "generation": 8,
+    "types": [
+      "fighting",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/903.png"
+  },
+  {
+    "id": 904,
+    "name": "overqwil",
+    "generation": 8,
+    "types": [
+      "dark",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/904.png"
+  },
+  {
+    "id": 905,
+    "name": "enamorus-incarnate",
+    "generation": 8,
+    "types": [
+      "fairy",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/905.png"
+  },
+  {
+    "id": 906,
+    "name": "sprigatito",
+    "generation": 9,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/906.png"
+  },
+  {
+    "id": 907,
+    "name": "floragato",
+    "generation": 9,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/907.png"
+  },
+  {
+    "id": 908,
+    "name": "meowscarada",
+    "generation": 9,
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/908.png"
+  },
+  {
+    "id": 909,
+    "name": "fuecoco",
+    "generation": 9,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/909.png"
+  },
+  {
+    "id": 910,
+    "name": "crocalor",
+    "generation": 9,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/910.png"
+  },
+  {
+    "id": 911,
+    "name": "skeledirge",
+    "generation": 9,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/911.png"
+  },
+  {
+    "id": 912,
+    "name": "quaxly",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/912.png"
+  },
+  {
+    "id": 913,
+    "name": "quaxwell",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/913.png"
+  },
+  {
+    "id": 914,
+    "name": "quaquaval",
+    "generation": 9,
+    "types": [
+      "water",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/914.png"
+  },
+  {
+    "id": 915,
+    "name": "lechonk",
+    "generation": 9,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/915.png"
+  },
+  {
+    "id": 916,
+    "name": "oinkologne-male",
+    "generation": 9,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/916.png"
+  },
+  {
+    "id": 917,
+    "name": "tarountula",
+    "generation": 9,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/917.png"
+  },
+  {
+    "id": 918,
+    "name": "spidops",
+    "generation": 9,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/918.png"
+  },
+  {
+    "id": 919,
+    "name": "nymble",
+    "generation": 9,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/919.png"
+  },
+  {
+    "id": 920,
+    "name": "lokix",
+    "generation": 9,
+    "types": [
+      "bug",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/920.png"
+  },
+  {
+    "id": 921,
+    "name": "pawmi",
+    "generation": 9,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/921.png"
+  },
+  {
+    "id": 922,
+    "name": "pawmo",
+    "generation": 9,
+    "types": [
+      "electric",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/922.png"
+  },
+  {
+    "id": 923,
+    "name": "pawmot",
+    "generation": 9,
+    "types": [
+      "electric",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/923.png"
+  },
+  {
+    "id": 924,
+    "name": "tandemaus",
+    "generation": 9,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/924.png"
+  },
+  {
+    "id": 925,
+    "name": "maushold-family-of-four",
+    "generation": 9,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/925.png"
+  },
+  {
+    "id": 926,
+    "name": "fidough",
+    "generation": 9,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/926.png"
+  },
+  {
+    "id": 927,
+    "name": "dachsbun",
+    "generation": 9,
+    "types": [
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/927.png"
+  },
+  {
+    "id": 928,
+    "name": "smoliv",
+    "generation": 9,
+    "types": [
+      "grass",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/928.png"
+  },
+  {
+    "id": 929,
+    "name": "dolliv",
+    "generation": 9,
+    "types": [
+      "grass",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/929.png"
+  },
+  {
+    "id": 930,
+    "name": "arboliva",
+    "generation": 9,
+    "types": [
+      "grass",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/930.png"
+  },
+  {
+    "id": 931,
+    "name": "squawkabilly-green-plumage",
+    "generation": 9,
+    "types": [
+      "normal",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/931.png"
+  },
+  {
+    "id": 932,
+    "name": "nacli",
+    "generation": 9,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/932.png"
+  },
+  {
+    "id": 933,
+    "name": "naclstack",
+    "generation": 9,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/933.png"
+  },
+  {
+    "id": 934,
+    "name": "garganacl",
+    "generation": 9,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/934.png"
+  },
+  {
+    "id": 935,
+    "name": "charcadet",
+    "generation": 9,
+    "types": [
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/935.png"
+  },
+  {
+    "id": 936,
+    "name": "armarouge",
+    "generation": 9,
+    "types": [
+      "fire",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/936.png"
+  },
+  {
+    "id": 937,
+    "name": "ceruledge",
+    "generation": 9,
+    "types": [
+      "fire",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/937.png"
+  },
+  {
+    "id": 938,
+    "name": "tadbulb",
+    "generation": 9,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/938.png"
+  },
+  {
+    "id": 939,
+    "name": "bellibolt",
+    "generation": 9,
+    "types": [
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/939.png"
+  },
+  {
+    "id": 940,
+    "name": "wattrel",
+    "generation": 9,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/940.png"
+  },
+  {
+    "id": 941,
+    "name": "kilowattrel",
+    "generation": 9,
+    "types": [
+      "electric",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/941.png"
+  },
+  {
+    "id": 942,
+    "name": "maschiff",
+    "generation": 9,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/942.png"
+  },
+  {
+    "id": 943,
+    "name": "mabosstiff",
+    "generation": 9,
+    "types": [
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/943.png"
+  },
+  {
+    "id": 944,
+    "name": "shroodle",
+    "generation": 9,
+    "types": [
+      "poison",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/944.png"
+  },
+  {
+    "id": 945,
+    "name": "grafaiai",
+    "generation": 9,
+    "types": [
+      "poison",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/945.png"
+  },
+  {
+    "id": 946,
+    "name": "bramblin",
+    "generation": 9,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/946.png"
+  },
+  {
+    "id": 947,
+    "name": "brambleghast",
+    "generation": 9,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/947.png"
+  },
+  {
+    "id": 948,
+    "name": "toedscool",
+    "generation": 9,
+    "types": [
+      "ground",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/948.png"
+  },
+  {
+    "id": 949,
+    "name": "toedscruel",
+    "generation": 9,
+    "types": [
+      "ground",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/949.png"
+  },
+  {
+    "id": 950,
+    "name": "klawf",
+    "generation": 9,
+    "types": [
+      "rock"
+    ],
+    "artwork_path": "data/pokemon/artwork/950.png"
+  },
+  {
+    "id": 951,
+    "name": "capsakid",
+    "generation": 9,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/951.png"
+  },
+  {
+    "id": 952,
+    "name": "scovillain",
+    "generation": 9,
+    "types": [
+      "grass",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/952.png"
+  },
+  {
+    "id": 953,
+    "name": "rellor",
+    "generation": 9,
+    "types": [
+      "bug"
+    ],
+    "artwork_path": "data/pokemon/artwork/953.png"
+  },
+  {
+    "id": 954,
+    "name": "rabsca",
+    "generation": 9,
+    "types": [
+      "bug",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/954.png"
+  },
+  {
+    "id": 955,
+    "name": "flittle",
+    "generation": 9,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/955.png"
+  },
+  {
+    "id": 956,
+    "name": "espathra",
+    "generation": 9,
+    "types": [
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/956.png"
+  },
+  {
+    "id": 957,
+    "name": "tinkatink",
+    "generation": 9,
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/957.png"
+  },
+  {
+    "id": 958,
+    "name": "tinkatuff",
+    "generation": 9,
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/958.png"
+  },
+  {
+    "id": 959,
+    "name": "tinkaton",
+    "generation": 9,
+    "types": [
+      "fairy",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/959.png"
+  },
+  {
+    "id": 960,
+    "name": "wiglett",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/960.png"
+  },
+  {
+    "id": 961,
+    "name": "wugtrio",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/961.png"
+  },
+  {
+    "id": 962,
+    "name": "bombirdier",
+    "generation": 9,
+    "types": [
+      "flying",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/962.png"
+  },
+  {
+    "id": 963,
+    "name": "finizen",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/963.png"
+  },
+  {
+    "id": 964,
+    "name": "palafin-zero",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/964.png"
+  },
+  {
+    "id": 965,
+    "name": "varoom",
+    "generation": 9,
+    "types": [
+      "steel",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/965.png"
+  },
+  {
+    "id": 966,
+    "name": "revavroom",
+    "generation": 9,
+    "types": [
+      "steel",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/966.png"
+  },
+  {
+    "id": 967,
+    "name": "cyclizar",
+    "generation": 9,
+    "types": [
+      "dragon",
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/967.png"
+  },
+  {
+    "id": 968,
+    "name": "orthworm",
+    "generation": 9,
+    "types": [
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/968.png"
+  },
+  {
+    "id": 969,
+    "name": "glimmet",
+    "generation": 9,
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/969.png"
+  },
+  {
+    "id": 970,
+    "name": "glimmora",
+    "generation": 9,
+    "types": [
+      "rock",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/970.png"
+  },
+  {
+    "id": 971,
+    "name": "greavard",
+    "generation": 9,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/971.png"
+  },
+  {
+    "id": 972,
+    "name": "houndstone",
+    "generation": 9,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/972.png"
+  },
+  {
+    "id": 973,
+    "name": "flamigo",
+    "generation": 9,
+    "types": [
+      "flying",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/973.png"
+  },
+  {
+    "id": 974,
+    "name": "cetoddle",
+    "generation": 9,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/974.png"
+  },
+  {
+    "id": 975,
+    "name": "cetitan",
+    "generation": 9,
+    "types": [
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/975.png"
+  },
+  {
+    "id": 976,
+    "name": "veluza",
+    "generation": 9,
+    "types": [
+      "water",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/976.png"
+  },
+  {
+    "id": 977,
+    "name": "dondozo",
+    "generation": 9,
+    "types": [
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/977.png"
+  },
+  {
+    "id": 978,
+    "name": "tatsugiri-curly",
+    "generation": 9,
+    "types": [
+      "dragon",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/978.png"
+  },
+  {
+    "id": 979,
+    "name": "annihilape",
+    "generation": 9,
+    "types": [
+      "fighting",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/979.png"
+  },
+  {
+    "id": 980,
+    "name": "clodsire",
+    "generation": 9,
+    "types": [
+      "poison",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/980.png"
+  },
+  {
+    "id": 981,
+    "name": "farigiraf",
+    "generation": 9,
+    "types": [
+      "normal",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/981.png"
+  },
+  {
+    "id": 982,
+    "name": "dudunsparce-two-segment",
+    "generation": 9,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/982.png"
+  },
+  {
+    "id": 983,
+    "name": "kingambit",
+    "generation": 9,
+    "types": [
+      "dark",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/983.png"
+  },
+  {
+    "id": 984,
+    "name": "great-tusk",
+    "generation": 9,
+    "types": [
+      "ground",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/984.png"
+  },
+  {
+    "id": 985,
+    "name": "scream-tail",
+    "generation": 9,
+    "types": [
+      "fairy",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/985.png"
+  },
+  {
+    "id": 986,
+    "name": "brute-bonnet",
+    "generation": 9,
+    "types": [
+      "grass",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/986.png"
+  },
+  {
+    "id": 987,
+    "name": "flutter-mane",
+    "generation": 9,
+    "types": [
+      "ghost",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/987.png"
+  },
+  {
+    "id": 988,
+    "name": "slither-wing",
+    "generation": 9,
+    "types": [
+      "bug",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/988.png"
+  },
+  {
+    "id": 989,
+    "name": "sandy-shocks",
+    "generation": 9,
+    "types": [
+      "electric",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/989.png"
+  },
+  {
+    "id": 990,
+    "name": "iron-treads",
+    "generation": 9,
+    "types": [
+      "ground",
+      "steel"
+    ],
+    "artwork_path": "data/pokemon/artwork/990.png"
+  },
+  {
+    "id": 991,
+    "name": "iron-bundle",
+    "generation": 9,
+    "types": [
+      "ice",
+      "water"
+    ],
+    "artwork_path": "data/pokemon/artwork/991.png"
+  },
+  {
+    "id": 992,
+    "name": "iron-hands",
+    "generation": 9,
+    "types": [
+      "fighting",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/992.png"
+  },
+  {
+    "id": 993,
+    "name": "iron-jugulis",
+    "generation": 9,
+    "types": [
+      "dark",
+      "flying"
+    ],
+    "artwork_path": "data/pokemon/artwork/993.png"
+  },
+  {
+    "id": 994,
+    "name": "iron-moth",
+    "generation": 9,
+    "types": [
+      "fire",
+      "poison"
+    ],
+    "artwork_path": "data/pokemon/artwork/994.png"
+  },
+  {
+    "id": 995,
+    "name": "iron-thorns",
+    "generation": 9,
+    "types": [
+      "rock",
+      "electric"
+    ],
+    "artwork_path": "data/pokemon/artwork/995.png"
+  },
+  {
+    "id": 996,
+    "name": "frigibax",
+    "generation": 9,
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/996.png"
+  },
+  {
+    "id": 997,
+    "name": "arctibax",
+    "generation": 9,
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/997.png"
+  },
+  {
+    "id": 998,
+    "name": "baxcalibur",
+    "generation": 9,
+    "types": [
+      "dragon",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/998.png"
+  },
+  {
+    "id": 999,
+    "name": "gimmighoul",
+    "generation": 9,
+    "types": [
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/999.png"
+  },
+  {
+    "id": 1000,
+    "name": "gholdengo",
+    "generation": 9,
+    "types": [
+      "steel",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/1000.png"
+  },
+  {
+    "id": 1001,
+    "name": "wo-chien",
+    "generation": 9,
+    "types": [
+      "dark",
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/1001.png"
+  },
+  {
+    "id": 1002,
+    "name": "chien-pao",
+    "generation": 9,
+    "types": [
+      "dark",
+      "ice"
+    ],
+    "artwork_path": "data/pokemon/artwork/1002.png"
+  },
+  {
+    "id": 1003,
+    "name": "ting-lu",
+    "generation": 9,
+    "types": [
+      "dark",
+      "ground"
+    ],
+    "artwork_path": "data/pokemon/artwork/1003.png"
+  },
+  {
+    "id": 1004,
+    "name": "chi-yu",
+    "generation": 9,
+    "types": [
+      "dark",
+      "fire"
+    ],
+    "artwork_path": "data/pokemon/artwork/1004.png"
+  },
+  {
+    "id": 1005,
+    "name": "roaring-moon",
+    "generation": 9,
+    "types": [
+      "dragon",
+      "dark"
+    ],
+    "artwork_path": "data/pokemon/artwork/1005.png"
+  },
+  {
+    "id": 1006,
+    "name": "iron-valiant",
+    "generation": 9,
+    "types": [
+      "fairy",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/1006.png"
+  },
+  {
+    "id": 1007,
+    "name": "koraidon",
+    "generation": 9,
+    "types": [
+      "fighting",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1007.png"
+  },
+  {
+    "id": 1008,
+    "name": "miraidon",
+    "generation": 9,
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1008.png"
+  },
+  {
+    "id": 1009,
+    "name": "walking-wake",
+    "generation": 9,
+    "types": [
+      "water",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1009.png"
+  },
+  {
+    "id": 1010,
+    "name": "iron-leaves",
+    "generation": 9,
+    "types": [
+      "grass",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/1010.png"
+  },
+  {
+    "id": 1011,
+    "name": "dipplin",
+    "generation": 9,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1011.png"
+  },
+  {
+    "id": 1012,
+    "name": "poltchageist",
+    "generation": 9,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/1012.png"
+  },
+  {
+    "id": 1013,
+    "name": "sinistcha",
+    "generation": 9,
+    "types": [
+      "grass",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/1013.png"
+  },
+  {
+    "id": 1014,
+    "name": "okidogi",
+    "generation": 9,
+    "types": [
+      "poison",
+      "fighting"
+    ],
+    "artwork_path": "data/pokemon/artwork/1014.png"
+  },
+  {
+    "id": 1015,
+    "name": "munkidori",
+    "generation": 9,
+    "types": [
+      "poison",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/1015.png"
+  },
+  {
+    "id": 1016,
+    "name": "fezandipiti",
+    "generation": 9,
+    "types": [
+      "poison",
+      "fairy"
+    ],
+    "artwork_path": "data/pokemon/artwork/1016.png"
+  },
+  {
+    "id": 1017,
+    "name": "ogerpon",
+    "generation": 9,
+    "types": [
+      "grass"
+    ],
+    "artwork_path": "data/pokemon/artwork/1017.png"
+  },
+  {
+    "id": 1018,
+    "name": "archaludon",
+    "generation": 9,
+    "types": [
+      "steel",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1018.png"
+  },
+  {
+    "id": 1019,
+    "name": "hydrapple",
+    "generation": 9,
+    "types": [
+      "grass",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1019.png"
+  },
+  {
+    "id": 1020,
+    "name": "gouging-fire",
+    "generation": 9,
+    "types": [
+      "fire",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1020.png"
+  },
+  {
+    "id": 1021,
+    "name": "raging-bolt",
+    "generation": 9,
+    "types": [
+      "electric",
+      "dragon"
+    ],
+    "artwork_path": "data/pokemon/artwork/1021.png"
+  },
+  {
+    "id": 1022,
+    "name": "iron-boulder",
+    "generation": 9,
+    "types": [
+      "rock",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/1022.png"
+  },
+  {
+    "id": 1023,
+    "name": "iron-crown",
+    "generation": 9,
+    "types": [
+      "steel",
+      "psychic"
+    ],
+    "artwork_path": "data/pokemon/artwork/1023.png"
+  },
+  {
+    "id": 1024,
+    "name": "terapagos",
+    "generation": 9,
+    "types": [
+      "normal"
+    ],
+    "artwork_path": "data/pokemon/artwork/1024.png"
+  },
+  {
+    "id": 1025,
+    "name": "pecharunt",
+    "generation": 9,
+    "types": [
+      "poison",
+      "ghost"
+    ],
+    "artwork_path": "data/pokemon/artwork/1025.png"
   }
 ]

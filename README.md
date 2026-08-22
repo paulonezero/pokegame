@@ -1,6 +1,6 @@
 # Poké-Guesser
 
-A 30-second Generation I Pokémon silhouette game. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience.
+A 30-second Pokémon silhouette game covering every packaged National Pokédex species. The application uses a FastAPI backend for authoritative round state and a React frontend for the responsive player experience.
 
 Gameplay is fully local at runtime: metadata, silhouettes, artwork, and the precomputed similarity index are packaged under `data/`. No PokéAPI requests or pairwise image comparisons occur while playing.
 
@@ -63,6 +63,17 @@ Then open `http://127.0.0.1:8000`.
 
 Deployments and service restarts reset session-best scores because there is intentionally no database. To scale beyond one replica, move sessions to a shared store such as Redis first.
 
+## Build the Pokémon data
+
+Runtime data is generated ahead of deployment so gameplay never depends on PokéAPI. To add every currently available National Pokédex species after the original 151:
+
+```bash
+python scripts/download_images.py --start-id 152 --end-id 1025
+python scripts/build_similarity.py
+```
+
+The downloader saves each completed Pokémon and can safely be rerun after an interruption. The similarity build keeps the closest 40 candidates per Pokémon, covering every supported difficulty band without packaging the full all-pairs matrix. PokéAPI form IDs (regional forms, Mega Evolutions, and similar variants) are intentionally not included in the National Pokédex range.
+
 ## Tests
 
 ```bash
@@ -76,7 +87,7 @@ The suite covers pure scoring and guess transitions, image processing and simila
 - `server/app.py` — FastAPI app, validated/cached packaged data, per-browser in-memory sessions, round commands, and image endpoints.
 - `frontend/src/` — Round, Result, and Setup error screens with phone/iPad portrait layouts.
 - `src/` — reusable domain, data, image, and similarity modules.
-- `data/` — packaged Generation I metadata, masks, artwork, and similarity index.
+- `data/` — packaged Pokémon metadata, masks, artwork, and similarity index.
 
 Session state is process-local. Running multiple backend workers would require a shared session store or sticky sessions; the default command intentionally uses one worker.
 

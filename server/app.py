@@ -211,7 +211,7 @@ def _load_validated_data(data_dir: Path, *, clear_caches: bool = False) -> Valid
         raise _failure(
             "metadata_missing",
             f"Pokémon metadata was not found at {metadata_path}.",
-            "The round cannot start until packaged Generation I metadata is available.",
+            "The round cannot start until packaged Pokémon metadata is available.",
             path=str(metadata_path),
         )
     try:
@@ -231,19 +231,15 @@ def _load_validated_data(data_dir: Path, *, clear_caches: bool = False) -> Valid
             path=str(metadata_path),
         ) from exc
 
-    generation_one = [
-        record
-        for record in ui_data.generation_one(records)
-        if 1 <= int(record["id"]) <= 151
-    ]
+    playable_records = ui_data.playable_pokemon(records)
     pokemon = {
         int(record["id"]): Pokemon(id=int(record["id"]), name=str(record["name"]))
-        for record in generation_one
+        for record in playable_records
     }
     if len(pokemon) < 4:
         raise _failure(
             "metadata_insufficient",
-            f"At least 4 usable Generation I Pokémon records are required in {metadata_path}; found {len(pokemon)}.",
+            f"At least 4 usable Pokémon records are required in {metadata_path}; found {len(pokemon)}.",
             "The round needs one target and three answer choices before it can start.",
             path=str(metadata_path),
         )
@@ -257,7 +253,7 @@ def _load_validated_data(data_dir: Path, *, clear_caches: bool = False) -> Valid
 
     silhouettes: dict[int, bytes] = {}
     artwork: dict[int, bytes] = {}
-    records_by_id = {int(record["id"]): record for record in generation_one}
+    records_by_id = {int(record["id"]): record for record in playable_records}
     for pokemon_id in sorted(pokemon):
         path = _mask_path(data_dir, pokemon_id)
         if not path.is_file():

@@ -24,7 +24,12 @@ class FakeClock:
         self.value += seconds
 
 
-def build_data(data_dir: Path) -> None:
+def build_data(
+    data_dir: Path,
+    pokemon_ids: range | None = None,
+    generation: int = 1,
+) -> None:
+    pokemon_ids = range(1, 5) if pokemon_ids is None else pokemon_ids
     pokemon_dir = data_dir / "pokemon"
     artwork_dir = pokemon_dir / "artwork"
     silhouettes_dir = data_dir / "silhouettes"
@@ -33,9 +38,10 @@ def build_data(data_dir: Path) -> None:
         directory.mkdir(parents=True, exist_ok=True)
 
     metadata: list[dict[str, object]] = []
-    for pokemon_id in range(1, 5):
+    for pokemon_id in pokemon_ids:
         artwork_path = artwork_dir / f"{pokemon_id}.png"
-        Image.new("RGBA", (64, 64), (pokemon_id * 40, 100, 140, 255)).save(artwork_path)
+        red = 40 + pokemon_id % 5 * 40
+        Image.new("RGBA", (64, 64), (red, 100, 140, 255)).save(artwork_path)
 
         silhouette = Image.new("L", (256, 256), 0)
         draw = ImageDraw.Draw(silhouette)
@@ -46,7 +52,7 @@ def build_data(data_dir: Path) -> None:
             {
                 "id": pokemon_id,
                 "name": f"fixture-{pokemon_id}",
-                "generation": 1,
+                "generation": generation,
                 "artwork_path": str(artwork_path),
             }
         )
@@ -68,8 +74,8 @@ def build_data(data_dir: Path) -> None:
     ) as output:
         writer = csv.DictWriter(output, fieldnames=columns)
         writer.writeheader()
-        for target_id in range(1, 5):
-            for similar_id in range(1, 5):
+        for target_id in pokemon_ids:
+            for similar_id in pokemon_ids:
                 if target_id == similar_id:
                     continue
                 score = 1.0 - abs(target_id - similar_id) / 10
@@ -210,6 +216,23 @@ class FastAPIRoundFlowTests(unittest.TestCase):
 
                 self.assertEqual(len(set(targets)), 4)
                 self.assertNotEqual(state["question"]["target_id"], targets[-1])
+
+    def test_later_generations_are_included_in_the_target_pool(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            data_dir = Path(temporary)
+            expected_ids = set(range(152, 156))
+            build_data(data_dir, range(152, 156), generation=2)
+
+            with TestClient(create_app(data_dir, FakeClock())) as client:
+                state = client.post("/api/round/start").json()
+                targets: set[int] = set()
+                for _ in expected_ids:
+                    target_id = state["question"]["target_id"]
+                    targets.add(target_id)
+                    client.post("/api/round/guess", json={"answer_id": target_id})
+                    state = client.post("/api/round/advance").json()
+
+                self.assertEqual(targets, expected_ids)
 
     def test_setup_error_is_actionable_and_retry_reloads(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:

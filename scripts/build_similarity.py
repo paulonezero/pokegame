@@ -4,20 +4,22 @@
 Run from the project root with:
     python scripts/build_similarity.py
 
-Every unordered pair is scored once with the core module's mirror-aware comparison,
-then emitted in both directions. Keeping all candidates (rather than only a fixed
-top-N) lets the UI immediately rerank rows when component weights change.
+Every unordered pair is scored once with the core module's mirror-aware comparison.
+Only the strongest candidates for each target are emitted in both directions, keeping
+the packaged similarity index small enough to deploy with the full National Pokédex.
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import heapq
 import json
 import math
 import os
 import sys
 import uuid
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -42,6 +44,13 @@ SCORE_COLUMNS = CSV_COLUMNS[4:]
 
 class BuildError(RuntimeError):
     """Raised for invalid inputs or failures in the data-building pipeline."""
+
+
+@dataclass(order=True, slots=True)
+class RankedRow:
+    overall_score: float
+    neg_similar_id: int
+    row: dict[str, Any] = field(compare=False)
 
 
 def parse_args() -> argparse.Namespace:
@@ -77,7 +86,16 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="regenerate existing valid silhouette masks",
     )
-    return parser.parse_args()
+    parser.add_argument(
+        "--max-neighbors",
+        type=int,
+        default=40,
+        help="closest candidates retained per Pokémon (default: 40; 0 keeps all)",
+    )
+    args = parser.parse_args()
+    if args.max_neighbors < 0:
+        parser.error("--max-neighbors cannot be negative")
+    return args
 
 
 def project_path(path: Path) -> Path:
@@ -381,7 +399,12 @@ def main() -> int:
             f"Calculating {pair_count} unordered pairs with mirror handling...",
             flush=True,
         )
-        directed_rows: dict[int, list[dict[str, Any]]] = {
+        neighbor_limit = (
+            min(args.max_neighbors, max(0, len(prepared) - 1))
+            if args.max_neighbors
+            else max(0, len(prepared) - 1)
+        )
+        directed_rows: dict[int, list[RankedRow]] = {
             item["id"]: [] for item in prepared
         }
         completed_pairs = 0
@@ -403,24 +426,35 @@ def main() -> int:
                     ) from exc
                 scores = normalize_scores(raw_scores, first["id"], second["id"])
 
-                directed_rows[first["id"]].append(
-                    {
-                        "target_id": first["id"],
-                        "target_name": first["name"],
-                        "similar_id": second["id"],
-                        "similar_name": second["name"],
-                        **scores,
-                    }
-                )
-                directed_rows[second["id"]].append(
-                    {
-                        "target_id": second["id"],
-                        "target_name": second["name"],
-                        "similar_id": first["id"],
-                        "similar_name": first["name"],
-                        **scores,
-                    }
-                )
+                first_row = {
+                    "target_id": first["id"],
+                    "target_name": first["name"],
+                    "similar_id": second["id"],
+                    "similar_name": second["name"],
+                    **scores,
+                }
+                second_row = {
+                    "target_id": second["id"],
+                    "target_name": second["name"],
+                    "similar_id": first["id"],
+                    "similar_name": first["name"],
+                    **scores,
+                }
+                for target_id, row in (
+                    (first["id"], first_row),
+                    (second["id"], second_row),
+                ):
+                    # Higher scores are better; for ties, lower Pokédex IDs win.
+                    entry = RankedRow(
+                        overall_score=float(row["overall_score"]),
+                        neg_similar_id=-int(row["similar_id"]),
+                        row=row,
+                    )
+                    heap = directed_rows[target_id]
+                    if len(heap) < neighbor_limit:
+                        heapq.heappush(heap, entry)
+                    elif entry > heap[0]:
+                        heapq.heapreplace(heap, entry)
                 completed_pairs += 1
                 if completed_pairs % progress_interval == 0 or completed_pairs == pair_count:
                     print(
@@ -431,7 +465,7 @@ def main() -> int:
 
         rows: list[dict[str, Any]] = []
         for item in prepared:
-            target_rows = directed_rows[item["id"]]
+            target_rows = [entry.row for entry in directed_rows[item["id"]]]
             target_rows.sort(
                 key=lambda row: (-row["overall_score"], row["similar_id"])
             )
@@ -439,7 +473,7 @@ def main() -> int:
         atomic_write_csv(output_path, rows)
         print(
             f"Saved {len(rows)} directed rows to {display_path(output_path)} "
-            f"({len(prepared) - 1} candidates per target).",
+            f"({neighbor_limit} candidates per target).", 
             flush=True,
         )
         return 0

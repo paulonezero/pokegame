@@ -55,13 +55,13 @@ def _json_records(path: Path) -> list[dict[str, Any]]:
 
 def load_pokemon_metadata(
     path: str | Path | None = None,
-    ids: Iterable[int] | None = GEN_I_IDS,
+    ids: Iterable[int] | None = None,
 ) -> pd.DataFrame:
     """Load JSON or CSV metadata with canonical ``id`` and ``name`` columns.
 
     The downloader writes JSON, while CSV remains supported for quick analysis and
-    future data imports. By default records are limited to IDs 1–151; pass
-    ``ids=None`` to load every available Pokémon.
+    future data imports. By default every available Pokémon is loaded; pass an
+    explicit ``ids`` iterable to select a subset.
     """
     metadata_path = _metadata_path(path)
     if not metadata_path.is_file():
