@@ -1242,6 +1242,31 @@ button:disabled {
   }
 }
 
+@media (min-width: 1024px) and (orientation: landscape) {
+  .round-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+    align-items: stretch;
+  }
+
+  .stage-row:not(.has-reveal) {
+    display: flex;
+    min-width: 0;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .stage-row .stage {
+    flex: none;
+    width: min(100%, calc(100dvh - 124px));
+  }
+
+  .round-controls {
+    justify-content: center;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

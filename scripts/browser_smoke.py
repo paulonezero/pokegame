@@ -96,10 +96,15 @@ def main() -> int:
             command("Log.enable")
 
             results = []
-            for width, height in ((402, 874), (834, 1086)):
+            viewports = (
+                (402, 874, True),
+                (834, 1086, True),
+                (1440, 600, False),
+            )
+            for width, height, mobile in viewports:
                 command(
                     "Emulation.setDeviceMetricsOverride",
-                    {"width": width, "height": height, "deviceScaleFactor": 1, "mobile": True},
+                    {"width": width, "height": height, "deviceScaleFactor": 1, "mobile": mobile},
                 )
                 command("Page.navigate", {"url": f"{backend_url}/"})
                 time.sleep(1.0)
@@ -114,7 +119,7 @@ def main() -> int:
                 measurement = command(
                     "Runtime.evaluate",
                     {
-                        "expression": "JSON.stringify((()=>{const s=document.querySelector('.stage')?.getBoundingClientRect();const a=document.querySelector('.app')?.getBoundingClientRect();return {screen:!!document.querySelector('.play-screen'),stage:s&&{width:s.width,height:s.height,top:s.top,bottom:s.bottom},app:a&&{width:a.width,height:a.height},answers:document.querySelectorAll('.answer-row').length}})())",
+                        "expression": "JSON.stringify((()=>{const s=document.querySelector('.stage')?.getBoundingClientRect();const i=document.querySelector('.stage-image')?.getBoundingClientRect();const a=document.querySelector('.app')?.getBoundingClientRect();return {screen:!!document.querySelector('.play-screen'),stage:s&&{width:s.width,height:s.height,top:s.top,bottom:s.bottom},image:i&&{width:i.width,height:i.height},app:a&&{width:a.width,height:a.height},answers:document.querySelectorAll('.answer-row').length}})())",
                         "returnByValue": True,
                     },
                 )
@@ -176,17 +181,27 @@ def main() -> int:
                 raise AssertionError(f"Round did not render at {width}×{height}: {result}")
             if stage is None or abs(stage["width"] - stage["height"]) > 1:
                 raise AssertionError(f"Stage is not square at {width}×{height}: {stage}")
-            expected = 366 if width == 402 else 462
-            if abs(stage["width"] - expected) > 5:
+            expected = {402: 366, 834: 462}.get(width)
+            if expected is not None and abs(stage["width"] - expected) > 5:
                 raise AssertionError(
                     f"Stage does not match the {expected}pt target at {width}×{height}: {stage}"
+                )
+            image = result.get("image")
+            if width == 1440 and (
+                stage["width"] < 240
+                or image is None
+                or image["width"] < 100
+                or image["height"] < 100
+            ):
+                raise AssertionError(
+                    f"Stage image collapsed on desktop at {width}×{height}: stage={stage}, image={image}"
                 )
             if (
                 not result["reveal"]["shown"]
                 or result["reveal"]["question"] != "Q2"
                 or not result["reveal"]["outside"]
                 or not result["reveal"]["smaller"]
-                or not result["reveal"]["centered"]
+                or (width < 1024 and not result["reveal"]["centered"])
                 or "Correct" not in result["reveal"]["confirmation"]
             ):
                 raise AssertionError(f"Side reveal did not advance immediately at {width}×{height}: {result['reveal']}")
